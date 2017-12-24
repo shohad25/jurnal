@@ -1,0 +1,440 @@
+% This file was created with JabRef 2.10.
+% Encoding: UTF-8
+
+
+@Article{Alpher02,
+  Title                    = {Frobnication},
+  Author                   = {A. Alpher},
+  Journal                  = {Journal of Foo},
+  Year                     = {2002},
+  Number                   = {1},
+  Pages                    = {234--778},
+  Volume                   = {12}
+}
+
+@Article{Alpher03,
+  Title                    = {Frobnication revisited},
+  Author                   = {A. Alpher and J.~P.~N. Fotheringham-Smythe},
+  Journal                  = {Journal of Foo},
+  Year                     = {2003},
+  Number                   = {1},
+  Pages                    = {234--778},
+  Volume                   = {13}
+}
+
+@Article{Alpher04,
+  Title                    = {Can a machine frobnicate?},
+  Author                   = {A. Alpher and J.~P.~N. Fotheringham-Smythe and G. Gamow},
+  Journal                  = {Journal of Foo},
+  Year                     = {2004},
+  Number                   = {1},
+  Pages                    = {234--778},
+  Volume                   = {14}
+}
+
+@Misc{Authors14,
+  Title                    = {The frobnicatable foo filter},
+
+  Author                   = {Authors},
+  Note                     = {Face and Gesture submission ID 324. Supplied as additional material {\tt fg324.pdf}},
+  Year                     = {2014}
+}
+
+@Misc{Authors14b,
+  Title                    = {Frobnication tutorial},
+
+  Author                   = {Authors},
+  Note                     = {Supplied as additional material {\tt tr.pdf}},
+  Year                     = {2014}
+}
+
+@Article{bengio2013representation,
+  Title                    = {Representation learning: A review and new perspectives},
+  Author                   = {Bengio, Yoshua and Courville, Aaron and Vincent, Pierre},
+  Journal                  = {Pattern Analysis and Machine Intelligence, IEEE Transactions on},
+  Year                     = {2013},
+  Number                   = {8},
+  Pages                    = {1798--1828},
+  Volume                   = {35},
+
+  Publisher                = {IEEE}
+}
+
+@InCollection{bhatia2015fast,
+  Title                    = {Fast Reconstruction of Accelerated Dynamic MRI Using Manifold Kernel Regression},
+  Author                   = {Bhatia, Kanwal K and Caballero, Jose and Price, Anthony N and Sun, Ying and Hajnal, Jo V and Rueckert, Daniel},
+  Booktitle                = {Medical Image Computing and Computer-Assisted Intervention--MICCAI 2015},
+  Publisher                = {Springer},
+  Year                     = {2015},
+  Pages                    = {510--518},
+
+  Review                   = {manifold Daniel}
+}
+
+@Article{caballero2014dictionary,
+  Title                    = {Dictionary learning and time sparsity for dynamic MR data reconstruction},
+  Author                   = {Caballero, Jose and Price, Anthony N and Rueckert, Daniel and Hajnal, Joseph V},
+  Journal                  = {Medical Imaging, IEEE Transactions on},
+  Year                     = {2014},
+  Number                   = {4},
+  Pages                    = {979--994},
+  Volume                   = {33},
+
+  Publisher                = {IEEE},
+  Review                   = {Dictionary learning - Daniel}
+}
+
+@InProceedings{ciresan2012multi,
+  Title                    = {Multi-column deep neural networks for image classification},
+  Author                   = {Ciresan, Dan and Meier, Ueli and Schmidhuber, J{\"u}rgen},
+  Booktitle                = {Computer Vision and Pattern Recognition (CVPR), 2012 IEEE Conference on},
+  Year                     = {2012},
+  Organization             = {IEEE},
+  Pages                    = {3642--3649}
+}
+
+@Article{Deshmane2012,
+  Title                    = {Parallel MR imaging},
+  Author                   = {Deshmane, Anagha and Gulani, Vikas and Griswold, Mark A and Seiberlich, Nicole},
+  Journal                  = {Journal of Magnetic Resonance Imaging},
+  Year                     = {2012},
+  Number                   = {1},
+  Pages                    = {55--72},
+  Volume                   = {36},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{super_resolution_deep_learning,
+  Title                    = {Image super-resolution using deep convolutional networks},
+  Author                   = {Dong, Chao and Loy, Chen Change and He, Kaiming and Tang, Xiaoou},
+  Year                     = {2015},
+
+  Publisher                = {IEEE}
+}
+
+@InProceedings{dong2014learning,
+  Title                    = {Learning a deep convolutional network for image super-resolution},
+  Author                   = {Dong, Chao and Loy, Chen Change and He, Kaiming and Tang, Xiaoou},
+  Booktitle                = {European Conference on Computer Vision},
+  Year                     = {2014},
+  Organization             = {Springer},
+  Pages                    = {184--199}
+}
+
+@Article{donoho2006compressed,
+  Title                    = {Compressed sensing},
+  Author                   = {Donoho, David L},
+  Journal                  = {Information Theory, IEEE Transactions on},
+  Year                     = {2006},
+  Number                   = {4},
+  Pages                    = {1289--1306},
+  Volume                   = {52},
+
+  Publisher                = {IEEE},
+  Review                   = {BASIC - Compressed sesing - 5000 cites}
+}
+
+@Article{feng2014golden,
+  Title                    = {Golden-angle radial sparse parallel MRI: Combination of compressed sensing, parallel imaging, and golden-angle radial sampling for fast and flexible dynamic volumetric MRI},
+  Author                   = {Feng, Li and Grimm, Robert and Block, Kai Tobias and Chandarana, Hersh and Kim, Sungheon and Xu, Jian and Axel, Leon and Sodickson, Daniel K and Otazo, Ricardo},
+  Journal                  = {Magnetic resonance in medicine},
+  Year                     = {2014},
+  Number                   = {3},
+  Pages                    = {707--717},
+  Volume                   = {72},
+
+  Publisher                = {Wiley Online Library},
+  Review                   = {Combination of CS, Parallel Imaging}
+}
+
+@Article{gamper2008compressed,
+  Title                    = {Compressed sensing in dynamic MRI},
+  Author                   = {Gamper, Urs and Boesiger, Peter and Kozerke, Sebastian},
+  Journal                  = {Magnetic Resonance in Medicine},
+  Year                     = {2008},
+  Number                   = {2},
+  Pages                    = {365--373},
+  Volume                   = {59},
+
+  Publisher                = {Wiley Online Library},
+  Review                   = {CS - 336 cites}
+}
+
+@InProceedings{glorot2010understanding,
+  Title                    = {Understanding the difficulty of training deep feedforward neural networks.},
+  Author                   = {Glorot, Xavier and Bengio, Yoshua},
+  Booktitle                = {Aistats},
+  Year                     = {2010},
+  Pages                    = {249--256},
+  Volume                   = {9}
+}
+
+@InCollection{golkov2015q,
+  Title                    = {q-Space deep learning for twelve-fold shorter and model-free diffusion MRI scans},
+  Author                   = {Golkov, Vladimir and Dosovitskiy, Alexey and S{\"a}mann, Philipp and Sperl, Jonathan I and Sprenger, Tim and Czisch, Michael and Menzel, Marion I and G{\'o}mez, Pedro A and Haase, Axel and Brox, Thomas and others},
+  Booktitle                = {Medical Image Computing and Computer-Assisted Intervention--MICCAI 2015},
+  Publisher                = {Springer},
+  Year                     = {2015},
+  Pages                    = {37--44}
+}
+
+@InProceedings{goodfellow2014generative,
+  Title                    = {Generative adversarial nets},
+  Author                   = {Goodfellow, Ian and Pouget-Abadie, Jean and Mirza, Mehdi and Xu, Bing and Warde-Farley, David and Ozair, Sherjil and Courville, Aaron and Bengio, Yoshua},
+  Booktitle                = {Advances in neural information processing systems},
+  Year                     = {2014},
+  Pages                    = {2672--2680}
+}
+
+@Article{griswold2002generalized,
+  Title                    = {Generalized autocalibrating partially parallel acquisitions (GRAPPA)},
+  Author                   = {Griswold, Mark A and Jakob, Peter M and Heidemann, Robin M and Nittka, Mathias and Jellus, Vladimir and Wang, Jianmin and Kiefer, Berthold and Haase, Axel},
+  Journal                  = {Magnetic resonance in medicine},
+  Year                     = {2002},
+  Number                   = {6},
+  Pages                    = {1202--1210},
+  Volume                   = {47},
+
+  Publisher                = {Wiley Online Library},
+  Review                   = {GRAPPA}
+}
+
+@InProceedings{he2016deep,
+  Title                    = {Deep residual learning for image recognition},
+  Author                   = {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  Booktitle                = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  Year                     = {2016},
+  Pages                    = {770--778}
+}
+
+@InProceedings{krizhevsky2012imagenet,
+  Title                    = {Imagenet classification with deep convolutional neural networks},
+  Author                   = {Krizhevsky, Alex and Sutskever, Ilya and Hinton, Geoffrey E},
+  Booktitle                = {Advances in neural information processing systems},
+  Year                     = {2012},
+  Pages                    = {1097--1105},
+
+  Review                   = {Hinton - imagenet 3000 cites}
+}
+
+@Article{ledig2016photo,
+  Title                    = {Photo-realistic single image super-resolution using a generative adversarial network},
+  Author                   = {Ledig, Christian and Theis, Lucas and Husz{\'a}r, Ferenc and Caballero, Jose and Cunningham, Andrew and Acosta, Alejandro and Aitken, Andrew and Tejani, Alykhan and Totz, Johannes and Wang, Zehan and others},
+  Journal                  = {arXiv preprint arXiv:1609.04802},
+  Year                     = {2016}
+}
+
+@Article{lustig2007sparse,
+  Title                    = {Sparse MRI: The application of compressed sensing for rapid MR imaging},
+  Author                   = {Lustig, Michael and Donoho, David and Pauly, John M},
+  Journal                  = {Magnetic resonance in medicine},
+  Year                     = {2007},
+  Number                   = {6},
+  Pages                    = {1182--1195},
+  Volume                   = {58},
+
+  Publisher                = {Wiley Online Library},
+  Review                   = {First CS for MRI - 2600 cites}
+}
+
+@Article{ma2013magnetic,
+  Title                    = {Magnetic resonance fingerprinting},
+  Author                   = {Ma, Dan and Gulani, Vikas and Seiberlich, Nicole and Liu, Kecheng and Sunshine, Jeffrey L and Duerk, Jeffrey L and Griswold, Mark A},
+  Journal                  = {Nature},
+  Year                     = {2013},
+  Number                   = {7440},
+  Pages                    = {187--192},
+  Volume                   = {495},
+
+  Publisher                = {Nature Publishing Group},
+  Review                   = {MRF - dictionary learning, CS}
+}
+
+@Article{moeller2010multiband,
+  Title                    = {Multiband multislice GE-EPI at 7 tesla, with 16-fold acceleration using partial parallel imaging with application to high spatial and temporal whole-brain fMRI},
+  Author                   = {Moeller, Steen and Yacoub, Essa and Olman, Cheryl A and Auerbach, Edward and Strupp, John and Harel, Noam and U{\u{g}}urbil, K{\^a}mil},
+  Journal                  = {Magnetic Resonance in Medicine},
+  Year                     = {2010},
+  Number                   = {5},
+  Pages                    = {1144--1153},
+  Volume                   = {63},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@InProceedings{ngiam2011optimization,
+  Title                    = {On optimization methods for deep learning},
+  Author                   = {Ngiam, Jiquan and Coates, Adam and Lahiri, Ahbik and Prochnow, Bobby and Le, Quoc V and Ng, Andrew Y},
+  Booktitle                = {Proceedings of the 28th International Conference on Machine Learning (ICML-11)},
+  Year                     = {2011},
+  Pages                    = {265--272}
+}
+
+@Article{nie2016medical,
+  Title                    = {Medical Image Synthesis with Context-Aware Generative Adversarial Networks},
+  Author                   = {Nie, Dong and Trullo, Roger and Petitjean, Caroline and Ruan, Su and Shen, Dinggang},
+  Journal                  = {arXiv preprint arXiv:1612.05362},
+  Year                     = {2016}
+}
+
+@InProceedings{Oktay2016,
+  Title                    = {Multi-input Cardiac Image Super-Resolution Using Convolutional Neural Networks},
+  Author                   = {Oktay, Ozan and Bai, Wenjia and Lee, Matthew and Guerrero, Ricardo and Kamnitsas, Konstantinos and Caballero, Jose and de Marvao, Antonio and Cook, Stuart and OARegan, D.Regan, Declan and Rueckert, Daniel},
+  Booktitle                = {International Conference on Medical Image Computing and Computer-Assisted Intervention},
+  Year                     = {2016},
+  Organization             = {Springer},
+  Pages                    = {246--254}
+}
+
+@Article{otazo2015low,
+  Title                    = {Low-rank plus sparse matrix decomposition for accelerated dynamic MRI with separation of background and dynamic components},
+  Author                   = {Otazo, Ricardo and Cand{\`e}s, Emmanuel and Sodickson, Daniel K},
+  Journal                  = {Magnetic Resonance in Medicine},
+  Year                     = {2015},
+  Number                   = {3},
+  Pages                    = {1125--1136},
+  Volume                   = {73},
+
+  Publisher                = {Wiley Online Library},
+  Review                   = {Compreseed Sesing 50 cits}
+}
+
+@InProceedings{pathak2016context,
+  Title                    = {Context encoders: Feature learning by inpainting},
+  Author                   = {Pathak, Deepak and Krahenbuhl, Philipp and Donahue, Jeff and Darrell, Trevor and Efros, Alexei A},
+  Booktitle                = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  Year                     = {2016},
+  Pages                    = {2536--2544}
+}
+
+@Article{pruessmann1999sense,
+  Title                    = {SENSE: sensitivity encoding for fast MRI},
+  Author                   = {Pruessmann, Klaas P and Weiger, Markus and Scheidegger, Markus B and Boesiger, Peter and others},
+  Journal                  = {Magnetic resonance in medicine},
+  Year                     = {1999},
+  Number                   = {5},
+  Pages                    = {952--962},
+  Volume                   = {42}
+}
+
+@Article{radford2015unsupervised,
+  Title                    = {Unsupervised representation learning with deep convolutional generative adversarial networks},
+  Author                   = {Radford, Alec and Metz, Luke and Chintala, Soumith},
+  Journal                  = {arXiv preprint arXiv:1511.06434},
+  Year                     = {2015}
+}
+
+@Article{ravishankar2011mr,
+  Title                    = {MR image reconstruction from highly undersampled k-space data by dictionary learning},
+  Author                   = {Ravishankar, Saiprasad and Bresler, Yoram},
+  Journal                  = {Medical Imaging, IEEE Transactions on},
+  Year                     = {2011},
+  Number                   = {5},
+  Pages                    = {1028--1041},
+  Volume                   = {30},
+
+  Publisher                = {IEEE},
+  Review                   = {Dctionary learning 2}
+}
+
+@Article{roemer1990nmr,
+  Title                    = {The NMR phased array},
+  Author                   = {Roemer, Peter B and Edelstein, William A and Hayes, Cecil E and Souza, Steven P and Mueller, OM},
+  Journal                  = {Magnetic resonance in medicine},
+  Year                     = {1990},
+  Number                   = {2},
+  Pages                    = {192--225},
+  Volume                   = {16},
+
+  Publisher                = {Wiley Online Library},
+  Review                   = {The first paper which present the Parallel Imaging}
+}
+
+@Article{smith2002fast,
+  Title                    = {Fast robust automated brain extraction},
+  Author                   = {Smith, Stephen M},
+  Journal                  = {Human brain mapping},
+  Year                     = {2002},
+  Number                   = {3},
+  Pages                    = {143--155},
+  Volume                   = {17},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{szegedy2014going,
+  Title                    = {Going deeper with convolutions},
+  Author                   = {Szegedy, Christian and Liu, Wei and Jia, Yangqing and Sermanet, Pierre and Reed, Scott and Anguelov, Dragomir and Erhan, Dumitru and Vanhoucke, Vincent and Rabinovich, Andrew},
+  Journal                  = {arXiv preprint arXiv:1409.4842},
+  Year                     = {2014}
+}
+
+@Article{tieleman2012lecture,
+  Title                    = {Lecture 6.5-rmsprop: Divide the gradient by a running average of its recent magnitude},
+  Author                   = {Tieleman, Tijmen and Hinton, Geoffrey},
+  Journal                  = {COURSERA: Neural networks for machine learning},
+  Year                     = {2012},
+  Number                   = {2},
+  Pages                    = {26--31},
+  Volume                   = {4}
+}
+
+@Article{tsao2003k,
+  Title                    = {k-t BLAST and k-t SENSE: Dynamic MRI with high frame rate exploiting spatiotemporal correlations},
+  Author                   = {Tsao, Jeffrey and Boesiger, Peter and Pruessmann, Klaas P},
+  Journal                  = {Magnetic Resonance in Medicine},
+  Year                     = {2003},
+  Number                   = {5},
+  Pages                    = {1031--1042},
+  Volume                   = {50},
+
+  Publisher                = {Wiley Online Library},
+  Review                   = {CS - Complete the k-space using interpolations}
+}
+
+@Article{usman2014compressive,
+  Title                    = {Compressive manifold learning: Estimating one-dimensional respiratory motion directly from undersampled k-space data},
+  Author                   = {Usman, Muhammad and Vaillant, Ghislain and Atkinson, David and Schaeffter, Tobias and Prieto, Claudia},
+  Journal                  = {Magnetic Resonance in Medicine},
+  Year                     = {2014},
+  Number                   = {4},
+  Pages                    = {1130--1140},
+  Volume                   = {72},
+
+  Publisher                = {Wiley Online Library},
+  Review                   = {Manifold learning 1}
+}
+
+@InProceedings{wang2016accelerating,
+  Title                    = {Accelerating magnetic resonance imaging via deep learning},
+  Author                   = {Wang, Shanshan and Su, Zhenghang and Ying, Leslie and Peng, Xi and Zhu, Shun and Liang, Feng and Feng, Dagan and Liang, Dong},
+  Booktitle                = {Biomedical Imaging (ISBI), 2016 IEEE 13th International Symposium on},
+  Year                     = {2016},
+  Organization             = {IEEE},
+  Pages                    = {514--517}
+}
+
+@Article{zhang2001segmentation,
+  Title                    = {Segmentation of brain MR images through a hidden Markov random field model and the expectation-maximization algorithm},
+  Author                   = {Zhang, Yongyue and Brady, Michael and Smith, Stephen},
+  Journal                  = {IEEE transactions on medical imaging},
+  Year                     = {2001},
+  Number                   = {1},
+  Pages                    = {45--57},
+  Volume                   = {20},
+
+  Publisher                = {IEEE}
+}
+
+@InProceedings{AdamSolver,
+  Title                    = {Accelerating MR parameter mapping using nonlinear manifold learning and supervised pre-imaging},
+  Author                   = {Zhou, Yihang and Shi, Chao and Ren, Fuquan and Lyu, Jingyuan and Liang, Dong and Ying, Leslie},
+  Booktitle                = {Biomedical Imaging (ISBI), 2015 IEEE 12th International Symposium on},
+  Year                     = {2015},
+  Organization             = {IEEE},
+  Pages                    = {897--900},
+
+  Review                   = {manifold 2}
+}
+

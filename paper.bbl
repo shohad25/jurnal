@@ -1,0 +1,122 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{moeller2010multiband}
+S.~Moeller, E.~Yacoub, C.~A. Olman, E.~Auerbach, J.~Strupp, N.~Harel,
+  K.~U{\u{g}}urbil, Multiband multislice ge-epi at 7 tesla, with 16-fold
+  acceleration using partial parallel imaging with application to high spatial
+  and temporal whole-brain fmri, Magnetic Resonance in Medicine 63~(5) (2010)
+  1144--1153.
+
+\bibitem{roemer1990nmr}
+P.~B. Roemer, W.~A. Edelstein, C.~E. Hayes, S.~P. Souza, O.~Mueller, The nmr
+  phased array, Magnetic resonance in medicine 16~(2) (1990) 192--225.
+
+\bibitem{Deshmane2012}
+A.~Deshmane, V.~Gulani, M.~A. Griswold, N.~Seiberlich, Parallel mr imaging,
+  Journal of Magnetic Resonance Imaging 36~(1) (2012) 55--72.
+
+\bibitem{pruessmann1999sense}
+K.~P. Pruessmann, M.~Weiger, M.~B. Scheidegger, P.~Boesiger, et~al., Sense:
+  sensitivity encoding for fast mri, Magnetic resonance in medicine 42~(5)
+  (1999) 952--962.
+
+\bibitem{griswold2002generalized}
+M.~A. Griswold, P.~M. Jakob, R.~M. Heidemann, M.~Nittka, V.~Jellus, J.~Wang,
+  B.~Kiefer, A.~Haase, Generalized autocalibrating partially parallel
+  acquisitions (grappa), Magnetic resonance in medicine 47~(6) (2002)
+  1202--1210.
+
+\bibitem{donoho2006compressed}
+D.~L. Donoho, Compressed sensing, Information Theory, IEEE Transactions on
+  52~(4) (2006) 1289--1306.
+
+\bibitem{lustig2007sparse}
+M.~Lustig, D.~Donoho, J.~M. Pauly, Sparse mri: The application of compressed
+  sensing for rapid mr imaging, Magnetic resonance in medicine 58~(6) (2007)
+  1182--1195.
+
+\bibitem{usman2014compressive}
+M.~Usman, G.~Vaillant, D.~Atkinson, T.~Schaeffter, C.~Prieto, Compressive
+  manifold learning: Estimating one-dimensional respiratory motion directly
+  from undersampled k-space data, Magnetic Resonance in Medicine 72~(4) (2014)
+  1130--1140.
+
+\bibitem{bhatia2015fast}
+K.~K. Bhatia, J.~Caballero, A.~N. Price, Y.~Sun, J.~V. Hajnal, D.~Rueckert,
+  Fast reconstruction of accelerated dynamic mri using manifold kernel
+  regression, in: Medical Image Computing and Computer-Assisted
+  Intervention--MICCAI 2015, Springer, 2015, pp. 510--518.
+
+\bibitem{ravishankar2011mr}
+S.~Ravishankar, Y.~Bresler, Mr image reconstruction from highly undersampled
+  k-space data by dictionary learning, Medical Imaging, IEEE Transactions on
+  30~(5) (2011) 1028--1041.
+
+\bibitem{caballero2014dictionary}
+J.~Caballero, A.~N. Price, D.~Rueckert, J.~V. Hajnal, Dictionary learning and
+  time sparsity for dynamic mr data reconstruction, Medical Imaging, IEEE
+  Transactions on 33~(4) (2014) 979--994.
+
+\bibitem{wang2016accelerating}
+S.~Wang, Z.~Su, L.~Ying, X.~Peng, S.~Zhu, F.~Liang, D.~Feng, D.~Liang,
+  Accelerating magnetic resonance imaging via deep learning, in: Biomedical
+  Imaging (ISBI), 2016 IEEE 13th International Symposium on, IEEE, 2016, pp.
+  514--517.
+
+\bibitem{Oktay2016}
+O.~Oktay, W.~Bai, M.~Lee, R.~Guerrero, K.~Kamnitsas, J.~Caballero,
+  A.~de~Marvao, S.~Cook, D.~OARegan, D.Regan, D.~Rueckert, Multi-input cardiac
+  image super-resolution using convolutional neural networks, in: International
+  Conference on Medical Image Computing and Computer-Assisted Intervention,
+  Springer, 2016, pp. 246--254.
+
+\bibitem{goodfellow2014generative}
+I.~Goodfellow, J.~Pouget-Abadie, M.~Mirza, B.~Xu, D.~Warde-Farley, S.~Ozair,
+  A.~Courville, Y.~Bengio, Generative adversarial nets, in: Advances in neural
+  information processing systems, 2014, pp. 2672--2680.
+
+\bibitem{radford2015unsupervised}
+A.~Radford, L.~Metz, S.~Chintala, Unsupervised representation learning with
+  deep convolutional generative adversarial networks, arXiv preprint
+  arXiv:1511.06434.
+
+\bibitem{pathak2016context}
+D.~Pathak, P.~Krahenbuhl, J.~Donahue, T.~Darrell, A.~A. Efros, Context
+  encoders: Feature learning by inpainting, in: Proceedings of the IEEE
+  Conference on Computer Vision and Pattern Recognition, 2016, pp. 2536--2544.
+
+\bibitem{nie2016medical}
+D.~Nie, R.~Trullo, C.~Petitjean, S.~Ruan, D.~Shen, Medical image synthesis with
+  context-aware generative adversarial networks, arXiv preprint
+  arXiv:1612.05362.
+
+\bibitem{he2016deep}
+K.~He, X.~Zhang, S.~Ren, J.~Sun, Deep residual learning for image recognition,
+  in: Proceedings of the IEEE Conference on Computer Vision and Pattern
+  Recognition, 2016, pp. 770--778.
+
+\bibitem{glorot2010understanding}
+X.~Glorot, Y.~Bengio, Understanding the difficulty of training deep feedforward
+  neural networks., in: Aistats, Vol.~9, 2010, pp. 249--256.
+
+\bibitem{zhang2001segmentation}
+Y.~Zhang, M.~Brady, S.~Smith, Segmentation of brain mr images through a hidden
+  markov random field model and the expectation-maximization algorithm, IEEE
+  transactions on medical imaging 20~(1) (2001) 45--57.
+
+\bibitem{smith2002fast}
+S.~M. Smith, Fast robust automated brain extraction, Human brain mapping 17~(3)
+  (2002) 143--155.
+
+\bibitem{dubuisson1994modified}
+M.-P. Dubuisson, A.~K. Jain, A modified hausdorff distance for object matching,
+  in: Pattern Recognition, 1994. Vol. 1-Conference A: Computer Vision \& Image
+  Processing., Proceedings of the 12th IAPR International Conference on,
+  Vol.~1, IEEE, 1994, pp. 566--568.
+
+\end{thebibliography}
