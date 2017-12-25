@@ -315,7 +315,7 @@ In order to create k-space images for training, inverse orthonormal
 2D FFT is applied to the fully-sampled MR images. We sample the k-space
 using $2D$ Gaussian mask with sampling factor of 2.5, 4 and 6. Data augmentation
 is created by random offsets of the proposed mask and image flipping.
-This leads us to reconstruction of the MR image from 16.6\%-40\% of
+This leads us to reconstruction of the MR image from 16.6\%-40\% (Figure~\ref{fig:sampling_masks}) of
 the original k-space data.
 
 The generator is composed of $5$ blocks of CONV-BatchNorm-ReLU, with
@@ -334,6 +334,19 @@ L2 loss (CNN-L2). The same sampling masks was used for all cases.
 
 A common metric used to quantify the reconstructed image quality is the PSNR. In order to provide a reliable and robust evaluation of the reconstruction quality, which will be used for medical diagnostic, we suggest the following test: PSNR, brain's shape measure and segmentation.
 
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{ccc}
+		\subfloat[Factor 2.5 (40\%)]{\includegraphics[width=3cm, height=3cm]{include/grp2/mask2}}
+		& 
+		\subfloat[Factor 4 (25\%)]{\includegraphics[width=3cm, height=3cm]{include/grp2/mask4}}
+		&
+		\subfloat[Factor 6 (16.66\%)]{\includegraphics[width=3cm, height=3cm]{include/grp2/mask6}}
+		\tabularnewline
+		
+	\end{tabular}\caption{$2D$ Gaussian sampling masks}
+	\label{fig:sampling_masks}
+\end{figure}
 
 \subsection{Peak signal-to-noise ratio (PSNR)}
 The first measure and the most basic one. PSNR measures the Mean Squared Error (MSE) between the fully-sampled MR image and the reconstructed image. Therefore, this measure might no be a good metric for edges and general shape. For example, a model can provides a good reconstruction in the sense of PSNR but with blurry edges, results in a poor performance of algorithms that are based on them, for example segmentation.
