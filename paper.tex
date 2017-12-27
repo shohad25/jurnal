@@ -349,7 +349,7 @@ A common metric used to quantify the reconstructed image quality is the PSNR. In
 \end{figure}
 
 \subsection{Peak signal-to-noise ratio (PSNR)}
-The first measure and the most basic one. PSNR measures the Mean Squared Error (MSE) between the fully-sampled MR image and the reconstructed image. Therefore, this measure might no be a good metric for edges and general shape. For example, a model can provides a good reconstruction in the sense of PSNR but with blurry edges, results in a poor performance of algorithms that are based on them, for example segmentation.
+PSNR measures the Mean Squared Error (MSE) between the fully-sampled MR image and the reconstructed image. Therefore, this measure is not a sufficient metric for edges and general shape. For example, a model can provides a good reconstruction in the sense of PSNR but with blurry edges, which results in a poor performance of algorithms that use them, for example segmentation.
 However, PSNR is still a good indication for the image quality, especially if an expert should view it.
 Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graphical visualization in ~Figure~\ref{fig:error_psnr_errorbar}. The PSNR calculated on the whole image without masking. Note that the proposed method outperforms the other.
 
@@ -368,13 +368,13 @@ Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graph
 	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, without masking}{\footnotesize{}\label{tbl:PSNR_NO_MASK}}}
 \end{table}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.7\linewidth]{include/grp2/error_psnr_errorbar}
 \caption{PSNR without masking error-bar}
 \end{figure}\label{fig:error_psnr_errorbar}
 
-An extended validation of our model done by calculating the PSNR measure for different brain tissues. We applied an image segmentation algorithm, FAST \cite{zhang2001segmentation}, on the original fully-sampled MR image and then use it for calculating the masked-PSNR on gray matters, white matters and the Cerebrospinal Fluid (CSF). results are presented in~Table~\ref{tbl:PSNR_WITH_MASK}.
+An extended validation of our model done by calculating the PSNR measure on different brain tissues. We applied an image segmentation algorithm, FAST \cite{zhang2001segmentation}, on the original fully-sampled MR image and then use it for calculating the masked-PSNR on gray matters, white matters and the Cerebrospinal Fluid (CSF). results are presented in~Table~\ref{tbl:PSNR_WITH_MASK}.
 
 
 \begin{table}[H]
@@ -399,6 +399,45 @@ An extended validation of our model done by calculating the PSNR measure for dif
 
 %TODO:add after images
 %Visual comparison is shown in Figure~\ref{fig:results}. MRIs reconstructed by using the suggested adversarial loss have stronger contrast and no significant aliasing or artifacts.
+
+\begin{figure}[H]
+	\begin{raggedright}
+		\begin{tabular}{>{\centering}b{0.2cm}lcccc}
+			& \multicolumn{1}{c}{\footnotesize Original} & {\footnotesize Zero-filled} & {\footnotesize CS-MRI} & {\footnotesize CNN-L2} & {\footnotesize Proposed}\tabularnewline
+			\multirow{1}{0.2cm}[2cm]{\begin{turn}{90} {\footnotesize Reconstructed} \end{turn}} &
+			 
+			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__50} &
+			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zeroPadding_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__CS_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__CNNL2_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__predict_50}
+			 
+			 \tabularnewline
+			 
+			 \multirow{1}{0.2cm}[2cm]{\begin{turn}{90} {\footnotesize Zoom in} \end{turn}} &
+			
+			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zoom_50} &
+			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zeroPadding_zoom_50} & 
+			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__CS_zoom_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__CNNL2_zoom_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__predict_zoom_50}
+			 
+			 \tabularnewline
+			 
+			\multirow{2}{0.2cm}[2cm]{\begin{turn}{90} {\footnotesize Brain} \end{turn}} & 
+ 			
+ 			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__50} &
+			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__zeroPadding_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__CS_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__CNNL2_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__predict_50}
+			
+			\tabularnewline
+			
+			\multirow{2}{0.2cm}[2cm]{\begin{turn}{90} {\footnotesize Segmentation} \end{turn}} & 
+			
+ 			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__50} &
+ 			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__zeroPadding_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__CS_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__CNNL2_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__predict_50}
+			
+			
+		\end{tabular}
+	\par\end{raggedright}
+	\raggedright{}\caption{\textcolor{black}{\footnotesize{}Examples of reconstructed MR images from under-sampled k-space.}}
+	\label{fig:example} 
+\end{figure}
+
 
 \subsection{Brain Extraction - Skull Stripping}
 Brain extraction (Skull stripping) is a an algorithm that delineates the brain boundary (Figure~ \ref{fig:brain_extraction}). It is necessary for almost every brain analysis algorithm. In tissue segmentation for example, skull stripping is a pre-processing step which affects directly on the segments partition. We examine the different reconstruction methods by applying the Brain Extraction Tool (BET) \cite{smith2002fast} on each different MR reconstructed image. Then, we compared the skull stripping results to the fully-sampled result using the Modified Hausdorff Distance (MHD)~\cite{dubuisson1994modified}.
