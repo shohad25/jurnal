@@ -353,20 +353,39 @@ PSNR measures the Mean Squared Error (MSE) between the fully-sampled MR image an
 However, PSNR is still a good indication for the image quality, especially if an expert should view it.
 Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graphical visualization in ~Figure~\ref{fig:error_psnr_errorbar}. The PSNR calculated on the whole image without masking. Note that the proposed method outperforms the other.
 
+%\begin{table}[H]
+%	\centering{}
+%\begin{tabular}{|c||c|c||c|c||c|c|}
+%	\hline 
+%	\textbf{PSNR} & \multicolumn{2}{c||}{Factor 2.5} & \multicolumn{2}{c||}{Factor 4} & \multicolumn{2}{c|}{Factor 6}\tabularnewline \cline{2-7}
+%
+%	\textbf{Method}     &Mean   &std    &Mean   &std     &Mean   &std \tabularnewline \hline 	
+%	Zero-filled         &32.044 &2.616  &26.447 &1.997   &16.470 &2.181\tabularnewline
+%	CS-MRI              &39.053 &2.479  &33.273 &2.452   &26.951 &3.380\tabularnewline
+%	CNN-L2              &38.978 &2.454  &33.405 &2.232   &31.010 &2.299\tabularnewline
+%	\textbf{Proposed}   &39.802 &2.489  &34.595 &2.519   &31.555 &2.487\tabularnewline
+%		\hline 
+%	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, without masking}{\footnotesize{}\label{tbl:PSNR_NO_MASK}}}
+%\end{table}
+
+
 \begin{table}[H]
 	\centering{}
-\begin{tabular}{|c||c|c||c|c||c|c|}
-	\hline 
-	\textbf{PSNR} & \multicolumn{2}{c||}{Factor 2.5} & \multicolumn{2}{c||}{Factor 4} & \multicolumn{2}{c|}{Factor 6}\tabularnewline \cline{2-7}
-
-	\textbf{Method}     &Mean   &std    &Mean   &std     &Mean   &std \tabularnewline \hline 	
-	Zero-filled         &32.044 &2.616  &26.447 &1.997   &16.470 &2.181\tabularnewline
-	CS-MRI              &39.053 &2.479  &33.273 &2.452   &26.951 &3.380\tabularnewline
-	CNN-L2              &38.978 &2.454  &33.405 &2.232   &31.010 &2.299\tabularnewline
-	\textbf{Proposed}   &39.802 &2.489  &34.595 &2.519   &31.555 &2.487\tabularnewline
+	\begin{tabular}{|c||c||c||c|}
+		\hline 
+		\textbf{PSNR} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 2.5}} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 4}} & \multicolumn{1}{c|}{\multirow{2}{*}{Factor 6}} \tabularnewline
+		\textbf{Method} & \multicolumn{1}{c||}{} & \multicolumn{1}{c||}{} & \multicolumn{1}{c|}{} \tabularnewline \cline{1-4}
+		
+		Zero-filled         &32.044~$\pm$~2.616  &26.447~$\pm$~1.997   &16.470~$\pm$~2.181\tabularnewline
+		CS-MRI              &39.053~$\pm$~2.479  &33.273~$\pm$~2.452   &26.951~$\pm$~3.380\tabularnewline
+		CNN-L2              &38.978~$\pm$~2.454  &33.405~$\pm$~2.232   &31.010~$\pm$~2.299\tabularnewline
+		\textbf{Proposed}   &\textbf{39.802~$\pm$~2.489}  &\textbf{34.595~$\pm$~2.519}   &\textbf{31.555~$\pm$~2.487}\tabularnewline
 		\hline 
 	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, without masking}{\footnotesize{}\label{tbl:PSNR_NO_MASK}}}
 \end{table}
+
+
+
 
 \begin{figure}[H]
 \centering
@@ -455,15 +474,15 @@ where $\sigma_1,\sigma_2$ are points on the contours $C_1,C_2$ respectively (Fig
 
 \begin{table}[H]
 	\centering{}
-	\begin{tabular}{|c||c|c||c|c||c|c|}
+	\begin{tabular}{|c||c||c||c|}
 		\hline 
-		\textbf{MHD} & \multicolumn{2}{c||}{Factor 2.5} & \multicolumn{2}{c||}{Factor 4} & \multicolumn{2}{c|}{Factor 6}\tabularnewline \cline{2-7}
-		
-		\textbf{Method}     &Mean   &std    &Mean   &std     &Mean   &std \tabularnewline \hline 	
-		Zero-filled         &1.111 &0.563  &2.617 &1.214   &3.121 &1.279\tabularnewline
-		CS-MRI              &0.701 &0.511  &1.447 &1.027   &3.114 &1.617\tabularnewline
-		CNN-L2              &0.420 &0.270  &0.715 &0.561   &1.083 &1.052\tabularnewline
-		\textbf{Proposed}   &0.391 &0.250  &0.617 &0.306   &1.050 &1.033\tabularnewline
+		\textbf{MHD} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 2.5}} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 4}} & \multicolumn{1}{c|}{\multirow{2}{*}{Factor 6}} \tabularnewline
+		\textbf{Method} & \multicolumn{1}{c||}{} & \multicolumn{1}{c||}{} & \multicolumn{1}{c|}{} \tabularnewline \cline{1-4}
+				
+		Zero-filled         &1.111~$\pm$~0.563  &2.617~$\pm$~1.214   &3.121~$\pm$~1.279\tabularnewline
+		CS-MRI              &0.701~$\pm$~0.511  &1.447~$\pm$~1.027   &3.114~$\pm$~1.617\tabularnewline
+		CNN-L2              &0.420~$\pm$~0.270  &0.715~$\pm$~0.561   &1.083~$\pm$~1.052\tabularnewline
+		\textbf{Proposed}   &\textbf{0.391~$\pm$~0.250}  &\textbf{0.617~$\pm$~0.306}   &\textbf{1.050~$\pm$~1.033}\tabularnewline
 		\hline 
 	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}MHD - brain extraction}{\footnotesize{}\label{tbl:MHD}}}
 \end{table}
@@ -497,7 +516,52 @@ Table
 
 Images
 
+\begin{table}[H]
+	\centering
+	\resizebox{\textwidth}{!}{%
+	\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
+		\hline 
+		\textbf{DICE} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
+		\cline{2-10} 
+		\textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
+		\hline 
+		Zero-filled & 0.882~$\pm$~0.08 & 0.826~$\pm$~0.05 & 0.796~$\pm$~0.05 & 0.718~$\pm$~0.10 & 0.644~$\pm$~0.05 & 0.627~$\pm$~0.05 & 0.599~$\pm$~0.12 & 0.466~$\pm$~0.07 & 0.050~$\pm$~0.06\tabularnewline
+		\hline 
+		CS-MRI & 0.942~$\pm$~0.05 & 0.910~$\pm$~0.03 & 0.868~$\pm$~0.03 & 0.871~$\pm$~0.10 & 0.805~$\pm$~0.08 & 0.770~$\pm$~0.05 & 0.708~$\pm$~0.14 & 0.639~$\pm$~0.08 & 0.621~$\pm$~0.07     \tabularnewline
+		\hline 
+		CNN-L2 & 0.948~$\pm$~0.02 & 0.919~$\pm$~0.02 & 0.891~$\pm$~0.02 & 0.888~$\pm$~0.06 & 0.836~$\pm$~0.04 & 0.813~$\pm$~0.03 & 0.836~$\pm$~0.09 & 0.770~$\pm$~0.06 & 0.747~$\pm$~0.06     \tabularnewline
+		\hline
 
+		\textbf{Proposed} & \textbf{0.954~$\pm$~0.01} & \textbf{0.928~$\pm$~0.02} & \textbf{0.900~$\pm$~0.002} & \textbf{0.903~$\pm$~0.06} & \textbf{0.858~$\pm$~0.04} & \textbf{0.833~$\pm$~0.03} & \textbf{0.851~$\pm$~0.09} & \textbf{0.789~$\pm$~0.06} & \textbf{0.767~$\pm$~0.06}     \tabularnewline
+		\hline 
+	\end{tabular}
+	}
+	\caption{\textcolor{black}{\footnotesize{}{}Segmentation Dice score for different sampling ratios}{\footnotesize{}\label{tbl:DICE}}}
+\end{table}
+
+WHICH IS BETTER???
+\begin{table}[H]
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
+			\hline 
+			\textbf{DICE} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
+			\cline{2-10} 
+			\textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
+			\hline 
+			Zero-filled & 0.882$\pm$0.08 & 0.826$\pm$0.05 & 0.796$\pm$0.05 & 0.718$\pm$0.10 & 0.644$\pm$0.05 & 0.627$\pm$0.05 & 0.599$\pm$0.12 & 0.466$\pm$0.07 & 0.050$\pm$0.06\tabularnewline
+			\hline 
+			CS-MRI & 0.942$\pm$0.05 & 0.910$\pm$0.03 & 0.868$\pm$0.03 & 0.871$\pm$0.10 & 0.805$\pm$0.08 & 0.770$\pm$0.05 & 0.708$\pm$0.14 & 0.639$\pm$0.08 & 0.621$\pm$0.07     \tabularnewline
+			\hline 
+			CNN-L2 & 0.948$\pm$0.02 & 0.919$\pm$0.02 & 0.891$\pm$0.02 & 0.888$\pm$0.06 & 0.836$\pm$0.04 & 0.813$\pm$0.03 & 0.836$\pm$0.09 & 0.770$\pm$0.06 & 0.747$\pm$0.06     \tabularnewline
+			\hline
+			
+			\textbf{Proposed} & \textbf{0.954$\pm$0.01} & \textbf{0.928$\pm$0.02} & \textbf{0.900$\pm$0.002} & \textbf{0.903$\pm$0.06} & \textbf{0.858$\pm$0.04} & \textbf{0.833$\pm$0.03} & \textbf{0.851$\pm$0.09} & \textbf{0.789$\pm$0.06} & \textbf{0.767$\pm$0.06}     \tabularnewline
+			\hline 
+		\end{tabular}
+	}
+	\caption{\textcolor{black}{\footnotesize{}{}Segmentation Dice score for different sampling ratios}{\footnotesize{}\label{tbl:DICE2}}}
+\end{table}
 
 
 
