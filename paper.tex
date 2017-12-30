@@ -28,7 +28,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-
+%		\fontfamily{qtm}\selectfont
 \begin{frontmatter}
 
 \title{Accelerated Magnetic Resonance Imaging by Adversarial Neural Network}
@@ -40,25 +40,9 @@
 	     Ben-Gurion University of the Negev, Israel}
 
 \begin{abstract}
-A main challenge in Magnetic Resonance Imaging (MRI) for clinical
-applications is speeding up scan time. Beyond the improvement of patient
-experience and the reduction of operational costs, faster scans are
-essential for time-sensitive imaging, where target movement is unavoidable,
-yet must be significantly lessened, e.g., fetal MRI, cardiac cine,
-and lungs imaging. Moreover, short scan time can enhance temporal
-resolution in dynamic scans, such as functional MRI or dynamic contrast
-enhanced MRI. Current imaging methods facilitate MRI acquisition at
-the price of lower spatial resolution and costly hardware solutions.
+A main challenge in Magnetic Resonance Imaging (MRI) for clinical applications is speeding up scan time. Beyond the improvement of patient experience and the reduction of operational costs, faster scans are essential for time-sensitive imaging, where target movement is unavoidable, yet must be significantly lessened, e.g., fetal MRI, cardiac cine, and lungs imaging. Moreover, short scan time can enhance temporal resolution in dynamic scans, such as functional MRI or dynamic contrast enhanced MRI. Current imaging methods facilitate MRI acquisition at the price of lower spatial resolution and costly hardware solutions.
 
-We introduce a practical, software-only framework, based on deep learning,
-for accelerating MRI scan time allows maintaining good quality imaging.
-This is accomplished by partial MRI sampling, while using an adversarial
-neural network to estimate the missing samples. The inter-play between
-the generator and the discriminator networks enables the introduction
-of an adversarial cost in addition to a fidelity loss used for optimizing
-the peak signal-to-noise ratio (PSNR). Promising image reconstruction
-results are obtained for 1.5T MRI where only 52\% of the original
-data are used. 
+We introduce a practical, software-only framework, based on deep learning, for accelerating MRI scan time allows maintaining good quality imaging. This is accomplished by partial MRI sampling, while using an adversarial neural network to estimate the missing samples. The inter-play between the generator and the discriminator networks enables the introduction of an adversarial cost in addition to a fidelity loss used for optimizing the peak signal-to-noise ratio (PSNR). Promising image reconstruction results are obtained for 3T and 1.5T MRI where only 40\%, 25\% and 16.6\% of the original data are used. Extended performance assessment was conducted in order to emphasize the advantage of proposed method.
 \end{abstract}
 
 \begin{keyword}
@@ -71,22 +55,9 @@ data are used.
 \linenumbers
 
 \section{Introduction}
-Magnetic Resonance Imaging (MRI) is a non-ionizing imaging modality,
-and is therefore widely used in diagnostic medicine and biomedical
-research. The physical principles of MRI are based on a strong magnetic
-field and pulses of radio frequency (RF) electromagnetic radiation.
-Images are produced when hydrogen atoms, which are prevalent in living
-organisms, emit the absorbed RF energy that is then received by antennas
-in close proximity to the anatomy being examined. Spatial localization
-of the detected MRI signals is obtained by varying the magnetic field
-gradients. The discretized RF output is presented in a Fourier space
-(called K-space), where the x-axis is refers to the frequency and
-the y-axis to the phase. An inverse fast Fourier transform (IFFT)
-of the K-space is then used for generating anatomically meaningful
-MRI scans. Figure \ref{fig:pair_of_k_space_mri} presents K-space
-traversal patterns used in conventional imaging. Each row of the k-space
-is acquired after one RF excitation pulse. The number of rows multiplied
-by the number of slices (z-axis) determines the total scan time.
+Magnetic Resonance Imaging (MRI) is a non-ionizing imaging modality, and is therefore widely used in diagnostic medicine and biomedical research. The physical principles of MRI are based on a strong magnetic field and pulses of radio frequency (RF) electromagnetic radiation. 
+Images are produced when hydrogen atoms, which are prevalent in living organisms, emit the absorbed RF energy that is then received by antennas in close proximity to the anatomy being examined. Spatial localization of the detected MRI signals is obtained by varying the magnetic field gradients. The discretized RF output is presented in a Fourier space
+(called K-space), where the x-axis is refers to the frequency and the y-axis to the phase. An inverse fast Fourier transform (IFFT) of the K-space is then used for generating anatomically meaningful MRI scans. Figure \ref{fig:pair_of_k_space_mri} presents K-space traversal patterns used in conventional imaging. Each row of the k-space is acquired after one RF excitation pulse. The number of rows multiplied by the number of slices (z-axis) determines the total scan time.
 
 The duration of standard single structural MRI acquisition is approximately
 5 minutes. Usually, several scans of different modalities or a sequence
@@ -176,19 +147,19 @@ where $H$ is the Hermitian transpose operation, $\odot$ denotes
 element-wise multiplication, and $F^{H}$ is an orthonormal 2D IFFT
 operator, such that $F^{H}F=I$. While sampling part of the k-space,
 using $M_{p}$ as a sampling mask, the reconstructed MR image suffers
-from artifacts and aliasing. An example of the under-sampling (52\%)
-artifacts is shown in Figure \textbf{\ref{fig:pair_of_k_space_mri}}.
+from artifacts and aliasing. An example artifacts caused by under-sampling in the phase axis using Gaussian mask (40\%)
+is shown in Figure \textbf{\ref{fig:pair_of_k_space_mri}}.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\begin{tabular}{cccc}
-		\subfloat[\textcolor{black}{\scriptsize{}raw k-space}]{\centering{}\includegraphics[scale=0.2]{include/grp1/example_mask_kspace_with_arrows}
+		\subfloat[\textcolor{black}{\scriptsize{}raw k-space}]{\centering{}\includegraphics[width=2.5cm,height=2.5cm]{include/grp1/example_mask_kspace_with_arrows}
 			
-		} & \subfloat[\textcolor{black}{\scriptsize{}fully sampled MRI}]{\centering{}\includegraphics[scale=0.2]{include/grp1/example_mask_mri}
+		} & \subfloat[\textcolor{black}{\scriptsize{}fully sampled MRI}]{\centering{}\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/example_original.png}
 		
-		} & \subfloat[\textcolor{black}{\scriptsize{}sampling mask}]{\centering{}\includegraphics[scale=0.2]{include/grp1/example_mask_mask}
+		} & \subfloat[\textcolor{black}{\scriptsize{}sampling mask}]{\centering{}\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/example_samplingMask4.png}
 	
-		} & \subfloat[\textcolor{black}{\scriptsize{}Zero-filled}]{\centering{}\includegraphics[scale=0.2]{include/grp1/example_mask_mri_rec}
+		} & \subfloat[\textcolor{black}{\scriptsize{}Zero-filled}]{\centering{}\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/example_zeroPadding.png}
 }\tabularnewline
 \end{tabular}\caption{\textcolor{black}{\footnotesize{}{}Under-sampling artifacts: the
 	arrows illustrate the sampling methodology}}
@@ -315,24 +286,14 @@ In order to create k-space images for training, inverse orthonormal
 2D FFT is applied to the fully-sampled MR images. We sample the k-space
 using $2D$ Gaussian mask with sampling factor of 2.5, 4 and 6. Data augmentation
 is created by random offsets of the proposed mask and image flipping.
-This leads us to reconstruction of the MR image from 16.6\%-40\% (Figure~\ref{fig:sampling_masks}) of
+This leads us to reconstruction of the MR image from 40\%, 25\% and 16.6\% (Figure~\ref{fig:sampling_masks}) of
 the original k-space data.
 
-The generator is composed of $5$ blocks of CONV-BatchNorm-ReLU, with
-output channels $16,32,64,32,8,$ respectively. The last layer is
-CONV with two outputs channels (for real and imaginary parts). The
-discriminator is composed of $4$ blocks of CONV-Pool-BatchNorm-LReLU
-with output channels $8,16,32,16$ and one fully-connected layer.
-All CONV layers kernel size is $3\times3$. All weights was initialized
-by Xavier \cite{glorot2010understanding}. We used RMSprop solver with
-fixed learning rate of $5\mathrm{e}{-6}$ and set $k_{d}$ to 1.
+The generator is composed of $5$ blocks of CONV-BatchNorm-ReLU, with output channels $16,32,64,32,8,$ respectively. The last layer is CONV with two outputs channels (for real and imaginary parts). The discriminator is composed of $4$ blocks of CONV-Pool-BatchNorm-LReLU with output channels $8,16,32,16$ and one fully-connected layer. All CONV layers kernel size is $3\times3$. All weights was initialized by Xavier \cite{glorot2010understanding}. We used RMSprop solver with fixed learning rate of $5\mathrm{e}{-6}$ and set $k_{d}$ to 1.
 
-We compare the proposed method to reconstruction results obtained
-by using a conventional compressed sensing method CS-MRI \cite{lustig2007sparse}
-and Zero-filling. In addition, we trained a generator (G) using only
-L2 loss (CNN-L2). The same sampling masks was used for all cases.
+We compare the proposed method to reconstruction results obtained by using a conventional compressed sensing method CS-MRI \cite{lustig2007sparse} and Zero-filling. In addition, we optimized two networks: 1. CNN-L2 - a k-space generator (with same architecture as the proposed method) using only L2 loss. 2. IM-CNN-L2 - a network which performs on the image-space and optimized to remove the artifacts caused by under-sampling and zero padding. We used the U-net \cite{ronneberger2015u} architecture inspired by \cite{lee2017deep}. The same sampling masks was used for all cases.
 
-A common metric used to quantify the reconstructed image quality is the PSNR. In order to provide a reliable and robust evaluation of the reconstruction quality, which will be used for medical diagnostic, we suggest the following test: PSNR, brain's shape measure and segmentation.
+A common metric used to quantify the reconstructed image quality is the PSNR. In order to provide a reliable and robust evaluation of the reconstruction quality, which will be used for medical diagnostic, we suggest the following test: PSNR, brain's shape measure and tissue segmentation.
 
 \begin{figure}[H]
 	\centering
@@ -378,12 +339,12 @@ Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graph
 		
 		Zero-filled         &32.044~$\pm$~2.616  &26.447~$\pm$~1.997   &16.470~$\pm$~2.181\tabularnewline
 		CS-MRI              &39.053~$\pm$~2.479  &33.273~$\pm$~2.452   &26.951~$\pm$~3.380\tabularnewline
+		IM-CNN-L2           &35.281~$\pm$~2.210  &31.577~$\pm$~2.109   &23.417~$\pm$~2.676\tabularnewline
 		CNN-L2              &38.978~$\pm$~2.454  &33.405~$\pm$~2.232   &31.010~$\pm$~2.299\tabularnewline
 		\textbf{Proposed}   &\textbf{39.802~$\pm$~2.489}  &\textbf{34.595~$\pm$~2.519}   &\textbf{31.555~$\pm$~2.487}\tabularnewline
 		\hline 
 	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, without masking}{\footnotesize{}\label{tbl:PSNR_NO_MASK}}}
 \end{table}
-
 
 
 
@@ -396,24 +357,74 @@ Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graph
 An extended validation of our model done by calculating the PSNR measure on different brain tissues. We applied an image segmentation algorithm, FAST \cite{zhang2001segmentation}, on the original fully-sampled MR image and then use it for calculating the masked-PSNR on gray matters, white matters and the Cerebrospinal Fluid (CSF). results are presented in~Table~\ref{tbl:PSNR_WITH_MASK}.
 
 
+%\begin{table}[H]
+%	\centering
+%\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
+%	\hline 
+%	\textbf{PSNR} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
+%	\cline{2-10} 
+%	 \textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
+%	 \hline 
+%	 Zero-filled & 41.494 & 36.736 & 38.546 & 37.279 & 34.379 & 36.369 & 24.887 & 24.987 & 29.337\tabularnewline
+%	 \hline 
+%	 CS-MRI & 44.374 & 40.042 & 40.744 & 41.655 & 37.247 & 39.119 & 35.595 & 33.111 & 36.648\tabularnewline
+%	 \hline 
+%	 CNN-L2 & 45.727 & 41.593 & 41.689 & 43.265 & 40.151 & 40.247 & 41.119 & 39.277 & 39.102\tabularnewline
+%	 \hline 
+%	 \textbf{Proposed} & 46.206 & 41.942 & 41.616 & 43.857 & 40.109 & 40.496 & 41.919 & 39.014 & 39.366\tabularnewline
+%	 \hline 
+%\end{tabular}
+%\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, with masking}{\footnotesize{}\label{tbl:PSNR_WITH_MASK}}}
+%\end{table}
+
 \begin{table}[H]
 	\centering
-\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
-	\hline 
-	\textbf{PSNR} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
-	\cline{2-10} 
-	 \textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
-	 \hline 
-	 Zero-filled & 41.494 & 36.736 & 38.546 & 37.279 & 34.379 & 36.369 & 24.887 & 24.987 & 29.337\tabularnewline
-	 \hline 
-	 CS-MRI & 44.374 & 40.042 & 40.744 & 41.655 & 37.247 & 39.119 & 35.595 & 33.111 & 36.648\tabularnewline
-	 \hline 
-	 CNN-L2 & 45.727 & 41.593 & 41.689 & 43.265 & 40.151 & 40.247 & 41.119 & 39.277 & 39.102\tabularnewline
-	 \hline 
-	 \textbf{Proposed} & 46.206 & 41.942 & 41.616 & 43.857 & 40.109 & 40.496 & 41.919 & 39.014 & 39.366\tabularnewline
-	 \hline 
-\end{tabular}
-\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, with masking}{\footnotesize{}\label{tbl:PSNR_WITH_MASK}}}
+	\resizebox{\textwidth}{!}{%
+		\scriptsize
+		\setlength\tabcolsep{2pt}
+	\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
+		\hline 
+		\textbf{PSNR} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
+		\cline{2-10} 
+		\textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
+		\hline 
+		Zero-filled & 41.494{\tiny $\pm$}3.48 & 36.736{\tiny $\pm$}3.32 & 38.546{\tiny $\pm$}2.45 & 37.279{\tiny $\pm$}2.18 & 34.379{\tiny $\pm$}2.52 & 36.369{\tiny $\pm$}1.87 & 24.887{\tiny $\pm$}1.62 & 24.987{\tiny $\pm$}1.91 & 29.337{\tiny $\pm$}2.08\tabularnewline
+		\hline 
+		CS-MRI & 44.374{\tiny $\pm$}4.20 & 40.042{\tiny $\pm$}3.84 & 40.744{\tiny $\pm$}3.16 & 41.655{\tiny $\pm$}3.12 & 37.247{\tiny $\pm$}2.99 & 39.119{\tiny $\pm$}2.43 & 35.595{\tiny $\pm$}3.15 & 33.111{\tiny $\pm$}2.91 & 36.648{\tiny $\pm$}2.26\tabularnewline
+		\hline 
+		CNN-L2 & 45.727{\tiny $\pm$}4.70 & 41.593{\tiny $\pm$}4.16 & 41.689{\tiny $\pm$}3.69 & 43.265{\tiny $\pm$}2.95 & 40.151{\tiny $\pm$}3.15 & 40.247{\tiny $\pm$}2.47 & 41.119{\tiny $\pm$}2.48 & 39.277{\tiny $\pm$}2.65 & 39.102{\tiny $\pm$}1.93\tabularnewline
+		\hline 
+		\textbf{Proposed} & \textbf{46.206{\tiny $\pm$}4.77} & \textbf{41.942{\tiny $\pm$}4.34} & \textbf{41.616{\tiny $\pm$}2.45} & \textbf{43.857{\tiny $\pm$}3.16} & \textbf{40.109{\tiny $\pm$}3.25} & \textbf{40.496{\tiny $\pm$}2.57} & \textbf{41.919{\tiny $\pm$}2.77} & \textbf{39.014{\tiny $\pm$}2.88} & \textbf{39.366{\tiny $\pm$}2.17}\tabularnewline
+		\hline 
+	\end{tabular}
+	}
+	\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, with masking}{\footnotesize{}\label{tbl:PSNR_WITH_MASK}}}
+\end{table}
+
+
+ONLY 2 DIGITS
+\begin{table}[H]
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\scriptsize
+		\setlength\tabcolsep{2pt}
+		\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
+			\hline 
+			\textbf{PSNR} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
+			\cline{2-10} 
+			\textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
+			\hline 
+			Zero-filled & 41.49{\tiny $\pm$}3.48 & 36.73{\tiny $\pm$}3.32 & 38.54{\tiny $\pm$}2.45 & 37.27{\tiny $\pm$}2.18 & 34.37{\tiny $\pm$}2.52 & 36.36{\tiny $\pm$}1.87 & 24.88{\tiny $\pm$}1.62 & 24.98{\tiny $\pm$}1.91 & 29.33{\tiny $\pm$}2.08\tabularnewline
+			\hline 
+			CS-MRI & 44.37{\tiny $\pm$}4.20 & 40.04{\tiny $\pm$}3.84 & 40.74{\tiny $\pm$}3.16 & 41.65{\tiny $\pm$}3.12 & 37.24{\tiny $\pm$}2.99 & 39.11{\tiny $\pm$}2.43 & 35.59{\tiny $\pm$}3.15 & 33.11{\tiny $\pm$}2.91 & 36.64{\tiny $\pm$}2.26\tabularnewline
+			\hline 
+			CNN-L2 & 45.72{\tiny $\pm$}4.70 & 41.59{\tiny $\pm$}4.16 & 41.68{\tiny $\pm$}3.69 & 43.26{\tiny $\pm$}2.95 & 40.15{\tiny $\pm$}3.15 & 40.24{\tiny $\pm$}2.47 & 41.11{\tiny $\pm$}2.48 & 39.27{\tiny $\pm$}2.65 & 39.10{\tiny $\pm$}1.93\tabularnewline
+			\hline 
+			\textbf{Proposed} & \textbf{46.20{\tiny $\pm$}4.77} & \textbf{41.94{\tiny $\pm$}4.34} & \textbf{41.61{\tiny $\pm$}2.45} & \textbf{43.85{\tiny $\pm$}3.16} & \textbf{40.11{\tiny $\pm$}3.25} & \textbf{40.49{\tiny $\pm$}2.57} & \textbf{41.91{\tiny $\pm$}2.77} & \textbf{39.01{\tiny $\pm$}2.88} & \textbf{39.36{\tiny $\pm$}2.17}\tabularnewline
+			\hline 
+		\end{tabular}
+	}
+	\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, with masking}{\footnotesize{}\label{tbl:PSNR_WITH_MASK2}}}
 \end{table}
 
 %TODO:add after images
@@ -504,80 +515,50 @@ where $\sigma_1,\sigma_2$ are points on the contours $C_1,C_2$ respectively (Fig
 
 
 \subsection{Brain Segmentation}
-Talk about segmentation (FSL, FAST, etc..)
+Brain segmentation is the task of partitioning the brain image (MRI in our case), into the following segments: background, white matter, gray matter and CSF. This process is of a great importance for brain MR image analysis, especially for therapy planning and also for clinical research. Sampling artifacts, results in poor signal to noise and blurry edges, may hurts the algorithm performance.
+We suggest a way to evaluate and compare different MRI reconstruction methods based on segmentation results. We create a reference by extracting the brain (using BET \cite{smith2002fast}) from the original fully-sampled image and run a brain segmentation algorithm (FAST \cite{zhang2001segmentation}). Then, we did the same process for all the reconstruction methods and compared the segmentation results to the reference.
 
-Why it is important
-
-Noise and smoothing vs edges - important for segmentation algorithms
-
-What is Dice score
-
-Table
-
-Images
+The measure used for segmentations comparison is the Dice score \cite{dice1945measures} between the original and the reconstructed image segments. Dice score is a measure of sets similarity which gets the values between 0 (no similarity) to 1.0 (max similarity). Denotes by $S_{i,j}$ the set of pixels in segment $j$ for method $i$, the Dice between two methods for this segment is:
+\begin{equation}
+\begin{array}{c}
+DICE(S_{1,j},S_{2,j}) = \frac{2\cdot|S_{1,j} \cap S_{2,j}|} {|S_{1,j}| + |S_{2,j}|}
+\end{array}
+\end{equation}
+Dice values for different sampling ratios are presented in~Table~\ref{tbl:DICE}. Our methods archive the best Dice score for all the brain tissues.
 
 \begin{table}[H]
 	\centering
 	\resizebox{\textwidth}{!}{%
-	\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
-		\hline 
-		\textbf{DICE} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
-		\cline{2-10} 
-		\textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
-		\hline 
-		Zero-filled & 0.882~$\pm$~0.08 & 0.826~$\pm$~0.05 & 0.796~$\pm$~0.05 & 0.718~$\pm$~0.10 & 0.644~$\pm$~0.05 & 0.627~$\pm$~0.05 & 0.599~$\pm$~0.12 & 0.466~$\pm$~0.07 & 0.050~$\pm$~0.06\tabularnewline
-		\hline 
-		CS-MRI & 0.942~$\pm$~0.05 & 0.910~$\pm$~0.03 & 0.868~$\pm$~0.03 & 0.871~$\pm$~0.10 & 0.805~$\pm$~0.08 & 0.770~$\pm$~0.05 & 0.708~$\pm$~0.14 & 0.639~$\pm$~0.08 & 0.621~$\pm$~0.07     \tabularnewline
-		\hline 
-		CNN-L2 & 0.948~$\pm$~0.02 & 0.919~$\pm$~0.02 & 0.891~$\pm$~0.02 & 0.888~$\pm$~0.06 & 0.836~$\pm$~0.04 & 0.813~$\pm$~0.03 & 0.836~$\pm$~0.09 & 0.770~$\pm$~0.06 & 0.747~$\pm$~0.06     \tabularnewline
-		\hline
-
-		\textbf{Proposed} & \textbf{0.954~$\pm$~0.01} & \textbf{0.928~$\pm$~0.02} & \textbf{0.900~$\pm$~0.002} & \textbf{0.903~$\pm$~0.06} & \textbf{0.858~$\pm$~0.04} & \textbf{0.833~$\pm$~0.03} & \textbf{0.851~$\pm$~0.09} & \textbf{0.789~$\pm$~0.06} & \textbf{0.767~$\pm$~0.06}     \tabularnewline
-		\hline 
-	\end{tabular}
-	}
-	\caption{\textcolor{black}{\footnotesize{}{}Segmentation Dice score for different sampling ratios}{\footnotesize{}\label{tbl:DICE}}}
-\end{table}
-
-WHICH IS BETTER???
-\begin{table}[H]
-	\centering
-	\resizebox{\textwidth}{!}{%
+		\scriptsize
+		\setlength\tabcolsep{2pt}
 		\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
 			\hline 
 			\textbf{DICE} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
 			\cline{2-10} 
 			\textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
 			\hline 
-			Zero-filled & 0.882$\pm$0.08 & 0.826$\pm$0.05 & 0.796$\pm$0.05 & 0.718$\pm$0.10 & 0.644$\pm$0.05 & 0.627$\pm$0.05 & 0.599$\pm$0.12 & 0.466$\pm$0.07 & 0.050$\pm$0.06\tabularnewline
+			Zero-filled & 0.882{\tiny $\pm$}0.08 & 0.826{\tiny $\pm$}0.05 & 0.796{\tiny $\pm$}0.05 & 0.718{\tiny $\pm$}0.10 & 0.644{\tiny $\pm$}0.05 & 0.627{\tiny $\pm$}0.05 & 0.599{\tiny $\pm$}0.12 & 0.466{\tiny $\pm$}0.07 & 0.050{\tiny $\pm$}0.06\tabularnewline
 			\hline 
-			CS-MRI & 0.942$\pm$0.05 & 0.910$\pm$0.03 & 0.868$\pm$0.03 & 0.871$\pm$0.10 & 0.805$\pm$0.08 & 0.770$\pm$0.05 & 0.708$\pm$0.14 & 0.639$\pm$0.08 & 0.621$\pm$0.07     \tabularnewline
+			CS-MRI & 0.942{\tiny $\pm$}0.05 & 0.910{\tiny $\pm$}0.03 & 0.868{\tiny $\pm$}0.03 & 0.871{\tiny $\pm$}0.10 & 0.805{\tiny $\pm$}0.08 & 0.770{\tiny $\pm$}0.05 & 0.708{\tiny $\pm$}0.14 & 0.639{\tiny $\pm$}0.08 & 0.621{\tiny $\pm$}0.07     \tabularnewline
 			\hline 
-			CNN-L2 & 0.948$\pm$0.02 & 0.919$\pm$0.02 & 0.891$\pm$0.02 & 0.888$\pm$0.06 & 0.836$\pm$0.04 & 0.813$\pm$0.03 & 0.836$\pm$0.09 & 0.770$\pm$0.06 & 0.747$\pm$0.06     \tabularnewline
+			CNN-L2 & 0.948{\tiny $\pm$}0.02 & 0.919{\tiny $\pm$}0.02 & 0.891{\tiny $\pm$}0.02 & 0.888{\tiny $\pm$}0.06 & 0.836{\tiny $\pm$}0.04 & 0.813{\tiny $\pm$}0.03 & 0.836{\tiny $\pm$}0.09 & 0.770{\tiny $\pm$}0.06 & 0.747{\tiny $\pm$}0.06     \tabularnewline
 			\hline
 			
-			\textbf{Proposed} & \textbf{0.954$\pm$0.01} & \textbf{0.928$\pm$0.02} & \textbf{0.900$\pm$0.002} & \textbf{0.903$\pm$0.06} & \textbf{0.858$\pm$0.04} & \textbf{0.833$\pm$0.03} & \textbf{0.851$\pm$0.09} & \textbf{0.789$\pm$0.06} & \textbf{0.767$\pm$0.06}     \tabularnewline
+			\textbf{Proposed} & \textbf{0.954{\tiny $\pm$}0.01} & \textbf{0.928{\tiny $\pm$}0.02} & \textbf{0.900{\tiny $\pm$}0.002} & \textbf{0.903{\tiny $\pm$}0.06} & \textbf{0.858{\tiny $\pm$}0.04} & \textbf{0.833{\tiny $\pm$}0.03} & \textbf{0.851{\tiny $\pm$}0.09} & \textbf{0.789{\tiny $\pm$}0.06} & \textbf{0.767{\tiny $\pm$}0.06}     \tabularnewline
 			\hline 
 		\end{tabular}
 	}
-	\caption{\textcolor{black}{\footnotesize{}{}Segmentation Dice score for different sampling ratios}{\footnotesize{}\label{tbl:DICE2}}}
+	
+	\caption{\textcolor{black}{\footnotesize{}{}Segmentation Dice score for different sampling ratios}{\footnotesize{}\label{tbl:DICE}}}
+	
 \end{table}
 
-
-
-
 %--------------------- CONCLUSIONS --------------------%
-\section{Conclusions}
+\section{Discussion}
 
 
-We proposed a software-only framework, using GANs for accelerating
-MRI acquisition. Specifically, high-quality MRI reconstruction using
-only 52\% of the original k-space data is demonstrated. The key idea
-is based on utilizing an adversarial loss in addition to L2 loss.
-It is worth mentioning that the proposed sampling mask is currently
-implemented in commercial MRI machines with no need for additional
-hardware or dedicated pulse programming. Future work will concentrate
-on generation of MRI in the presence of pathologies.
+We proposed a software-only framework, using GANs for accelerating MRI acquisition. Specifically, high-quality MRI reconstruction using only 40\%, 25\% and 16.6\% of the original k-space data is demonstrated. The key idea is based on utilizing an adversarial loss in addition to L2 loss. Extensive evaluation of the reconstruction quality was conducted in order to emphasize the advantage of proposed method.
+Future work will concentrate on generation of MRI in the presence of pathologies.
 
 
 %--------------------- Acknowledgment --------------------%

@@ -104,6 +104,16 @@ K.~He, X.~Zhang, S.~Ren, J.~Sun, Deep residual learning for image recognition,
 X.~Glorot, Y.~Bengio, Understanding the difficulty of training deep feedforward
   neural networks., in: Aistats, Vol.~9, 2010, pp. 249--256.
 
+\bibitem{ronneberger2015u}
+O.~Ronneberger, P.~Fischer, T.~Brox, U-net: Convolutional networks for
+  biomedical image segmentation, in: International Conference on Medical Image
+  Computing and Computer-Assisted Intervention, Springer, 2015, pp. 234--241.
+
+\bibitem{lee2017deep}
+D.~Lee, J.~Yoo, J.~C. Ye, Deep residual learning for compressed sensing mri,
+  in: Biomedical Imaging (ISBI 2017), 2017 IEEE 14th International Symposium
+  on, IEEE, 2017, pp. 15--18.
+
 \bibitem{zhang2001segmentation}
 Y.~Zhang, M.~Brady, S.~Smith, Segmentation of brain mr images through a hidden
   markov random field model and the expectation-maximization algorithm, IEEE
@@ -118,5 +128,9 @@ M.-P. Dubuisson, A.~K. Jain, A modified hausdorff distance for object matching,
   in: Pattern Recognition, 1994. Vol. 1-Conference A: Computer Vision \& Image
   Processing., Proceedings of the 12th IAPR International Conference on,
   Vol.~1, IEEE, 1994, pp. 566--568.
+
+\bibitem{dice1945measures}
+L.~R. Dice, Measures of the amount of ecologic association between species,
+  Ecology 26~(3) (1945) 297--302.
 
 \end{thebibliography}

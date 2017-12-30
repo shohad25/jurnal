@@ -105,6 +105,18 @@
   Publisher                = {Wiley Online Library}
 }
 
+@Article{dice1945measures,
+  Title                    = {Measures of the amount of ecologic association between species},
+  Author                   = {Dice, Lee R},
+  Journal                  = {Ecology},
+  Year                     = {1945},
+  Number                   = {3},
+  Pages                    = {297--302},
+  Volume                   = {26},
+
+  Publisher                = {Wiley Online Library}
+}
+
 @Article{super_resolution_deep_learning,
   Title                    = {Image super-resolution using deep convolutional networks},
   Author                   = {Dong, Chao and Loy, Chen Change and He, Kaiming and Tang, Xiaoou},
@@ -133,6 +145,16 @@
 
   Publisher                = {IEEE},
   Review                   = {BASIC - Compressed sesing - 5000 cites}
+}
+
+@InProceedings{dubuisson1994modified,
+  Title                    = {A modified Hausdorff distance for object matching},
+  Author                   = {Dubuisson, M-P and Jain, Anil K},
+  Booktitle                = {Pattern Recognition, 1994. Vol. 1-Conference A: Computer Vision \& Image Processing., Proceedings of the 12th IAPR International Conference on},
+  Year                     = {1994},
+  Organization             = {IEEE},
+  Pages                    = {566--568},
+  Volume                   = {1}
 }
 
 @Article{feng2014golden,
@@ -223,6 +245,15 @@
   Author                   = {Ledig, Christian and Theis, Lucas and Husz{\'a}r, Ferenc and Caballero, Jose and Cunningham, Andrew and Acosta, Alejandro and Aitken, Andrew and Tejani, Alykhan and Totz, Johannes and Wang, Zehan and others},
   Journal                  = {arXiv preprint arXiv:1609.04802},
   Year                     = {2016}
+}
+
+@InProceedings{lee2017deep,
+  Title                    = {Deep residual learning for compressed sensing MRI},
+  Author                   = {Lee, Dongwook and Yoo, Jaejun and Ye, Jong Chul},
+  Booktitle                = {Biomedical Imaging (ISBI 2017), 2017 IEEE 14th International Symposium on},
+  Year                     = {2017},
+  Organization             = {IEEE},
+  Pages                    = {15--18}
 }
 
 @Article{lustig2007sparse,

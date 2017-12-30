@@ -32,10 +32,10 @@
 \citation{Oktay2016}
 \citation{goodfellow2014generative,radford2015unsupervised,pathak2016context}
 \citation{nie2016medical}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{3}{section.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}K-space}{3}{subsection.2.1}}
 \citation{pathak2016context}
 \citation{goodfellow2014generative,radford2015unsupervised}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Method}{4}{section.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}K-space}{4}{subsection.2.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \leavevmode {\color  {black}\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}{}Under-sampling artifacts: the arrows illustrate the sampling methodology}\relax }}{4}{figure.caption.1}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:pair_of_k_space_mri}{{1}{4}{\textcolor {black}{\footnotesize {}{}Under-sampling artifacts: the arrows illustrate the sampling methodology}\relax }{figure.caption.1}{}}
@@ -56,6 +56,8 @@
 \newlabel{fig:system}{{2}{6}{\textcolor {black}{\footnotesize {}{}Framework architecture: $G$ and $D$ are the generator and discriminator networks, respectively. $F$ is a $2D$ IFFT operator.}\relax }{figure.caption.2}{}}
 \citation{glorot2010understanding}
 \citation{lustig2007sparse}
+\citation{ronneberger2015u}
+\citation{lee2017deep}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Experiments}{7}{section.3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces $2D$ Gaussian sampling masks\relax }}{8}{figure.caption.4}}
 \newlabel{fig:sampling_masks}{{4}{8}{$2D$ Gaussian sampling masks\relax }{figure.caption.4}{}}
@@ -70,30 +72,33 @@
 \newlabel{fig:error_psnr_errorbar}{{3.1}{9}{Peak signal-to-noise ratio (PSNR)}{figure.caption.6}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces \leavevmode {\color  {black}\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}{}Error in PSNR, with masking}{\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}}\relax }}{9}{table.caption.7}}
 \newlabel{tbl:PSNR_WITH_MASK}{{2}{9}{\textcolor {black}{\footnotesize {}{}Error in PSNR, with masking}{\footnotesize {}\label {tbl:PSNR_WITH_MASK}}\relax }{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces \leavevmode {\color  {black}\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}{}Error in PSNR, with masking}{\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}}\relax }}{9}{table.caption.8}}
+\newlabel{tbl:PSNR_WITH_MASK2}{{3}{9}{\textcolor {black}{\footnotesize {}{}Error in PSNR, with masking}{\footnotesize {}\label {tbl:PSNR_WITH_MASK2}}\relax }{table.caption.8}{}}
 \citation{smith2002fast}
 \citation{dubuisson1994modified}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \leavevmode {\color  {black}\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}Examples of reconstructed MR images from under-sampled k-space.}\relax }}{10}{figure.caption.8}}
-\newlabel{fig:example}{{6}{10}{\textcolor {black}{\footnotesize {}Examples of reconstructed MR images from under-sampled k-space.}\relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces \leavevmode {\color  {black}\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}Examples of reconstructed MR images from under-sampled k-space.}\relax }}{10}{figure.caption.9}}
+\newlabel{fig:example}{{6}{10}{\textcolor {black}{\footnotesize {}Examples of reconstructed MR images from under-sampled k-space.}\relax }{figure.caption.9}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Brain Extraction - Skull Stripping}{10}{subsection.3.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces \leavevmode {\color  {black}\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}{}MHD - brain extraction}{\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}}\relax }}{11}{table.caption.9}}
-\newlabel{tbl:MHD}{{3}{11}{\textcolor {black}{\footnotesize {}{}MHD - brain extraction}{\footnotesize {}\label {tbl:MHD}}\relax }{table.caption.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Example of brain extraction\relax }}{11}{figure.caption.10}}
-\newlabel{fig:brain_extraction}{{7}{11}{Example of brain extraction\relax }{figure.caption.10}{}}
+\citation{smith2002fast}
+\citation{zhang2001segmentation}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces \leavevmode {\color  {black}\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}{}MHD - brain extraction}{\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}}\relax }}{11}{table.caption.10}}
+\newlabel{tbl:MHD}{{4}{11}{\textcolor {black}{\footnotesize {}{}MHD - brain extraction}{\footnotesize {}\label {tbl:MHD}}\relax }{table.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Example of brain extraction\relax }}{11}{figure.caption.11}}
+\newlabel{fig:brain_extraction}{{7}{11}{Example of brain extraction\relax }{figure.caption.11}{}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {MR image}}}{11}{subfigure.7.1}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Brain extraction}}}{11}{subfigure.7.2}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Hausdorff distance}}}{11}{subfigure.7.3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Brain Segmentation}{11}{subsection.3.3}}
+\citation{dice1945measures}
 \bibdata{paper}
 \bibcite{moeller2010multiband}{{1}{}{{}}{{}}}
-\bibcite{roemer1990nmr}{{2}{}{{}}{{}}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces \leavevmode {\color  {black}\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}{}Segmentation Dice score for different sampling ratios}{\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}}\relax }}{12}{table.caption.11}}
-\newlabel{tbl:DICE}{{4}{12}{\textcolor {black}{\footnotesize {}{}Segmentation Dice score for different sampling ratios}{\footnotesize {}\label {tbl:DICE}}\relax }{table.caption.11}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces \leavevmode {\color  {black}\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}{}Segmentation Dice score for different sampling ratios}{\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}}\relax }}{12}{table.caption.12}}
-\newlabel{tbl:DICE2}{{5}{12}{\textcolor {black}{\footnotesize {}{}Segmentation Dice score for different sampling ratios}{\footnotesize {}\label {tbl:DICE2}}\relax }{table.caption.12}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusions}{12}{section.4}}
+\newlabel{tbl:DICE}{{5}{12}{\textcolor {black}{\footnotesize {}{}Segmentation Dice score for different sampling ratios}{\footnotesize {}\label {tbl:DICE}}\relax }{table.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Discussion}{12}{section.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Acknowledgment}{12}{subsection.4.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces \leavevmode {\color  {black}\relax \fontsize  {8}{9.5}\selectfont  \abovedisplayskip 6\p@ plus2\p@ minus4\p@ \abovedisplayshortskip \z@ plus\p@ \belowdisplayshortskip 3\p@ plus\p@ minus2\p@ \def \leftmargin \leftmargini \parsep 4\p@ plus2\p@ minus\p@ \topsep 8\p@ plus2\p@ minus4\p@ \itemsep 4\p@ plus2\p@ minus\p@ {\leftmargin \leftmargini \topsep 3\p@ plus\p@ minus\p@ \parsep 2\p@ plus\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {}Examples of reconstructed MR images from under-sampled k-space.}\relax }}{13}{figure.caption.13}}
 \newlabel{fig:results}{{8}{13}{\textcolor {black}{\footnotesize {}Examples of reconstructed MR images from under-sampled k-space.}\relax }{figure.caption.13}{}}
+\bibcite{roemer1990nmr}{{2}{}{{}}{{}}}
 \bibcite{Deshmane2012}{{3}{}{{}}{{}}}
 \bibcite{pruessmann1999sense}{{4}{}{{}}{{}}}
 \bibcite{griswold2002generalized}{{5}{}{{}}{{}}}
@@ -111,7 +116,10 @@
 \bibcite{nie2016medical}{{17}{}{{}}{{}}}
 \bibcite{he2016deep}{{18}{}{{}}{{}}}
 \bibcite{glorot2010understanding}{{19}{}{{}}{{}}}
-\bibcite{zhang2001segmentation}{{20}{}{{}}{{}}}
-\bibcite{smith2002fast}{{21}{}{{}}{{}}}
-\bibcite{dubuisson1994modified}{{22}{}{{}}{{}}}
+\bibcite{ronneberger2015u}{{20}{}{{}}{{}}}
+\bibcite{lee2017deep}{{21}{}{{}}{{}}}
+\bibcite{zhang2001segmentation}{{22}{}{{}}{{}}}
+\bibcite{smith2002fast}{{23}{}{{}}{{}}}
+\bibcite{dubuisson1994modified}{{24}{}{{}}{{}}}
+\bibcite{dice1945measures}{{25}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
