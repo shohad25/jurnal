@@ -46,7 +46,7 @@ We introduce a practical, software-only framework, based on deep learning, for a
 \end{abstract}
 
 \begin{keyword}
-\texttt MRI \sep GAN \sep Imaging
+\texttt MRI \sep GAN \sep Accelerated \sep K-space
 %\MSC[2010] 00-01\sep  99-00
 \end{keyword}
 
@@ -59,96 +59,36 @@ Magnetic Resonance Imaging (MRI) is a non-ionizing imaging modality, and is ther
 Images are produced when hydrogen atoms, which are prevalent in living organisms, emit the absorbed RF energy that is then received by antennas in close proximity to the anatomy being examined. Spatial localization of the detected MRI signals is obtained by varying the magnetic field gradients. The discretized RF output is presented in a Fourier space
 (called K-space), where the x-axis is refers to the frequency and the y-axis to the phase. An inverse fast Fourier transform (IFFT) of the K-space is then used for generating anatomically meaningful MRI scans. Figure \ref{fig:pair_of_k_space_mri} presents K-space traversal patterns used in conventional imaging. Each row of the k-space is acquired after one RF excitation pulse. The number of rows multiplied by the number of slices (z-axis) determines the total scan time.
 
-The duration of standard single structural MRI acquisition is approximately
-5 minutes. Usually, several scans of different modalities or a sequence
-of scans are acquired such that the overall scan time is much longer.
-Lengthy imaging process reduces patient comfort and is more vulnerable
-to motion artifacts. In cases where motion is inevitable, e.g., fetal
-MRI, cardiac cine, and lungs imaging, scan time must be significantly
-shortened, otherwise the produced images might be useless. Moreover,
-in dynamic MRI sequences, acquisition must be brief such that the
-temporal resolution of the sequence would allow capturing significant
-temporal changes, e.g., instantaneous increment of the contrast-enhanced
-material concentration in DCE-MRI or differences in hemodynamic response
-expressed in fMRI \cite{moeller2010multiband}.
+The duration of standard single structural MRI acquisition is approximately 5 minutes. Usually, several scans of different modalities or a sequence of scans are acquired such that the overall scan time is much longer. Lengthy imaging process reduces patient comfort and is more vulnerable to motion artifacts. In cases where motion is inevitable, e.g., fetal MRI, cardiac cine, and lungs imaging, scan time must be significantly shortened, otherwise the produced images might be useless. Moreover, in dynamic MRI sequences, acquisition must be brief such that the temporal resolution of the sequence would allow capturing significant temporal changes, e.g., instantaneous increment of the contrast-enhanced material concentration in DCE-MRI or differences in hemodynamic response expressed in fMRI \cite{moeller2010multiband}.
 
-A straight forward reduction of the scan time can be obtained by sampling
-fewer slices, thus reducing the spatial resolution in the z-axis.
-Spatial distances between adjacent slices of fetal MRI or fMRI, for
-example, are often as high as 0.5 centimeters. Therefore, a significant
-portion of the potential input is not conveyed through imaging. On
-the other hand, under-sampling in the x-y domain leads to aliasing,
-as predicted by the Nyquist sampling theorem.
+A straight forward reduction of the scan time can be obtained by sampling fewer slices, thus reducing the spatial resolution in the z-axis. Spatial distances between adjacent slices of fetal MRI or fMRI, for example, are often as high as 0.5 centimeters. Therefore, a significant portion of the potential input is not conveyed through imaging. On the other hand, under-sampling in the x-y domain leads to aliasing, as predicted by the Nyquist sampling theorem.
 
-Numerous research groups as well as leading MRI scanner manufacturers
-make significant efforts to accelerate the MRI acquisition process.
-Hardware solutions allow parallel imaging by using multiple coils
-\cite{roemer1990nmr} to sample k-space data. There exist two major
-approaches~\cite{Deshmane2012} that are currently implemented in
-commercial MRI machines. Both reconstruct an image from the under-sampled
-k-space data provided by each of the coils. The sensitivity encoder
-(SENSE) transforms the partial k-spaces into images, then merges the
-resulting aliased images into one coherent image~\cite{pruessmann1999sense}.
-The GeneRalized Autocalibrating Partial Parallel Acquisition (GRAPPA)
-techniques~\cite{griswold2002generalized} operate on signal data
-within the complex frequency domain before the IFFT.
+Numerous research groups as well as leading MRI scanner manufacturers make significant efforts to accelerate the MRI acquisition process. Hardware solutions allow parallel imaging by using multiple coils \cite{roemer1990nmr} to sample k-space data. There exist two major approaches~\cite{Deshmane2012} that are currently implemented in commercial MRI machines. Both reconstruct an image from the under-sampled k-space data provided by each of the coils. The sensitivity encoder (SENSE) transforms the partial k-spaces into images, then merges the resulting aliased images into one coherent image~\cite{pruessmann1999sense}. 
+The GeneRalized Autocalibrating Partial Parallel Acquisition (GRAPPA) techniques~\cite{griswold2002generalized} operate on signal data within the complex frequency domain before the IFFT.
 
-The compressed sensing (CS) technique~\cite{donoho2006compressed}
-allows efficient acquisition and reconstruction of a signal with fewer
-samples than the Nyquist-Shannon sampling theorem requires, if the
-signal has sparse representation in a known transform domain. Using
-CS for MRI reconstruction by sampling a small subset of the k-space
-grid had been proposed in~\cite{lustig2007sparse}. The underlying
-assumption is that the undersampling is random, such that the zero-filled
-Fourier reconstruction exhibits incoherent artifacts that behave similarly
-to additive random noise. This, however, would require specified pulse
-programming.
+The compressed sensing (CS) technique~\cite{donoho2006compressed} allows efficient acquisition and reconstruction of a signal with fewer samples than the Nyquist-Shannon sampling theorem requires, if the signal has sparse representation in a known transform domain. Using CS for MRI reconstruction by sampling a small subset of the k-space grid had been proposed in~\cite{lustig2007sparse}. The underlying assumption is that the undersampling is random, such that the zero-filled Fourier reconstruction exhibits incoherent artifacts that behave similarly to additive random noise. {\color{red}This, however, makes the algorithm less sensitive to fine details and noise like texture, results in smooth reconstruction with loss of diagnostically information, as we will see in section \ref{experiments_section}.}
+%This, however, would require specified pulse programming.
 
-Recently machine learning techniques based on manifold learning~\cite{usman2014compressive,bhatia2015fast}
-and dictionary learning~\cite{ravishankar2011mr,caballero2014dictionary}
-were suggested for MRI reconstruction. MRI reconstruction using convolutional
-neural networks (CNN) was introduced in \cite{wang2016accelerating}.
-The network learns the mapping between zero-filled and fully-sampled
-MR images. In \cite{Oktay2016}, residual network was proposed for
-MRI super-resolution. Their model is able to receive multiple inputs
-acquired from different viewing planes for better image reconstruction.
-Both works address the reconstruction problems in the image domain
-rather than the k-space domain. The proposed framework utilizes recent
-advances in deep learning, while similarly to the CS methods addresses
-MRI reconstruction directly from the k-space. Specifically, we use
-generative adversarial networks (GAN) \cite{goodfellow2014generative,radford2015unsupervised,pathak2016context}.
-GANs are based on the inter-play between two networks: a generator
-and a discriminator. The generator is capable of learning the distribution
-over a data-base, and sample realizations of this distribution. The
-discriminator is trained to distinguish between `generated' samples
-and real ones. This powerful combination has been used for generating
-Computed Tomography (CT)-like images from MRIs~\cite{nie2016medical}.
-Here, the generator is used for reconstruction of the entire k-space
-grid from under-sampled data. Its loss is a combination of an adversarial
-loss, based on the discriminator output and a fidelity loss with respect
-to the fully sampled MRI. Promising results are obtained for brain
-MRI reconstruction using only 52\% of the data.
+Recently machine learning techniques based on manifold learning~\cite{usman2014compressive,bhatia2015fast} and dictionary learning~\cite{ravishankar2011mr,caballero2014dictionary} were suggested for MRI reconstruction. MRI reconstruction using convolutional neural networks (CNN) was introduced in \cite{wang2016accelerating}. The network learns the mapping between zero-filled and fully-sampled MR images. In \cite{Oktay2016}, residual network was proposed for MRI super-resolution. Their model is able to receive multiple inputs acquired from different viewing planes for better image reconstruction. In \cite{lee2017deep,hyun2017deep} a multi-scale residual network, also known as U-net~\cite{ronneberger2015u} is used and provides good reconstruction MR images.
+Deep convolutional networks have been successfully applied to acceleration of dynamic MRI in \cite{sandinodeep}. All these works address the reconstruction problem in the image domain rather than the k-space domain.
 
-The paper is organized as follows. Section 2 presents some theoretical
-foundation and our method. Section 3 describes the experimental results.
-Conclusions and future directions are describes in section 4.
+The proposed framework utilizes recent advances in deep learning, while similarly to the CS methods addresses MRI reconstruction directly from the k-space. Specifically, we use generative adversarial networks (GAN) \cite{goodfellow2014generative,radford2015unsupervised,pathak2016context}. 
+GANs are based on the inter-play between two networks: a generator and a discriminator. The generator is capable of learning the distribution over a data-base, and sample realizations of this distribution. 
+The discriminator is trained to distinguish between `generated' samples and real ones. This powerful combination has been used for MRI acceleration in~\cite{yu2017deep,mardani2017deep}, and also for generating Computed Tomography (CT)-like images from MRIs~\cite{nie2016medical}.
+Here, the generator is used for reconstruction of the entire k-space grid from under-sampled data. Its loss is a combination of an adversarial loss, based on the discriminator output and a fidelity loss with respect to the fully sampled MRI. Promising results are obtained for brain MRI reconstruction using only 40\%, 25\% and 16.6\% of the data.
+
+The paper is organized as follows. Section \ref{method_section} presents some theoretical foundation and our method. Section \ref{experiments_section} describes the experimental results. Conclusions and future directions are describes in section \ref{conclusions_section}.
 
 %--------------------- METHOD --------------------%
-\section{Method}
+\section{Method}\label{method_section}
 
 \subsection{K-space}
-Let $\bm{u}$ denote the desired signal, a 2D MR image, obtained
-by the IFFT of the complex k-space signal $s_{0}$. Let $M_{F}$ denote
-a full sampling mask such that the reconstructed MR image is: 
+Let $\bm{u}$ denote the desired signal, a 2D MR image, obtained by the IFFT of the complex k-space signal $s_{0}$. Let $M_{F}$ denote a full sampling mask such that the reconstructed MR image is: 
 \begin{equation}
 \bm{u}=F^{H}M_{F}\odot s_{0}
-\end{equation}
-where $H$ is the Hermitian transpose operation, $\odot$ denotes
-element-wise multiplication, and $F^{H}$ is an orthonormal 2D IFFT
-operator, such that $F^{H}F=I$. While sampling part of the k-space,
-using $M_{p}$ as a sampling mask, the reconstructed MR image suffers
-from artifacts and aliasing. An example artifacts caused by under-sampling in the phase axis using Gaussian mask (40\%)
-is shown in Figure \textbf{\ref{fig:pair_of_k_space_mri}}.
+\end{equation} 
+where $H$ is the Hermitian transpose operation, $\odot$ denotes element-wise multiplication, and $F^{H}$ is an orthonormal 2D IFFT operator, such that $F^{H}F=I$. 
+While sampling part of the k-space, using $M_{p}$ as a sampling mask, the reconstructed MR image suffers from artifacts and aliasing. An example artifacts caused by under-sampling in the phase axis using Gaussian mask (40\%) is shown in Figure \textbf{\ref{fig:pair_of_k_space_mri}}.
 
 \begin{figure}[H]
 	\centering
@@ -169,78 +109,45 @@ is shown in Figure \textbf{\ref{fig:pair_of_k_space_mri}}.
 
 \subsection{Objective}
 
-Let $s_{p}=M_{p}\odot s_{0}$ denote the under-sampled k-space. Given
-a sampling mask and a model $f$, defined by the set of parameters
-$\Theta$, our goal is to estimate the missing k-space samples such
-that: 
+Let $s_{p}=M_{p}\odot s_{0}$ denote the under-sampled k-space. Given a sampling mask and a model $f$, defined by the set of parameters $\Theta$, our goal is to estimate the missing k-space samples such that: 
 \begin{equation}
 \Theta=\arg\min_{\Theta}L(F^{H}f\left(s_{p};\Theta\right),\boldsymbol{u})
 \end{equation}
-where $L\left(\cdot\right)$ is the loss function. While choosing
-the loss to be L2 norm is reasonable for natural images, for the k-space,
-which has different spatial features, this may not be enough. As mentioned
-in \cite{pathak2016context}, L2 minimization provides a blurry solution.
-Averaging the high frequency details in the k-space domain results
-in very poor reconstruction. In order to address this problem, we
-used the adversarial loss, based on GAN.
+where $L\left(\cdot\right)$ is the loss function. While choosing the loss to be L2 norm is reasonable for natural images, for the k-space, which has different spatial features, this may not be enough. As mentioned in \cite{pathak2016context}, L2 minimization provides a blurry solution, results in a loss of fine details. 
+Averaging the high frequency details in the k-space domain results in very poor reconstruction. In order to address this problem, we used the adversarial loss, based on GAN.
 
-We trained our model using the adversarial strategy, as described
-in \cite{goodfellow2014generative,radford2015unsupervised}. This
-method is based on a generator $G$, which takes noise \textbf{$z$
-}with uniform distribution \textbf{$p_{u}\left(z\right)$} as input
-and generates samples from the data distribution. A discriminator
-$D$ is trained to distinguish between ``real'' examples from the
-data and generated (``fake'') examples from $G.$ During the training
-process, we optimize $G$ to maximize the discriminator's probability
-of error. Simultaneously, $D$ is getting better and provides more
+We trained our model using the adversarial strategy, as described in \cite{goodfellow2014generative,radford2015unsupervised}. 
+This method is based on a generator $G$, which takes noise \textbf{$z$ }with uniform distribution \textbf{$p_{u}\left(z\right)$} as input and generates samples from the data distribution. A discriminator $D$ is trained to distinguish between ``real'' examples from the data and generated (``fake'') examples from $G.$ During the training process, we optimize $G$ to maximize the discriminator's probability of error. Simultaneously, $D$ is getting better and provides more
 accurate predictions.
 
-Let $s_{0}$ denote a ``real'' k-space sample from the distribution
-$p_{r}\left(s_{0}\right)$. The following optimization process can
-be described by two-players min-max game:
+Let $s_{0}$ denote a ``real'' k-space sample from the distribution $p_{r}\left(s_{0}\right)$. The following optimization process can be described by two-players min-max game:
 
 \begin{equation}
 \min_{G}\max_{D}\mathbb{E_{\mathrm{s_{0}\sim p_{r}\left(s_{0}\right)}}\mathrm{\log\left[D\left(x\right)\right]}}+\mathbb{E_{\mathrm{z\sim p_{u}\left(z\right)}}\mathrm{\log\left[1-D\left(G(z)\right)\right]}}
 \end{equation}
 
-In equilibrium, the generator $G$ is able to generate samples that
-look like the real data. In our case, $G$ estimates the missing k-space
-samples from a linear combination of the sampled data and a uniform
-noise with distribution $p_{u}\left(z\right)$. An L2 fidelity constraint
-is added to the adverbial loss of the generator, as follows:
+In equilibrium, the generator $G$ is able to generate samples that look like the real data. In our case, $G$ estimates the missing k-space samples from a linear combination of the sampled data and a uniform noise with distribution $p_{u}\left(z\right)$. An L2 fidelity constraint is added to the adverbial loss of the generator, as follows:
 
 \begin{equation}
 \begin{aligned}L_{G}=\alpha\cdot E_{\mathrm{z\sim p_{u}\left(z\right)}}\mathrm{\log\left[1-D\left(F^{-1}\left(\hat{s}_{0}\right)\right)\right]}+\\
 \beta\cdot||\left(1-M_{p}\right)\odot\left(\hat{s}_{0}-s_{0}\right)||_{2}^{2}
 \end{aligned}
 \end{equation}
-where $\hat{s}_{0}$ is the estimated k-space and $\alpha=1,\,\beta=0.8$
-are hyperparameters tuned by a cross-validation process. The discriminator's
-input is the reconstructed MR image,\textbf{ }i.e.,\textbf{ }after
-IFFT. By that, we are integrating the reconstruction phase in our
-optimization.
-
+where $\hat{s}_{0}$ is the estimated k-space and $\alpha=1,\,\beta=1$ are hyperparameters tuned by a cross-validation process. The discriminator's input is the reconstructed MR image,\textbf{ }i.e.,\textbf{ }after IFFT. By that, we are integrating the reconstruction phase in our optimization.
+In this work, we use the Wasserstein distance as the GAN loss function~\cite{arjovsky2017wasserstein} which helps us to improve the training stability and provides better reconstruction than the classic GAN.
 
 \subsection{Network Architecture}
 
-The generator input is a two-channel image representing the real and
-the imaginary parts of the partially sampled k-space image, $s_{p}$.
-Each missing sample is initialized by uniform i.i.d. noise. The pixel
-$\left(i,j\right)$ in the generator input image is: 
+The generator input is a two-channel image representing the real and the imaginary parts of the partially sampled k-space image, $s_{p}$. Each missing sample is initialized by uniform i.i.d. noise. The pixel $\left(i,j\right)$ in the generator input image is: 
 \begin{equation}
 G_{in}\left(i,j\right)=s_{p_{i,j}}+\left(1-M_{p}\right)_{i,j}z_{i,j}
 \end{equation}
 
-Due to the combination of the adversarial and the fidelity loss, $G$
-produces reasonable k-space samples from a given samples and noise
-distribution $p_{u}\left(z\right)$. In order to use the sampled data,
-$s_{p}$, and estimate only the missing samples we used a residual
-network \cite{he2016deep} as used in \cite{Oktay2016}, such that:
+Due to the combination of the adversarial and the fidelity loss, $G$ produces reasonable k-space samples from a given samples and noise distribution $p_{u}\left(z\right)$. In order to use the sampled data, $s_{p}$, and estimate only the missing samples we used a residual network \cite{he2016deep} as used in \cite{Oktay2016}, such that:
 \begin{equation}
 \hat{s}_{0}=s_{p}+\left(1-M_{p}\right)\odot G_{out}
 \end{equation}
-where $G_{out}$ is the generator output. Figure \ref{fig:system}
-describes our framework:
+where $G_{out}$ is the generator output. Figure \ref{fig:system} describes our framework:
 
 \begin{figure}[H]
 	\centering{}\includegraphics[width=7.8cm,height=4cm]{include/grp1/chart}\caption{\label{fig:system} \textcolor{black}{\footnotesize{}{}Framework
@@ -249,13 +156,7 @@ describes our framework:
 \end{figure}
 
 
-A common architecture is used for the discriminator, composed of convolutional
-layers, batch normalization, and leaky-ReLU as suggested in \cite{radford2015unsupervised}.
-For the generator, we compose a dedicated architecture based on multi-channel
-input for representing the real and imaginary components. Both architectures
-are shown in Figure \ref{fig:test}.\textbf{ }The training methodology
-is doing $k_{g}$ generator update steps for each discriminator single
-step.
+A common architecture is used for the discriminator, composed of convolutional layers, batch normalization, and leaky-ReLU as suggested in \cite{radford2015unsupervised}. For the generator, we compose a dedicated architecture based on multi-channel input for representing the real and imaginary components. Both architectures are shown in Figure \ref{fig:test}.\textbf{ }The training methodology is doing $k_{d}$ discriminator update steps for each generator single step.
 
 \begin{figure*}
 	\centering{}%
@@ -278,7 +179,7 @@ step.
 
 
 %--------------------- Experiments --------------------%
-\section{Experiments}
+\section{Experiments}\label{experiments_section}
 
 The training data consists of 500 $3D$ brain MRI (T1) scans of different patients from the IXI dataset\footnote{\url{http://brain-development.org/ixi-dataset/}}. The data has been acquired by three MR machines, Philips 1.5T, 3T and GE 1.5. All images padded to resolution of $256\times256$ pixels.
 From each $3D$ volume we extract 93 $2D$ saggital slices. We used $37.2k$ $(80\%)$ 2D slices for training and $9.2k$ $(20\%)$ for testing (100 $3D$ volumes).
@@ -291,7 +192,10 @@ the original k-space data.
 
 The generator is composed of $5$ blocks of CONV-BatchNorm-ReLU, with output channels $16,32,64,32,8,$ respectively. The last layer is CONV with two outputs channels (for real and imaginary parts). The discriminator is composed of $4$ blocks of CONV-Pool-BatchNorm-LReLU with output channels $8,16,32,16$ and one fully-connected layer. All CONV layers kernel size is $3\times3$. All weights was initialized by Xavier \cite{glorot2010understanding}. We used RMSprop solver with fixed learning rate of $5\mathrm{e}{-6}$ and set $k_{d}$ to 1.
 
-We compare the proposed method to reconstruction results obtained by using a conventional compressed sensing method CS-MRI \cite{lustig2007sparse} and Zero-filling. In addition, we optimized two networks: 1. CNN-L2 - a k-space generator (with same architecture as the proposed method) using only L2 loss. 2. IM-CNN-L2 - a network which performs on the image-space and optimized to remove the artifacts caused by under-sampling and zero padding. We used the U-net \cite{ronneberger2015u} architecture inspired by \cite{lee2017deep}. The same sampling masks was used for all cases.
+We compare the proposed method to reconstruction results obtained by using a conventional compressed sensing method CS-MRI \cite{lustig2007sparse} and Zero-filling. In addition, we optimized two networks: 1. CNN-L2 - a k-space generator (with same architecture as the proposed method) using only L2 loss. 2. IM-CNN-L2 - a network which performs on the image-space and optimized to remove the artifacts caused by under-sampling and zero padding. 
+%We used the U-net \cite{ronneberger2015u} architecture inspired by \cite{lee2017deep}. 
+We used the U-net \cite{ronneberger2015u} architecture and the same reconstruction method as presented in~\cite{hyun2017deep}. Specifically, we apply an FFT on the U-net image to get an estimated k-space. The fully k-space is then recovered by integrating the sampled k-space according to the sampling mask.
+The same sampling masks was used for all cases.
 
 A common metric used to quantify the reconstructed image quality is the PSNR. In order to provide a reliable and robust evaluation of the reconstruction quality, which will be used for medical diagnostic, we suggest the following test: PSNR, brain's shape measure and tissue segmentation.
 
@@ -563,7 +467,7 @@ Dice values for different sampling ratios are presented in~Table~\ref{tbl:DICE}.
 \end{table}
 
 %--------------------- CONCLUSIONS --------------------%
-\section{Discussion}
+\section{Discussion}\label{conclusions_section}
 
 
 We proposed a software-only framework, using GANs for accelerating MRI acquisition. Specifically, high-quality MRI reconstruction using only 40\%, 25\% and 16.6\% of the original k-space data is demonstrated. The key idea is based on utilizing an adversarial loss in addition to L2 loss. Extensive evaluation of the reconstruction quality was conducted in order to emphasize the advantage of proposed method.

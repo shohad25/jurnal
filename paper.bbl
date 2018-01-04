@@ -75,6 +75,24 @@ O.~Oktay, W.~Bai, M.~Lee, R.~Guerrero, K.~Kamnitsas, J.~Caballero,
   Conference on Medical Image Computing and Computer-Assisted Intervention,
   Springer, 2016, pp. 246--254.
 
+\bibitem{lee2017deep}
+D.~Lee, J.~Yoo, J.~C. Ye, Deep residual learning for compressed sensing mri,
+  in: Biomedical Imaging (ISBI 2017), 2017 IEEE 14th International Symposium
+  on, IEEE, 2017, pp. 15--18.
+
+\bibitem{hyun2017deep}
+C.~M. Hyun, H.~P. Kim, S.~M. Lee, S.~Lee, J.~K. Seo, Deep learning for
+  undersampled mri reconstruction, arXiv preprint arXiv:1709.02576.
+
+\bibitem{ronneberger2015u}
+O.~Ronneberger, P.~Fischer, T.~Brox, U-net: Convolutional networks for
+  biomedical image segmentation, in: International Conference on Medical Image
+  Computing and Computer-Assisted Intervention, Springer, 2015, pp. 234--241.
+
+\bibitem{sandinodeep}
+C.~M. Sandino, N.~Dixit, J.~Y. Cheng, S.~S. Vasanawala, Deep convolutional
+  neural networks for accelerated dynamic magnetic resonance imaging, preprint.
+
 \bibitem{goodfellow2014generative}
 I.~Goodfellow, J.~Pouget-Abadie, M.~Mirza, B.~Xu, D.~Warde-Farley, S.~Ozair,
   A.~Courville, Y.~Bengio, Generative adversarial nets, in: Advances in neural
@@ -90,10 +108,25 @@ D.~Pathak, P.~Krahenbuhl, J.~Donahue, T.~Darrell, A.~A. Efros, Context
   encoders: Feature learning by inpainting, in: Proceedings of the IEEE
   Conference on Computer Vision and Pattern Recognition, 2016, pp. 2536--2544.
 
+\bibitem{yu2017deep}
+S.~Yu, H.~Dong, G.~Yang, G.~Slabaugh, P.~L. Dragotti, X.~Ye, F.~Liu,
+  S.~Arridge, J.~Keegan, D.~Firmin, et~al., Deep de-aliasing for fast
+  compressive sensing mri, arXiv preprint arXiv:1705.07137.
+
+\bibitem{mardani2017deep}
+M.~Mardani, E.~Gong, J.~Y. Cheng, S.~Vasanawala, G.~Zaharchuk, M.~Alley,
+  N.~Thakur, S.~Han, W.~Dally, J.~M. Pauly, et~al., Deep generative adversarial
+  networks for compressed sensing automates mri, arXiv preprint
+  arXiv:1706.00051.
+
 \bibitem{nie2016medical}
 D.~Nie, R.~Trullo, C.~Petitjean, S.~Ruan, D.~Shen, Medical image synthesis with
   context-aware generative adversarial networks, arXiv preprint
   arXiv:1612.05362.
+
+\bibitem{arjovsky2017wasserstein}
+M.~Arjovsky, S.~Chintala, L.~Bottou, Wasserstein gan, arXiv preprint
+  arXiv:1701.07875.
 
 \bibitem{he2016deep}
 K.~He, X.~Zhang, S.~Ren, J.~Sun, Deep residual learning for image recognition,
@@ -103,16 +136,6 @@ K.~He, X.~Zhang, S.~Ren, J.~Sun, Deep residual learning for image recognition,
 \bibitem{glorot2010understanding}
 X.~Glorot, Y.~Bengio, Understanding the difficulty of training deep feedforward
   neural networks., in: Aistats, Vol.~9, 2010, pp. 249--256.
-
-\bibitem{ronneberger2015u}
-O.~Ronneberger, P.~Fischer, T.~Brox, U-net: Convolutional networks for
-  biomedical image segmentation, in: International Conference on Medical Image
-  Computing and Computer-Assisted Intervention, Springer, 2015, pp. 234--241.
-
-\bibitem{lee2017deep}
-D.~Lee, J.~Yoo, J.~C. Ye, Deep residual learning for compressed sensing mri,
-  in: Biomedical Imaging (ISBI 2017), 2017 IEEE 14th International Symposium
-  on, IEEE, 2017, pp. 15--18.
 
 \bibitem{zhang2001segmentation}
 Y.~Zhang, M.~Brady, S.~Smith, Segmentation of brain mr images through a hidden
