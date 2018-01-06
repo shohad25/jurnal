@@ -156,26 +156,27 @@ where $G_{out}$ is the generator output. Figure \ref{fig:system} describes our f
 \end{figure}
 
 
-A common architecture is used for the discriminator, composed of convolutional layers, batch normalization, and leaky-ReLU as suggested in \cite{radford2015unsupervised}. For the generator, we compose a dedicated architecture based on multi-channel input for representing the real and imaginary components. Both architectures are shown in Figure \ref{fig:test}.\textbf{ }The training methodology is doing $k_{d}$ discriminator update steps for each generator single step.
+A common architecture is used for the discriminator, composed of convolutional layers, batch normalization, and leaky-ReLU as suggested in \cite{radford2015unsupervised}. For the generator, we compose a dedicated architecture based on multi-channel input for representing the real and imaginary components. Both architectures are shown in Figure \ref{fig:architectures}.\textbf{ }The training methodology is doing $k_{d}$ discriminator update steps for each generator single step.
 
-\begin{figure*}
+\begin{figure}[H]
 	\centering{}%
 	\begin{tabular}{|c|}
 		\hline 
-		\subfloat[\textcolor{black}{\footnotesize{}Generator}]{\centering{}\includegraphics[width=12cm,height=2cm]{include/grp1/arch_generator} 
+		\subfloat[\textcolor{black}{\footnotesize{}Generator}]{\centering{}\includegraphics[width=11cm,height=2cm]{include/grp2/generator_arch} 
 			
 		}\tabularnewline
 		\hline 
 		\hline 
-		\subfloat[\textcolor{black}{\footnotesize{}Discriminator}]{\centering{}\includegraphics[width=9cm,height=2cm]{include/grp1/arch_discriminator} 
+
+		\subfloat[\textcolor{black}{\footnotesize{}Discriminator}]{\centering{}\includegraphics[width=11cm,height=2cm]{include/grp2/discrimonator_arch} 
+%		\subfloat[\textcolor{black}{\footnotesize{}Discriminator}]{\centering{}\includegraphics[width=9cm,height=2cm]{include/grp1/arch_discriminator} 
 			
 		}\tabularnewline
 		\hline 
-	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}Networks architecture. The generator
-		input is a two-channel signal, real and imaginary. For each layer,
-		$k$ is the kernel size and $C$ is the number of output channels.}}
-\label{fig:test} 
-\end{figure*}
+	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}Networks architecture. Both generator and discriminator input is a two-channel signal, real and imaginary. The number above each layer represents the output channels and all convolutional kernels are $3\times3$.}}
+\label{fig:architectures} 
+\end{figure}
+
 
 
 %--------------------- Experiments --------------------%
@@ -192,12 +193,12 @@ the original k-space data.
 
 The generator is composed of $5$ blocks of CONV-BatchNorm-ReLU, with output channels $16,32,64,32,8,$ respectively. The last layer is CONV with two outputs channels (for real and imaginary parts). The discriminator is composed of $4$ blocks of CONV-Pool-BatchNorm-LReLU with output channels $8,16,32,16$ and one fully-connected layer. All CONV layers kernel size is $3\times3$. All weights was initialized by Xavier \cite{glorot2010understanding}. We used RMSprop solver with fixed learning rate of $5\mathrm{e}{-6}$ and set $k_{d}$ to 1.
 
-We compare the proposed method to reconstruction results obtained by using a conventional compressed sensing method CS-MRI \cite{lustig2007sparse} and Zero-filling. In addition, we optimized two networks: 1. CNN-L2 - a k-space generator (with same architecture as the proposed method) using only L2 loss. 2. IM-CNN-L2 - a network which performs on the image-space and optimized to remove the artifacts caused by under-sampling and zero padding. 
+We compare the proposed method to reconstruction results obtained by using a conventional compressed sensing method CS-MRI \cite{lustig2007sparse} and Zero-filling. In addition, we optimized two networks: 1. CNN-L2 - a k-space generator (with same architecture as the proposed method) trained with only L2 loss. 2. IM-CNN-L2 - a network which performs on the image-space and optimized to remove the artifacts caused by under-sampling and zero padding. 
 %We used the U-net \cite{ronneberger2015u} architecture inspired by \cite{lee2017deep}. 
 We used the U-net \cite{ronneberger2015u} architecture and the same reconstruction method as presented in~\cite{hyun2017deep}. Specifically, we apply an FFT on the U-net image to get an estimated k-space. The fully k-space is then recovered by integrating the sampled k-space according to the sampling mask.
 The same sampling masks was used for all cases.
 
-A common metric used to quantify the reconstructed image quality is the PSNR. In order to provide a reliable and robust evaluation of the reconstruction quality, which will be used for medical diagnostic, we suggest the following test: PSNR, brain's shape measure and tissue segmentation.
+A common metric used to quantify the reconstructed image quality is the PSNR and Struture Similarity Index (SSIM)~\cite{wang2004image}. In order to provide a reliable and robust evaluation of the reconstruction quality, which will be used for medical diagnostic, we suggest the following test: PSNR, SSIM, brain's shape measure and tissue segmentation.
 
 \begin{figure}[H]
 	\centering
@@ -213,26 +214,10 @@ A common metric used to quantify the reconstructed image quality is the PSNR. In
 	\label{fig:sampling_masks}
 \end{figure}
 
-\subsection{Peak signal-to-noise ratio (PSNR)}
-PSNR measures the Mean Squared Error (MSE) between the fully-sampled MR image and the reconstructed image. Therefore, this measure is not a sufficient metric for edges and general shape. For example, a model can provides a good reconstruction in the sense of PSNR but with blurry edges, which results in a poor performance of algorithms that use them, for example segmentation.
+\subsection{PSNR and SSIM}
+PSNR and SSIM are the most commonly used measures for evaluate image quality. PSNR measures the Mean Squared Error (MSE) between the fully-sampled MR image and the reconstructed image. Therefore, this measure is not a sufficient metric for edges and general shape. For example, a model can provides a good reconstruction in the sense of PSNR but with blurry edges, which results in a poor performance of algorithms that use them, for example segmentation.
 However, PSNR is still a good indication for the image quality, especially if an expert should view it.
 Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graphical visualization in ~Figure~\ref{fig:error_psnr_errorbar}. The PSNR calculated on the whole image without masking. Note that the proposed method outperforms the other.
-
-%\begin{table}[H]
-%	\centering{}
-%\begin{tabular}{|c||c|c||c|c||c|c|}
-%	\hline 
-%	\textbf{PSNR} & \multicolumn{2}{c||}{Factor 2.5} & \multicolumn{2}{c||}{Factor 4} & \multicolumn{2}{c|}{Factor 6}\tabularnewline \cline{2-7}
-%
-%	\textbf{Method}     &Mean   &std    &Mean   &std     &Mean   &std \tabularnewline \hline 	
-%	Zero-filled         &32.044 &2.616  &26.447 &1.997   &16.470 &2.181\tabularnewline
-%	CS-MRI              &39.053 &2.479  &33.273 &2.452   &26.951 &3.380\tabularnewline
-%	CNN-L2              &38.978 &2.454  &33.405 &2.232   &31.010 &2.299\tabularnewline
-%	\textbf{Proposed}   &39.802 &2.489  &34.595 &2.519   &31.555 &2.487\tabularnewline
-%		\hline 
-%	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, without masking}{\footnotesize{}\label{tbl:PSNR_NO_MASK}}}
-%\end{table}
-
 
 \begin{table}[H]
 	\centering{}
@@ -241,11 +226,11 @@ Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graph
 		\textbf{PSNR} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 2.5}} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 4}} & \multicolumn{1}{c|}{\multirow{2}{*}{Factor 6}} \tabularnewline
 		\textbf{Method} & \multicolumn{1}{c||}{} & \multicolumn{1}{c||}{} & \multicolumn{1}{c|}{} \tabularnewline \cline{1-4}
 		
-		Zero-filled         &32.044~$\pm$~2.616  &26.447~$\pm$~1.997   &16.470~$\pm$~2.181\tabularnewline
-		CS-MRI              &39.053~$\pm$~2.479  &33.273~$\pm$~2.452   &26.951~$\pm$~3.380\tabularnewline
-		IM-CNN-L2           &35.281~$\pm$~2.210  &31.577~$\pm$~2.109   &23.417~$\pm$~2.676\tabularnewline
-		CNN-L2              &38.978~$\pm$~2.454  &33.405~$\pm$~2.232   &31.010~$\pm$~2.299\tabularnewline
-		\textbf{Proposed}   &\textbf{39.802~$\pm$~2.489}  &\textbf{34.595~$\pm$~2.519}   &\textbf{31.555~$\pm$~2.487}\tabularnewline
+		Zero-filled         &32.555~$\pm$~2.294  &26.791~$\pm$~1.856 &16.781~$\pm$~1.737\tabularnewline
+		CS-MRI              &39.053~$\pm$~1.750  &33.088~$\pm$~1.929 &26.491~$\pm$~2.587\tabularnewline
+		IM-CNN-L2           &39.663~$\pm$~1.934  &35.042~$\pm$~2.042 &28.134~$\pm$~2.181\tabularnewline
+		CNN-L2              &39.394~$\pm$~1.985  &33.829~$\pm$~2.034 &31.403~$\pm$~2.040\tabularnewline
+		\textbf{Proposed}   &\textbf{40.211~$\pm$~1.902}  &\textbf{35.133~$\pm$~1.870}   &\textbf{32.040~$\pm$~2.110}\tabularnewline
 		\hline 
 	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, without masking}{\footnotesize{}\label{tbl:PSNR_NO_MASK}}}
 \end{table}
@@ -260,55 +245,6 @@ Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graph
 
 An extended validation of our model done by calculating the PSNR measure on different brain tissues. We applied an image segmentation algorithm, FAST \cite{zhang2001segmentation}, on the original fully-sampled MR image and then use it for calculating the masked-PSNR on gray matters, white matters and the Cerebrospinal Fluid (CSF). Results are presented in~Table~\ref{tbl:PSNR_WITH_MASK}.
 
-
-%\begin{table}[H]
-%	\centering
-%\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
-%	\hline 
-%	\textbf{PSNR} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
-%	\cline{2-10} 
-%	 \textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
-%	 \hline 
-%	 Zero-filled & 41.494 & 36.736 & 38.546 & 37.279 & 34.379 & 36.369 & 24.887 & 24.987 & 29.337\tabularnewline
-%	 \hline 
-%	 CS-MRI & 44.374 & 40.042 & 40.744 & 41.655 & 37.247 & 39.119 & 35.595 & 33.111 & 36.648\tabularnewline
-%	 \hline 
-%	 CNN-L2 & 45.727 & 41.593 & 41.689 & 43.265 & 40.151 & 40.247 & 41.119 & 39.277 & 39.102\tabularnewline
-%	 \hline 
-%	 \textbf{Proposed} & 46.206 & 41.942 & 41.616 & 43.857 & 40.109 & 40.496 & 41.919 & 39.014 & 39.366\tabularnewline
-%	 \hline 
-%\end{tabular}
-%\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, with masking}{\footnotesize{}\label{tbl:PSNR_WITH_MASK}}}
-%\end{table}
-
-\begin{table}[H]
-	\centering
-	\resizebox{\textwidth}{!}{%
-		\scriptsize
-		\setlength\tabcolsep{2pt}
-	\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
-		\hline 
-		\textbf{PSNR} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
-		\cline{2-10} 
-		\textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
-		\hline 
-		Zero-filled & 41.494{\tiny $\pm$}3.48 & 36.736{\tiny $\pm$}3.32 & 38.546{\tiny $\pm$}2.45 & 37.279{\tiny $\pm$}2.18 & 34.379{\tiny $\pm$}2.52 & 36.369{\tiny $\pm$}1.87 & 24.887{\tiny $\pm$}1.62 & 24.987{\tiny $\pm$}1.91 & 29.337{\tiny $\pm$}2.08\tabularnewline
-		\hline 
-		CS-MRI & 44.374{\tiny $\pm$}4.20 & 40.042{\tiny $\pm$}3.84 & 40.744{\tiny $\pm$}3.16 & 41.655{\tiny $\pm$}3.12 & 37.247{\tiny $\pm$}2.99 & 39.119{\tiny $\pm$}2.43 & 35.595{\tiny $\pm$}3.15 & 33.111{\tiny $\pm$}2.91 & 36.648{\tiny $\pm$}2.26\tabularnewline
-		\hline 
-		IM-CNN-L2 & 42.992{\tiny $\pm$}3.81 & 38.827{\tiny $\pm$}3.69 & 39.922{\tiny $\pm$}3.11 & 40.574{\tiny $\pm$}2.66 & 37.102{\tiny $\pm$}2.90 & 38.473{\tiny $\pm$}2.31 & 34.742{\tiny $\pm$}2.89 & 31.496{\tiny $\pm$}2.43 & 33.710{\tiny $\pm$}1.80\tabularnewline
-		\hline 
-		CNN-L2 & 45.727{\tiny $\pm$}4.70 & 41.593{\tiny $\pm$}4.16 & 41.689{\tiny $\pm$}3.69 & 43.265{\tiny $\pm$}2.95 & 40.151{\tiny $\pm$}3.15 & 40.247{\tiny $\pm$}2.47 & 41.119{\tiny $\pm$}2.48 & 39.277{\tiny $\pm$}2.65 & 39.102{\tiny $\pm$}1.93\tabularnewline
-		\hline 
-		\textbf{Proposed} & \textbf{46.206{\tiny $\pm$}4.77} & \textbf{41.942{\tiny $\pm$}4.34} & \textbf{41.616{\tiny $\pm$}2.45} & \textbf{43.857{\tiny $\pm$}3.16} & \textbf{40.109{\tiny $\pm$}3.25} & \textbf{40.496{\tiny $\pm$}2.57} & \textbf{41.919{\tiny $\pm$}2.77} & \textbf{39.014{\tiny $\pm$}2.88} & \textbf{39.366{\tiny $\pm$}2.17}\tabularnewline
-		\hline 
-	\end{tabular}
-	}
-	\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, with masking}{\footnotesize{}\label{tbl:PSNR_WITH_MASK}}}
-\end{table}
-
-
-ONLY 2 DIGITS - WHICH IS BETTER??
 \begin{table}[H]
 	\centering
 	\resizebox{\textwidth}{!}{%
@@ -324,7 +260,8 @@ ONLY 2 DIGITS - WHICH IS BETTER??
 			\hline 
 			CS-MRI & 44.37{\tiny $\pm$}4.20 & 40.04{\tiny $\pm$}3.84 & 40.74{\tiny $\pm$}3.16 & 41.65{\tiny $\pm$}3.12 & 37.24{\tiny $\pm$}2.99 & 39.11{\tiny $\pm$}2.43 & 35.59{\tiny $\pm$}3.15 & 33.11{\tiny $\pm$}2.91 & 36.64{\tiny $\pm$}2.26\tabularnewline
 			\hline
-			IM-CNN-L2 & 42.99{\tiny $\pm$}3.81 & 38.82{\tiny $\pm$}3.69 & 39.92{\tiny $\pm$}3.11 & 40.57{\tiny $\pm$}2.66 & 37.10{\tiny $\pm$}2.90 & 38.47{\tiny $\pm$}2.31 & 34.74{\tiny $\pm$}2.89 & 31.49{\tiny $\pm$}2.43 & 33.71{\tiny $\pm$}1.80\tabularnewline
+%			IM-CNN-L2 & 42.99{\tiny $\pm$}3.81 & 38.82{\tiny $\pm$}3.69 & 39.92{\tiny $\pm$}3.11 & 40.57{\tiny $\pm$}2.66 & 37.10{\tiny $\pm$}2.90 & 38.47{\tiny $\pm$}2.31 & 34.74{\tiny $\pm$}2.89 & 31.49{\tiny $\pm$}2.43 & 33.71{\tiny $\pm$}1.80\tabularnewline
+			IM-CNN-L2  & 45.66{\tiny $\pm$}4.60 & 41.06{\tiny $\pm$}4.27 & 41.51{\tiny $\pm$}3.58 & 43.47{\tiny $\pm$}3.22 & 39.36{\tiny $\pm$}3.19 & 40.16{\tiny $\pm$}2.51 & 37.34{\tiny $\pm$}3.19 & 34.18{\tiny $\pm$}2.85 & 36.61{\tiny $\pm$}2.10\tabularnewline
 			\hline  
 			CNN-L2 & 45.72{\tiny $\pm$}4.70 & 41.59{\tiny $\pm$}4.16 & 41.68{\tiny $\pm$}3.69 & 43.26{\tiny $\pm$}2.95 & 40.15{\tiny $\pm$}3.15 & 40.24{\tiny $\pm$}2.47 & 41.11{\tiny $\pm$}2.48 & 39.27{\tiny $\pm$}2.65 & 39.10{\tiny $\pm$}1.93\tabularnewline
 			\hline 
@@ -334,6 +271,27 @@ ONLY 2 DIGITS - WHICH IS BETTER??
 	}
 	\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, with masking}{\footnotesize{}\label{tbl:PSNR_WITH_MASK2}}}
 \end{table}
+
+
+SSIM is used for measuring the similarity between the original and the reconstructed images.
+It quantifies the degradation caused by sampling artifacts based on visible structures in the image. SSIM values for different sampling factors are presented in~Table~\ref{tbl:SSIM_NO_MASK}.
+
+\begin{table}[H]
+	\centering{}
+	\begin{tabular}{|c||c||c||c|}
+		\hline 
+		\textbf{SSIM} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 2.5}} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 4}} & \multicolumn{1}{c|}{\multirow{2}{*}{Factor 6}} \tabularnewline
+		\textbf{Method} & \multicolumn{1}{c||}{} & \multicolumn{1}{c||}{} & \multicolumn{1}{c|}{} \tabularnewline \cline{1-4}
+		
+		Zero-filled         &0.698~$\pm$~0.0452  &0.590~$\pm$~0.040   &0.255~$\pm$~0.021\tabularnewline
+		CS-MRI              &0.865~$\pm$~0.029  &0.757~$\pm$~0.037   &0.617~$\pm$~0.030\tabularnewline
+		IM-CNN-L2           &0.884~$\pm$~0.030  &0.796~$\pm$~0.036   &0.606~$\pm$~0.023\tabularnewline
+		CNN-L2              &0.885~$\pm$~0.030  &0.749~$\pm$~0.043   &0.682~$\pm$~0.042\tabularnewline
+		\textbf{Proposed}   &\textbf{0.917~$\pm$~0.019}  &\textbf{0.818~$\pm$~0.034}   &\textbf{0.726~$\pm$~0.038}\tabularnewline
+		\hline 
+	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}SSIM for different sampling factors}{\footnotesize{}\label{tbl:SSIM_NO_MASK}}}
+\end{table}
+
 
 %TODO:add after images
 %Visual comparison is shown in Figure~\ref{fig:results}. MRIs reconstructed by using the suggested adversarial loss have stronger contrast and no significant aliasing or artifacts.
@@ -345,7 +303,7 @@ ONLY 2 DIGITS - WHICH IS BETTER??
 			\multirow{1}{0.2cm}[2cm]{\begin{turn}{90} {\footnotesize Reconstructed} \end{turn}} &
 			 
 			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__50} &
-			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zeroPadding_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__CS_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__IMCNNL2_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__predict_50}
+			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zeroPadding_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__CS_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__IMCNNL2TUNE_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__predict_50}
 			 
 			 \tabularnewline
 			 
@@ -353,21 +311,21 @@ ONLY 2 DIGITS - WHICH IS BETTER??
 			
 			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zoom_50} &
 			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zeroPadding_zoom_50} & 
-			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__CS_zoom_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__IMCNNL2_zoom_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__predict_zoom_50}
+			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__CS_zoom_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__IMCNNL2TUNE_zoom_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__predict_zoom_50}
 			 
 			 \tabularnewline
 			 
 			\multirow{2}{0.2cm}[2cm]{\begin{turn}{90} {\footnotesize Brain} \end{turn}} & 
  			
  			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__50} &
-			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__zeroPadding_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__CS_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__IMCNNL2_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__predict_50}
+			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__zeroPadding_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__CS_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__IMCNNL2TUNE_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__predict_50}
 			
 			\tabularnewline
 			
-			\multirow{2}{0.2cm}[2cm]{\begin{turn}{90} {\footnotesize Segmentation} \end{turn}} & 
+			\multirow{2}{0.2cm}[2cm]{\begin{turn}{90} {\footnotesize Segmentation} \end{turn}} &
 			
  			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__50} &
- 			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__zeroPadding_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__CS_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__IMCNNL2_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__predict_50}
+ 			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__zeroPadding_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__CS_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__IMCNNL2TUNE_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__predict_50}
 			
 			
 		\end{tabular}
@@ -375,7 +333,6 @@ ONLY 2 DIGITS - WHICH IS BETTER??
 	\raggedright{}\caption{\textcolor{black}{\footnotesize{}Examples of reconstructed MR images from under-sampled k-space.}}
 	\label{fig:example} 
 \end{figure}
-
 
 \subsection{Brain Extraction - Skull Stripping}
 Brain extraction (Skull stripping) is a an algorithm that delineates the brain boundary (Figure~ \ref{fig:brain_extraction}). It is necessary for almost every brain analysis algorithm. In tissue segmentation for example, skull stripping is a pre-processing step which affects directly on the segments partition. We examine the different reconstruction methods by applying the Brain Extraction Tool (BET) \cite{smith2002fast} on each different MR reconstructed image. Then, we compared the skull stripping results to the fully-sampled result using the Modified Hausdorff Distance (MHD)~\cite{dubuisson1994modified}.
@@ -400,7 +357,8 @@ where $\sigma_1,\sigma_2$ are points on the contours $C_1,C_2$ respectively (Fig
 				
 		Zero-filled         &1.111~$\pm$~0.563  &2.617~$\pm$~1.214   &3.121~$\pm$~1.279\tabularnewline
 		CS-MRI              &0.701~$\pm$~0.511  &1.447~$\pm$~1.027   &3.114~$\pm$~1.617\tabularnewline
-		IM-CNN-L2           &0.654~$\pm$~0.414  &0.878~$\pm$~0.548   &2.760~$\pm$~1.748\tabularnewline
+%		IM-CNN-L2           &0.654~$\pm$~0.414  &0.878~$\pm$~0.548   &2.760~$\pm$~1.748\tabularnewline
+		IM-CNN-L2           &0.541~$\pm$~0.388  &0.724~$\pm$~0.394   &1.902~$\pm$~1.437\tabularnewline
 		CNN-L2              &0.420~$\pm$~0.270  &0.715~$\pm$~0.561   &1.083~$\pm$~1.052\tabularnewline
 		\textbf{Proposed}   &\textbf{0.391~$\pm$~0.250}  &\textbf{0.617~$\pm$~0.306}   &\textbf{1.050~$\pm$~1.033}\tabularnewline
 		\hline 
@@ -451,7 +409,10 @@ Dice values for different sampling ratios are presented in~Table~\ref{tbl:DICE}.
 			CS-MRI & 0.942{\tiny $\pm$}0.05 & 0.910{\tiny $\pm$}0.03 & 0.868{\tiny $\pm$}0.03 & 0.871{\tiny $\pm$}0.10 & 0.805{\tiny $\pm$}0.08 & 0.770{\tiny $\pm$}0.05 & 0.708{\tiny $\pm$}0.14 & 0.639{\tiny $\pm$}0.08 & 0.621{\tiny $\pm$}0.07     \tabularnewline
 			\hline 
 
-			IM-CNN-L2 & 0.908{\tiny $\pm$}0.04 & 0.863{\tiny $\pm$}0.03 & 0.839{\tiny $\pm$}0.03 & 0.832{\tiny $\pm$}0.05 & 0.754{\tiny $\pm$}0.03 & 0.754{\tiny $\pm$}0.03 & 0.695{\tiny $\pm$}0.11 & 0.590{\tiny $\pm$}0.06 & 0.560{\tiny $\pm$}0.06     \tabularnewline
+%			IM-CNN-L2 & 0.908{\tiny $\pm$}0.04 & 0.863{\tiny $\pm$}0.03 & 0.839{\tiny $\pm$}0.03 & 0.832{\tiny $\pm$}0.05 & 0.754{\tiny $\pm$}0.03 & 0.754{\tiny $\pm$}0.03 & 0.695{\tiny $\pm$}0.11 & 0.590{\tiny $\pm$}0.06 & 0.560{\tiny $\pm$}0.06     \tabularnewline
+%			\hline
+			
+			IM-CNN-L2  & 0.947{\tiny $\pm$}0.02 & 0.917{\tiny $\pm$}0.02 & 0.887{\tiny $\pm$}0.02 & 0.903{\tiny $\pm$}0.03 & 0.853{\tiny $\pm$}0.02 & 0.828{\tiny $\pm$}0.02 & 0.741{\tiny $\pm$}0.14 & 0.681{\tiny $\pm$}0.08 & 0.674{\tiny $\pm$}0.07     \tabularnewline
 			\hline
 			
 			CNN-L2 & 0.948{\tiny $\pm$}0.02 & 0.919{\tiny $\pm$}0.02 & 0.891{\tiny $\pm$}0.02 & 0.888{\tiny $\pm$}0.06 & 0.836{\tiny $\pm$}0.04 & 0.813{\tiny $\pm$}0.03 & 0.836{\tiny $\pm$}0.09 & 0.770{\tiny $\pm$}0.06 & 0.747{\tiny $\pm$}0.06     \tabularnewline
@@ -468,7 +429,20 @@ Dice values for different sampling ratios are presented in~Table~\ref{tbl:DICE}.
 
 %--------------------- CONCLUSIONS --------------------%
 \section{Discussion}\label{conclusions_section}
+{\color{red}HERE WE NEED TO WRITE THE CONCLUSIONS, 
 
+BETTER PSNR AND SSIM
+
+MORE REALISTIC AND FROM REAL DISTRIBUTION
+
+K-SPACE VS IMAGE SPACE
+
+EDGE VS BLURRY SOLUTION
+
+SO, WE NEED TO CHECK SEGMENTATIONS, BRAIN -> PRODUCE MEDICALLY ACCEPTABLE IMAGES
+
+ETC...
+}
 
 We proposed a software-only framework, using GANs for accelerating MRI acquisition. Specifically, high-quality MRI reconstruction using only 40\%, 25\% and 16.6\% of the original k-space data is demonstrated. The key idea is based on utilizing an adversarial loss in addition to L2 loss. Extensive evaluation of the reconstruction quality was conducted in order to emphasize the advantage of proposed method.
 Future work will concentrate on generation of MRI in the presence of pathologies.
@@ -479,37 +453,11 @@ Future work will concentrate on generation of MRI in the presence of pathologies
 This research is partially supported by the Israel Science Foundation (T.R.R. 1638/16 ) and the IDF Medical Corps (T.R.R.)
 
 
-\begin{figure}
-	\begin{raggedright}
-		
-%		\hspace{-1.2cm}%
-		\begin{tabular}{>{\centering}b{0.2cm}lcccc}
-			& \multicolumn{1}{c}{{\footnotesize{}Original}} & {\footnotesize{}Zero-filled} & {\footnotesize{}CS-MRI} & {\footnotesize{}CNN-L2} & {\footnotesize{}Proposed}\tabularnewline
-			\multirow{1}{0.2cm}[2cm]{\begin{turn}{90}
-					{\footnotesize{}Reconstructed}
-				\end{turn}} & \includegraphics[width=2.5cm]{include/grp1/res1_org} & \includegraphics[width=2.5cm]{include/grp1/res1_zero} & \includegraphics[width=2.5cm]{include/grp1/res1_cs_red} & \includegraphics[width=2.5cm]{include/grp1/res1_L2_red} & \includegraphics[width=2.5cm]{include/grp1/res1_our}\tabularnewline
-				\multirow{1}{0.2cm}[2cm]{\begin{turn}{90}
-						{\footnotesize{}Zoom in}
-					\end{turn}} & \includegraphics[width=2.5cm]{include/grp1/res1_org_zoom} & \includegraphics[width=2.5cm]{include/grp1/res1_zero_zoom} & \includegraphics[width=2.5cm]{include/grp1/res1_cs_zoom} & \includegraphics[width=2.5cm]{include/grp1/res1_L2_zoom} & \includegraphics[width=2.5cm]{include/grp1/res1_our_zoom}\tabularnewline
-					\multirow{1}{0.2cm}[2cm]{\begin{turn}{90}
-							{\footnotesize{}Reconstructed}
-						\end{turn}} & \includegraphics[width=2.5cm]{include/grp1/res7_org} & \includegraphics[width=2.5cm]{include/grp1/res7_zero} & \includegraphics[width=2.5cm]{include/grp1/res7_cs_red} & \includegraphics[width=2.5cm]{include/grp1/res7_L2_red} & \includegraphics[width=2.5cm]{include/grp1/res7_our}\tabularnewline
-						\multirow{1}{0.2cm}[2cm]{\begin{turn}{90}
-								{\footnotesize{}Zoom in}
-							\end{turn}} & \includegraphics[width=2.5cm]{include/grp1/res7_org_zoom} & \includegraphics[width=2.5cm]{include/grp1/res7_zero_zoom} & \includegraphics[width=2.5cm]{include/grp1/res7_cs_zoom} & \includegraphics[width=2.5cm]{include/grp1/res7_L2_zoom} & \includegraphics[width=2.5cm]{include/grp1/res7_our_zoom}\tabularnewline
-							\multirow{1}{0.2cm}[2cm]{\begin{turn}{90}
-									{\footnotesize{}Reconstructed}
-								\end{turn}} & \includegraphics[width=2.5cm]{include/grp1/res11_org} & \includegraphics[width=2.5cm]{include/grp1/res11_zero} & \includegraphics[width=2.5cm]{include/grp1/res11_cs_red} & \includegraphics[width=2.5cm]{include/grp1/res11_L2_red} & \includegraphics[width=2.5cm]{include/grp1/res11_our}\tabularnewline
-								\multirow{1}{0.2cm}[2cm]{\begin{turn}{90}
-										{\footnotesize{}Zoom in}
-									\end{turn}} & \includegraphics[width=2.5cm]{include/grp1/res11_org_zoom} & \includegraphics[width=2.5cm]{include/grp1/res11_zero_zoom} & \includegraphics[width=2.5cm]{include/grp1/res11_cs_zoom} & \includegraphics[width=2.5cm]{include/grp1/res11_L2_zoom} & \includegraphics[width=2.5cm]{include/grp1/res11_our_zoom}\tabularnewline
-								\end{tabular}
-								\par\end{raggedright}
-							\raggedright{}\caption{\textcolor{black}{\footnotesize{}Examples of reconstructed MR images
-									from under-sampled k-space.}}
-							\label{fig:results} 
-						\end{figure}
 
+
+
+
+%-----------------------------BIBLIOGRAPHY--------------------%
 \bibliography{paper}
 
 

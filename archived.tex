@@ -1,0 +1,49 @@
+# 3 DIGITS PSNR
+
+\begin{table}[H]
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\scriptsize
+		\setlength\tabcolsep{2pt}
+	\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
+		\hline 
+		\textbf{PSNR} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
+		\cline{2-10} 
+		\textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
+		\hline 
+		Zero-filled & 41.494{\tiny $\pm$}3.48 & 36.736{\tiny $\pm$}3.32 & 38.546{\tiny $\pm$}2.45 & 37.279{\tiny $\pm$}2.18 & 34.379{\tiny $\pm$}2.52 & 36.369{\tiny $\pm$}1.87 & 24.887{\tiny $\pm$}1.62 & 24.987{\tiny $\pm$}1.91 & 29.337{\tiny $\pm$}2.08\tabularnewline
+		\hline 
+		CS-MRI & 44.374{\tiny $\pm$}4.20 & 40.042{\tiny $\pm$}3.84 & 40.744{\tiny $\pm$}3.16 & 41.655{\tiny $\pm$}3.12 & 37.247{\tiny $\pm$}2.99 & 39.119{\tiny $\pm$}2.43 & 35.595{\tiny $\pm$}3.15 & 33.111{\tiny $\pm$}2.91 & 36.648{\tiny $\pm$}2.26\tabularnewline
+		\hline 
+		IM-CNN-L2 & 42.992{\tiny $\pm$}3.81 & 38.827{\tiny $\pm$}3.69 & 39.922{\tiny $\pm$}3.11 & 40.574{\tiny $\pm$}2.66 & 37.102{\tiny $\pm$}2.90 & 38.473{\tiny $\pm$}2.31 & 34.742{\tiny $\pm$}2.89 & 31.496{\tiny $\pm$}2.43 & 33.710{\tiny $\pm$}1.80\tabularnewline
+		\hline 
+		CNN-L2 & 45.727{\tiny $\pm$}4.70 & 41.593{\tiny $\pm$}4.16 & 41.689{\tiny $\pm$}3.69 & 43.265{\tiny $\pm$}2.95 & 40.151{\tiny $\pm$}3.15 & 40.247{\tiny $\pm$}2.47 & 41.119{\tiny $\pm$}2.48 & 39.277{\tiny $\pm$}2.65 & 39.102{\tiny $\pm$}1.93\tabularnewline
+		\hline 
+		\textbf{Proposed} & \textbf{46.206{\tiny $\pm$}4.77} & \textbf{41.942{\tiny $\pm$}4.34} & \textbf{41.616{\tiny $\pm$}2.45} & \textbf{43.857{\tiny $\pm$}3.16} & \textbf{40.109{\tiny $\pm$}3.25} & \textbf{40.496{\tiny $\pm$}2.57} & \textbf{41.919{\tiny $\pm$}2.77} & \textbf{39.014{\tiny $\pm$}2.88} & \textbf{39.366{\tiny $\pm$}2.17}\tabularnewline
+		\hline 
+	\end{tabular}
+	}
+	\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, with masking}{\footnotesize{}\label{tbl:PSNR_WITH_MASK}}}
+\end{table}
+
+
+# PSNR ONLY MEAN
+\begin{table}[H]
+	\centering
+\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
+	\hline 
+	\textbf{PSNR} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
+	\cline{2-10} 
+	 \textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
+	 \hline 
+	 Zero-filled & 41.494 & 36.736 & 38.546 & 37.279 & 34.379 & 36.369 & 24.887 & 24.987 & 29.337\tabularnewline
+	 \hline 
+	 CS-MRI & 44.374 & 40.042 & 40.744 & 41.655 & 37.247 & 39.119 & 35.595 & 33.111 & 36.648\tabularnewline
+	 \hline 
+	 CNN-L2 & 45.727 & 41.593 & 41.689 & 43.265 & 40.151 & 40.247 & 41.119 & 39.277 & 39.102\tabularnewline
+	 \hline 
+	 \textbf{Proposed} & 46.206 & 41.942 & 41.616 & 43.857 & 40.109 & 40.496 & 41.919 & 39.014 & 39.366\tabularnewline
+	 \hline 
+\end{tabular}
+\caption{\textcolor{black}{\footnotesize{}{}Error in PSNR, with masking}{\footnotesize{}\label{tbl:PSNR_WITH_MASK}}}
+\end{table}

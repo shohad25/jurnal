@@ -32,6 +32,13 @@
   Volume                   = {14}
 }
 
+@Article{arjovsky2017wasserstein,
+  Title                    = {Wasserstein gan},
+  Author                   = {Arjovsky, Martin and Chintala, Soumith and Bottou, L{\'e}on},
+  Journal                  = {arXiv preprint arXiv:1701.07875},
+  Year                     = {2017}
+}
+
 @Misc{Authors14,
   Title                    = {The frobnicatable foo filter},
 
