@@ -149,12 +149,17 @@ Due to the combination of the adversarial and the fidelity loss, $G$ produces re
 \end{equation}
 where $G_{out}$ is the generator output. Figure \ref{fig:system} describes our framework:
 
-\begin{figure}[H]
-	\centering{}\includegraphics[width=7.8cm,height=4cm]{include/grp1/chart}\caption{\label{fig:system} \textcolor{black}{\footnotesize{}{}Framework
-			architecture: $G$ and $D$ are the generator and discriminator networks,
-			respectively. $F$ is a $2D$ IFFT operator.}}
-\end{figure}
+%\begin{figure}[H]
+%	\centering{}\includegraphics[width=7.8cm,height=4cm]{include/grp1/chart}\caption{\label{fig:system} \textcolor{black}{\footnotesize{}{}Framework
+%			architecture: $G$ and $D$ are the generator and discriminator networks,
+%			respectively. $F$ is a $2D$ IFFT operator.}}
+%\end{figure}
 
+\begin{figure}[H]
+	\centering{}\includegraphics[width=12.0cm,height=4cm]{include/grp2/system_chart}\caption{\label{fig:system} \textcolor{black}{\footnotesize{}{}Framework
+			architecture: $G$ and $D$ are the generator and discriminator networks,
+			respectively.}}
+\end{figure}
 
 A common architecture is used for the discriminator, composed of convolutional layers, batch normalization, and leaky-ReLU as suggested in \cite{radford2015unsupervised}. For the generator, we compose a dedicated architecture based on multi-channel input for representing the real and imaginary components. Both architectures are shown in Figure \ref{fig:architectures}.\textbf{ }The training methodology is doing $k_{d}$ discriminator update steps for each generator single step.
 
@@ -293,47 +298,6 @@ It quantifies the degradation caused by sampling artifacts based on visible stru
 \end{table}
 
 
-%TODO:add after images
-%Visual comparison is shown in Figure~\ref{fig:results}. MRIs reconstructed by using the suggested adversarial loss have stronger contrast and no significant aliasing or artifacts.
-
-\begin{figure}[H]
-	\begin{raggedright}
-		\begin{tabular}{>{\centering}b{0.2cm}lcccc}
-			& \multicolumn{1}{c}{\footnotesize Original} & {\footnotesize Zero-filled} & {\footnotesize CS-MRI} & {\footnotesize IM-CNN-L2} & {\footnotesize Proposed}\tabularnewline
-			\multirow{1}{0.2cm}[2cm]{\begin{turn}{90} {\footnotesize Reconstructed} \end{turn}} &
-			 
-			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__50} &
-			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zeroPadding_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__CS_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__IMCNNL2TUNE_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__predict_50}
-			 
-			 \tabularnewline
-			 
-			 \multirow{1}{0.2cm}[2cm]{\begin{turn}{90} {\footnotesize Zoom in} \end{turn}} &
-			
-			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zoom_50} &
-			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zeroPadding_zoom_50} & 
-			 \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__CS_zoom_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__IMCNNL2TUNE_zoom_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__predict_zoom_50}
-			 
-			 \tabularnewline
-			 
-			\multirow{2}{0.2cm}[2cm]{\begin{turn}{90} {\footnotesize Brain} \end{turn}} & 
- 			
- 			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__50} &
-			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__zeroPadding_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__CS_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__IMCNNL2TUNE_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__predict_50}
-			
-			\tabularnewline
-			
-			\multirow{2}{0.2cm}[2cm]{\begin{turn}{90} {\footnotesize Segmentation} \end{turn}} &
-			
- 			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__50} &
- 			\includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__zeroPadding_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__CS_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__IMCNNL2TUNE_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__predict_50}
-			
-			
-		\end{tabular}
-	\par\end{raggedright}
-	\raggedright{}\caption{\textcolor{black}{\footnotesize{}Examples of reconstructed MR images from under-sampled k-space.}}
-	\label{fig:example} 
-\end{figure}
-
 \subsection{Brain Extraction - Skull Stripping}
 Brain extraction (Skull stripping) is a an algorithm that delineates the brain boundary (Figure~ \ref{fig:brain_extraction}). It is necessary for almost every brain analysis algorithm. In tissue segmentation for example, skull stripping is a pre-processing step which affects directly on the segments partition. We examine the different reconstruction methods by applying the Brain Extraction Tool (BET) \cite{smith2002fast} on each different MR reconstructed image. Then, we compared the skull stripping results to the fully-sampled result using the Modified Hausdorff Distance (MHD)~\cite{dubuisson1994modified}.
 
@@ -427,6 +391,49 @@ Dice values for different sampling ratios are presented in~Table~\ref{tbl:DICE}.
 	
 \end{table}
 
+Visual comparison for sampling factor 6 is shown in Figure~\ref{fig:example_factor_6}. The first and the second rows are the reconstructed images with zoom in of red ROI. The third row is the extracted brain and the last row is the calculated segmentation. Each column represents different reconstruction method. MRIs reconstructed by using the suggested adversarial method have stronger contrast and no significant aliasing or artifacts. In addition the brain extraction and the segmentation are more accurate. Additional examples for factor 4 and 2.5 can be found in Figures~\ref{fig:example_factor_4},~\ref{fig:example_factor_2.5}.
+
+% Examples factor 6
+\begin{figure}[H]
+	%	\begin{raggedright}
+	\begin{raggedleft}
+		%		\begin{tabular}{>{\centering}b{0.2cm}lcccc}
+		\hspace*{-2cm} \begin{tabular}{cccccc}
+			& \multicolumn{1}{c}{\footnotesize Original} & {\footnotesize Zero-filled} & {\footnotesize CS-MRI} & {\footnotesize IM-CNN-L2} & {\footnotesize Proposed}\tabularnewline
+			\multirow{1}{0.05cm}[1.8cm]{\begin{turn}{90} {\footnotesize Reconstructed} \end{turn}} &
+			
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__50} &
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zeroPadding_50} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__CS_50} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__IMCNNL2TUNE_50} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__predict_50}
+			
+			\tabularnewline
+			
+			\multirow{1}{0.05cm}[1.3cm]{\begin{turn}{90} {\footnotesize Zoom in} \end{turn}} &
+			
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zoom_50} &
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zeroPadding_zoom_50} & 
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__CS_zoom_50} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__IMCNNL2TUNE_zoom_50} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__predict_zoom_50}
+			
+			\tabularnewline
+			
+			\multirow{2}{0.05cm}[1.4cm]{\begin{turn}{90} {\footnotesize Brain} \end{turn}} & 
+			
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__50} &
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__zeroPadding_50} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__CS_50} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__IMCNNL2TUNE_50} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__predict_50}
+			
+			\tabularnewline
+			
+			\multirow{2}{0.05cm}[1.7cm]{\begin{turn}{90} {\footnotesize Segmentation} \end{turn}} &
+			
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__50} &
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__zeroPadding_50} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__CS_50} & \includegraphics[width=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__IMCNNL2TUNE_50} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__predict_50}
+			
+			
+		\end{tabular}
+		\par\end{raggedleft}
+	\raggedright{}\caption{\textcolor{black}{\footnotesize{}Examples of reconstructed MR images from under-sampled k-space - Factor 6.}}
+	\label{fig:example_factor_6} 
+\end{figure}
+
 %--------------------- CONCLUSIONS --------------------%
 \section{Discussion}\label{conclusions_section}
 {\color{red}HERE WE NEED TO WRITE THE CONCLUSIONS, 
@@ -453,7 +460,87 @@ Future work will concentrate on generation of MRI in the presence of pathologies
 This research is partially supported by the Israel Science Foundation (T.R.R. 1638/16 ) and the IDF Medical Corps (T.R.R.)
 
 
+% Examples factor 4
+\begin{figure}[H]
+	%	\begin{raggedright}
+	\begin{raggedleft}
+		%		\begin{tabular}{>{\centering}b{0.2cm}lcccc}
+		\hspace*{-2cm} \begin{tabular}{cccccc}
+			& \multicolumn{1}{c}{\footnotesize Original} & {\footnotesize Zero-filled} & {\footnotesize CS-MRI} & {\footnotesize IM-CNN-L2} & {\footnotesize Proposed}\tabularnewline
+			\multirow{1}{0.05cm}[1.8cm]{\begin{turn}{90} {\footnotesize Reconstructed} \end{turn}} &
+			
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__35} &
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__zeroPadding_35} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__CS_35} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__IMCNNL2TUNE_35} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__predict_35}
+			
+			\tabularnewline
+			
+			\multirow{1}{0.05cm}[1.3cm]{\begin{turn}{90} {\footnotesize Zoom in} \end{turn}} &
+			
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__zoom_35} &
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__zeroPadding_zoom_35} & 
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__CS_zoom_35} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__IMCNNL2TUNE_zoom_35} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__predict_zoom_35}
+			
+			\tabularnewline
+			
+			\multirow{2}{0.05cm}[1.4cm]{\begin{turn}{90} {\footnotesize Brain} \end{turn}} & 
+			
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__35} &
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__zeroPadding_35} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__CS_35} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__IMCNNL2TUNE_35} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__predict_35}
+			
+			\tabularnewline
+			
+			\multirow{2}{0.05cm}[1.7cm]{\begin{turn}{90} {\footnotesize Segmentation} \end{turn}} &
+			
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__35} &
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__zeroPadding_35} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__CS_35} & \includegraphics[width=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__IMCNNL2TUNE_35} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__predict_35}
+			
+			
+		\end{tabular}
+		\par\end{raggedleft}
+	\raggedright{}\caption{\textcolor{black}{\footnotesize{}Examples of reconstructed MR images from under-sampled k-space - Factor 4.}}
+	\label{fig:example_factor_4} 
+\end{figure}
 
+% Examples factor 2.5
+\begin{figure}[H]
+	%	\begin{raggedright}
+	\begin{raggedleft}
+		%		\begin{tabular}{>{\centering}b{0.2cm}lcccc}
+		\hspace*{-2cm} \begin{tabular}{cccccc}
+			& \multicolumn{1}{c}{\footnotesize Original} & {\footnotesize Zero-filled} & {\footnotesize CS-MRI} & {\footnotesize IM-CNN-L2} & {\footnotesize Proposed}\tabularnewline
+			\multirow{1}{0.05cm}[1.8cm]{\begin{turn}{90} {\footnotesize Reconstructed} \end{turn}} &
+			
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__78} &
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__zeroPadding_78} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__CS_78} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__IMCNNL2TUNE_78} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__predict_78}
+			
+			\tabularnewline
+			
+			\multirow{1}{0.05cm}[1.3cm]{\begin{turn}{90} {\footnotesize Zoom in} \end{turn}} &
+			
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__zoom_78} &
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__zeroPadding_zoom_78} & 
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__CS_zoom_78} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__IMCNNL2TUNE_zoom_78} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__predict_zoom_78}
+			
+			\tabularnewline
+			
+			\multirow{2}{0.05cm}[1.4cm]{\begin{turn}{90} {\footnotesize Brain} \end{turn}} & 
+			
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__78} &
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__zeroPadding_78} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__CS_78} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__IMCNNL2TUNE_78} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__predict_78}
+			
+			\tabularnewline
+			
+			\multirow{2}{0.05cm}[1.7cm]{\begin{turn}{90} {\footnotesize Segmentation} \end{turn}} &
+			
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__78} &
+			\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__zeroPadding_78} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__CS_78} & \includegraphics[width=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__IMCNNL2TUNE_78} & \includegraphics[width=2.5cm,height=2.5cm]{include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__predict_78}
+			
+			
+		\end{tabular}
+		\par\end{raggedleft}
+	\raggedright{}\caption{\textcolor{black}{\footnotesize{}Examples of reconstructed MR images from under-sampled k-space - Factor 2.5.}}
+	\label{fig:example_factor_2.5} 
+\end{figure}
 
 
 
