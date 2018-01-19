@@ -74,7 +74,21 @@ The smooth reconstruction obtained by the CS, may result in a loss of noise-like
 %{\color{red}This, however, makes the algorithm less sensitive to fine details and noise like texture, results in smooth reconstruction with loss of diagnostically information, as we will see in section \ref{experiments_section}.}
 %This, however, would require specified pulse programming.
 
-Recently machine learning techniques based on manifold learning~\cite{usman2014compressive,bhatia2015fast} and dictionary learning~\cite{ravishankar2011mr,caballero2014dictionary} were suggested for MRI reconstruction. MRI reconstruction using convolutional neural networks (CNN) which learns the mapping between zero-filled and fully-sampled MR images was introduced in \cite{wang2016accelerating}. In \cite{Oktay2016}, residual network was proposed for MRI super-resolution. Their model is able to receive multiple inputs acquired from different viewing planes for better image reconstruction. In \cite{lee2017deep,hyun2017deep} a multi-scale residual network, also known as U-net~\cite{ronneberger2015u} is used and provides good reconstruction MR images.
+{\color{blue}
+
+Recently different data driven, machine learning techniques were used for MRI acceleration. 
+%Manifold learning~\cite{usman2014compressive,bhatia2015fast} and dictionary learning~\cite{ravishankar2011mr,caballero2014dictionary} were suggested for MRI reconstruction. 
+
+In~\cite{usman2014compressive} a manifold structure is reconstructed directly from the k-space data, where kernel regression is used for full image reconstruction.
+
+Dynamic MRI reconstruction using manifold learning was suggested in~\cite{bhatia2014hierarchical} using image patches and in~\cite{usman2014compressive, bhatia2015fast} using direct k-space sampling.
+
+Manifold learning of the image space~\cite{bhatia2014hierarchical} and k-space data~\cite{usman2014compressive, bhatia2015fast} was suggested for dynamic MRI reconstruction.
+In~\cite{bhatia2015fast} a kernel regression along the manifold structure of the sequence derived directly from the k-space data is used for full image reconstruction.
+}
+%The method is based on kernel regression along the manifold structure of the sequence derived directly from k-space data.
+
+MRI reconstruction using convolutional neural networks (CNN) which learns the mapping between zero-filled and fully-sampled MR images was introduced in \cite{wang2016accelerating}. In \cite{Oktay2016}, residual CNN was proposed for MRI super-resolution. Their model is able to receive multiple inputs acquired from different viewing planes for better image reconstruction. In \cite{lee2017deep,hyun2017deep} a multi-scale residual network, also known as U-net~\cite{ronneberger2015u} is used and provides good reconstruction MR images.
 Deep convolutional networks have been successfully applied to acceleration of dynamic MRI in \cite{sandinodeep}. All these works address the reconstruction problem in the image domain rather than the k-space domain.
 
 The proposed framework utilizes recent advances in deep learning, while similarly to the CS methods addresses MRI reconstruction directly from the k-space. Specifically, we use generative adversarial networks (GAN) \cite{goodfellow2014generative,radford2015unsupervised,pathak2016context}. 

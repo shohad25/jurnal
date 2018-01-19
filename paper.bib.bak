@@ -78,6 +78,18 @@
   Review                   = {manifold Daniel}
 }
 
+@Article{bhatia2014hierarchical,
+  Title                    = {Hierarchical manifold learning for regional image analysis},
+  Author                   = {Bhatia, Kanwal K and Rao, Anil and Price, Anthony N and Wolz, Robin and Hajnal, Joseph V and Rueckert, Daniel},
+  Journal                  = {IEEE transactions on medical imaging},
+  Year                     = {2014},
+  Number                   = {2},
+  Pages                    = {444--461},
+  Volume                   = {33},
+
+  Publisher                = {IEEE}
+}
+
 @Article{caballero2014dictionary,
   Title                    = {Dictionary learning and time sparsity for dynamic MR data reconstruction},
   Author                   = {Caballero, Jose and Price, Anthony N and Rueckert, Daniel and Hajnal, Joseph V},
@@ -480,6 +492,18 @@
   Year                     = {2016},
   Organization             = {IEEE},
   Pages                    = {514--517}
+}
+
+@Article{wang2004image,
+  Title                    = {Image quality assessment: from error visibility to structural similarity},
+  Author                   = {Wang, Zhou and Bovik, Alan C and Sheikh, Hamid R and Simoncelli, Eero P},
+  Journal                  = {IEEE transactions on image processing},
+  Year                     = {2004},
+  Number                   = {4},
+  Pages                    = {600--612},
+  Volume                   = {13},
+
+  Publisher                = {IEEE}
 }
 
 @Article{yu2017deep,
