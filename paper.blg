@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: paper.aux
 The style file: elsarticle-num.bst
 Database file #1: paper.bib
-You've used 30 entries,
+You've used 32 entries,
             2937 wiz_defined-function locations,
-            837 strings with 11402 characters,
-and the built_in function-call counts, 10696 in all, are:
-= -- 959
-> -- 468
+            848 strings with 11778 characters,
+and the built_in function-call counts, 11324 in all, are:
+= -- 1023
+> -- 488
 < -- 12
-+ -- 176
-- -- 146
-* -- 741
-:= -- 1460
-add.period$ -- 30
-call.type$ -- 30
-change.case$ -- 30
++ -- 184
+- -- 152
+* -- 793
+:= -- 1546
+add.period$ -- 32
+call.type$ -- 32
+change.case$ -- 32
 chr.to.int$ -- 0
-cite$ -- 30
-duplicate$ -- 346
-empty$ -- 1119
-format.name$ -- 173
-if$ -- 2718
+cite$ -- 32
+duplicate$ -- 362
+empty$ -- 1185
+format.name$ -- 181
+if$ -- 2874
 int.to.chr$ -- 0
-int.to.str$ -- 30
-missing$ -- 30
-newline$ -- 98
-num.names$ -- 30
-pop$ -- 213
+int.to.str$ -- 32
+missing$ -- 32
+newline$ -- 104
+num.names$ -- 32
+pop$ -- 223
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 696
+skip$ -- 730
 stack$ -- 0
-substring$ -- 671
-swap$ -- 107
+substring$ -- 727
+swap$ -- 109
 text.length$ -- 12
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 86
-width$ -- 32
-write$ -- 252
+while$ -- 92
+width$ -- 34
+write$ -- 268

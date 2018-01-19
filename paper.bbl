@@ -40,16 +40,26 @@ M.~Lustig, D.~Donoho, J.~M. Pauly, Sparse mri: The application of compressed
   sensing for rapid mr imaging, Magnetic resonance in medicine 58~(6) (2007)
   1182--1195.
 
-\bibitem{usman2014compressive}
-M.~Usman, G.~Vaillant, D.~Atkinson, T.~Schaeffter, C.~Prieto, Compressive
-  manifold learning: Estimating one-dimensional respiratory motion directly
-  from undersampled k-space data, Magnetic Resonance in Medicine 72~(4) (2014)
-  1130--1140.
+\bibitem{ravishankar2011mr}
+S.~Ravishankar, Y.~Bresler, Mr image reconstruction from highly undersampled
+  k-space data by dictionary learning, Medical Imaging, IEEE Transactions on
+  30~(5) (2011) 1028--1041.
+
+\bibitem{caballero2014dictionary}
+J.~Caballero, A.~N. Price, D.~Rueckert, J.~V. Hajnal, Dictionary learning and
+  time sparsity for dynamic mr data reconstruction, Medical Imaging, IEEE
+  Transactions on 33~(4) (2014) 979--994.
 
 \bibitem{bhatia2014hierarchical}
 K.~K. Bhatia, A.~Rao, A.~N. Price, R.~Wolz, J.~V. Hajnal, D.~Rueckert,
   Hierarchical manifold learning for regional image analysis, IEEE transactions
   on medical imaging 33~(2) (2014) 444--461.
+
+\bibitem{usman2014compressive}
+M.~Usman, G.~Vaillant, D.~Atkinson, T.~Schaeffter, C.~Prieto, Compressive
+  manifold learning: Estimating one-dimensional respiratory motion directly
+  from undersampled k-space data, Magnetic Resonance in Medicine 72~(4) (2014)
+  1130--1140.
 
 \bibitem{bhatia2015fast}
 K.~K. Bhatia, J.~Caballero, A.~N. Price, Y.~Sun, J.~V. Hajnal, D.~Rueckert,
