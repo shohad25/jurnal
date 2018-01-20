@@ -138,6 +138,11 @@ K.~He, X.~Zhang, S.~Ren, J.~Sun, Deep residual learning for image recognition,
   in: Proceedings of the IEEE Conference on Computer Vision and Pattern
   Recognition, 2016, pp. 770--778.
 
+\bibitem{shitrit2017accelerated}
+O.~Shitrit, T.~R. Raviv, Accelerated magnetic resonance imaging by adversarial
+  neural network, in: Deep Learning in Medical Image Analysis and Multimodal
+  Learning for Clinical Decision Support, Springer, 2017, pp. 30--38.
+
 \bibitem{glorot2010understanding}
 X.~Glorot, Y.~Bengio, Understanding the difficulty of training deep feedforward
   neural networks., in: Aistats, Vol.~9, 2010, pp. 249--256.
