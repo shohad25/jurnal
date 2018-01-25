@@ -50,11 +50,6 @@ J.~Caballero, A.~N. Price, D.~Rueckert, J.~V. Hajnal, Dictionary learning and
   time sparsity for dynamic mr data reconstruction, Medical Imaging, IEEE
   Transactions on 33~(4) (2014) 979--994.
 
-\bibitem{bhatia2014hierarchical}
-K.~K. Bhatia, A.~Rao, A.~N. Price, R.~Wolz, J.~V. Hajnal, D.~Rueckert,
-  Hierarchical manifold learning for regional image analysis, IEEE transactions
-  on medical imaging 33~(2) (2014) 444--461.
-
 \bibitem{usman2014compressive}
 M.~Usman, G.~Vaillant, D.~Atkinson, T.~Schaeffter, C.~Prieto, Compressive
   manifold learning: Estimating one-dimensional respiratory motion directly
@@ -80,6 +75,11 @@ O.~Oktay, W.~Bai, M.~Lee, R.~Guerrero, K.~Kamnitsas, J.~Caballero,
   Conference on Medical Image Computing and Computer-Assisted Intervention,
   Springer, 2016, pp. 246--254.
 
+\bibitem{ronneberger2015u}
+O.~Ronneberger, P.~Fischer, T.~Brox, U-net: Convolutional networks for
+  biomedical image segmentation, in: International Conference on Medical Image
+  Computing and Computer-Assisted Intervention, Springer, 2015, pp. 234--241.
+
 \bibitem{lee2017deep}
 D.~Lee, J.~Yoo, J.~C. Ye, Deep residual learning for compressed sensing mri,
   in: Biomedical Imaging (ISBI 2017), 2017 IEEE 14th International Symposium
@@ -89,14 +89,14 @@ D.~Lee, J.~Yoo, J.~C. Ye, Deep residual learning for compressed sensing mri,
 C.~M. Hyun, H.~P. Kim, S.~M. Lee, S.~Lee, J.~K. Seo, Deep learning for
   undersampled mri reconstruction, arXiv preprint arXiv:1709.02576.
 
-\bibitem{ronneberger2015u}
-O.~Ronneberger, P.~Fischer, T.~Brox, U-net: Convolutional networks for
-  biomedical image segmentation, in: International Conference on Medical Image
-  Computing and Computer-Assisted Intervention, Springer, 2015, pp. 234--241.
-
 \bibitem{sandinodeep}
 C.~M. Sandino, N.~Dixit, J.~Y. Cheng, S.~S. Vasanawala, Deep convolutional
   neural networks for accelerated dynamic magnetic resonance imaging, preprint.
+
+\bibitem{qin2017convolutional}
+C.~Qin, J.~Schlemper, J.~Caballero, A.~Price, J.~V. Hajnal, D.~Rueckert,
+  Convolutional recurrent neural networks for dynamic mr image reconstruction,
+  arXiv preprint arXiv:1712.01751.
 
 \bibitem{goodfellow2014generative}
 I.~Goodfellow, J.~Pouget-Abadie, M.~Mirza, B.~Xu, D.~Warde-Farley, S.~Ozair,
