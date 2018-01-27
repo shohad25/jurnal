@@ -75,14 +75,13 @@ The smooth reconstruction obtained by the CS, may result in a loss of noise-like
 %This, however, would require specified pulse programming.
 Recently different data driven, machine learning techniques were used for MRI acceleration. 
 Ravishankar and Bresler~\cite{ravishankar2011mr} proposed a dictionary-based learning method, to exploit the sparsity of overlapping image patches emphasizing local structure, to reconstruct MRI from highly under-sampled k-space data. In~\cite{caballero2014dictionary}, this concept was extended using spatio-temporal patches for dynamic MRI reconstruction.
-Compressed manifold learning based on Laplacian eigenmaps, has been applied to partially in~\cite{usman2014compressive} for respiratory motion estimation and in~\cite{bhatia2015fast} for cardiac MRI reconstruction. 
+Compressed manifold learning based on Laplacian eigenmaps, has been applied in~\cite{usman2014compressive} for respiratory motion estimation and in~\cite{bhatia2015fast} for cardiac MRI reconstruction.
 
 Deep neural networks (DNN) allow to implicitly learn prior information from large datasets. This has been exploited in recent works for MRI reconstruction from sub-sampled data. A convolutional neural network (CNN) was introduced in~\cite{wang2016accelerating} to learn the mapping between zero-filled and fully-sampled MRI.
 In~\cite{Oktay2016}, MRI acceleration by super-resolution (SR) concepts was introduced. One of the key ideas is a siamese CNN structure that allows to receive multiple inputs acquired from different viewing planes. Improved low-resolution (LR) high-resolution (HR) mapping was obtained by residual architecture.
 A multi-scale residual network, also known as U-net~\cite{ronneberger2015u}, was used in~\cite{lee2017deep} to address the CS optimization, formulated as a residual regression problem.
 Hayun at el.~\cite{hyun2017deep}, applied U-net to perform anti-aliasing of MRI generated from sub-sampled k-space. The U-net output image is than enhanced by integrating its k-space domain with the originally acquired raw samples. U-net CNN has been also used in~\cite{sandinodeep} for dynamic MRI reconstruction.
-The spatio-temporal characteristics of sequential MRI data was recently exploited using recurrent neural network (RNN) by~\cite{qin2017convolutional}
-Another interesting approach, based on recurrent neural network (RNN) for temporal MRI reconstruction has been recently suggested by~\cite{qin2017convolutional}. All these works address the reconstruction problem in the image domain rather than the k-space domain.
+The spatio-temporal characteristics of sequential MRI data was recently exploited using recurrent neural network (RNN) by~\cite{qin2017convolutional}. All these works address the reconstruction problem in the image domain rather than the k-space domain.
 
 The proposed framework utilizes recent advances in deep learning, while addressing MRI reconstruction directly from the k-space. Specifically, we use generative adversarial networks (GAN) \cite{goodfellow2014generative,radford2015unsupervised,pathak2016context}.
 GANs are based on the inter-play between two networks: a generator and a discriminator. The generator is capable of learning the distribution over a data-base, and sample realizations of this distribution. 
@@ -104,7 +103,7 @@ Let $\bm{u}$ denote the desired signal, a 2D MR image, obtained by the IFFT of t
 \bm{u}=F^{H}M_{F}\odot s_{0}
 \end{equation} 
 where $H$ is the Hermitian transpose operation, $\odot$ denotes element-wise multiplication, and $F^{H}$ is an orthonormal 2D IFFT operator, such that $F^{H}F=I$. 
-While sampling part of the k-space, using $M_{p}$ as a sampling mask, the reconstructed MR image suffers from artifacts and aliasing. An example artifacts caused by under-sampling in the phase axis using Gaussian mask (40\%) is shown in Figure \textbf{\ref{fig:pair_of_k_space_mri}}.
+While sampling part of the k-space, using $M_{p}$ as a sampling mask, the reconstructed MR image suffers from artifacts and aliasing. An example artifacts caused by under-sampling and zero padding in the phase axis using Gaussian mask (40\%) is shown in Figure \textbf{\ref{fig:pair_of_k_space_mri}}.
 
 \begin{figure}[H]
 	\centering
@@ -149,8 +148,8 @@ In equilibrium, the generator $G$ is able to generate samples that look like the
 \beta\cdot||\left(1-M_{p}\right)\odot\left(\hat{s}_{0}-s_{0}\right)||_{2}^{2}
 \end{aligned}
 \end{equation}
-where $\hat{s}_{0}$ is the estimated k-space and $\alpha=1,\,\beta=1$ are hyperparameters tuned by a cross-validation process. The discriminator's input is the reconstructed MR image,\textbf{ }i.e.,\textbf{ }after IFFT. By that, we are integrating the reconstruction phase in our optimization.
-In this work, we use the Wasserstein distance as the GAN loss function~\cite{arjovsky2017wasserstein} which helps us to improve the training stability and provides better reconstruction than the classic GAN.
+where $\hat{s}_{0}$ is the estimated k-space and $\alpha=1,\,\beta=1$ are hyperparameters tuned by a cross-validation process. The discriminator's input is the reconstructed MR image,\textbf{ }i.e.,\textbf{ }after IFFT. By that, we are integrating the reconstruction phase and optimize it in an end-to-end manner.
+In this work, we use the Wasserstein distance as the GAN loss function~\cite{arjovsky2017wasserstein}, which helps us to improve the training stability and provides better reconstruction compared to the classic GAN used in~\cite{shitrit2017accelerated}.
 
 \subsection{Network Architecture}
 
@@ -207,7 +206,7 @@ The training data consists of 500 $3D$ brain MRI (T1) scans of different patient
 From each $3D$ volume we extract 93 $2D$ saggital slices. We used $37.2k$ $(80\%)$ 2D slices for training and $9.2k$ $(20\%)$ for testing (100 $3D$ volumes).
 In order to create k-space images for training, inverse orthonormal
 2D FFT is applied to the fully-sampled MR images. 
-Further to our work~\cite{shitrit2017accelerated}, which was focused on Cartesian 2D sampling mask along the phase axis, we sample the k-space using $2D$ Gaussian mask, and achieve higher sampling factors of 2.5, 4 and 6 (Figure~\ref{fig:sampling_masks}).
+Further to our work~\cite{shitrit2017accelerated}, which was been focused on 1D Cartesian sampling mask along the phase axis, in this work, we sample the k-space using $2D$ random Gaussian mask. By that, we exploit the sparsity in both phase and frequency dimensions and achieve higher sampling factors of 2.5, 4 and 6 (Figure~\ref{fig:sampling_masks}).
 Data augmentation is created by random offsets of the proposed mask and image flipping. This leads us to reconstruction of the MR image from 40\%, 25\% and 16.6\% of the original k-space data.
 
 The generator is composed of $5$ blocks of CONV-BatchNorm-ReLU, with output channels $16,32,64,32,8,$ respectively. The last layer is CONV with two outputs channels (for real and imaginary parts). The discriminator is composed of $4$ blocks of CONV-Pool-BatchNorm-LReLU with output channels $8,16,32,16$ and one fully-connected layer. All CONV layers kernel size is $3\times3$. All weights was initialized by Xavier \cite{glorot2010understanding}. We used RMSprop solver with fixed learning rate of $5\mathrm{e}{-6}$ and set $k_{d}$ to 1.
@@ -233,8 +232,7 @@ To assess the clinical usability of the reconstructed images we perform an exten
 \end{figure}
 
 \subsection{PSNR and SSIM}
-PSNR and SSIM are the most commonly used measures for evaluate image reconstruction quality. PSNR measures the Mean Squared Error (MSE) between the fully-sampled MR image and the reconstructed image. Therefore, this measure is not a sufficient metric for edges and general objects shape. For example, a model can provides a good reconstruction in the sense of PSNR but with blurry edges and loss of anatomical fine details. This leads to a poor segmentation, which used for medical diagnostic.
-However, PSNR is still a good indication for the image quality, especially if an expert should view it.
+PSNR and SSIM are the most commonly used measures for evaluation of image reconstruction quality. PSNR measures the Mean Squared Error (MSE) between the fully-sampled MR image and the reconstructed image. Therefore, this measure is not a sufficient metric for fine details and general objects shape. For example, a model can provides a good reconstruction in the sense of PSNR but with blurry edges and loss of anatomical fine details, results in a poor segmentation, which used for medical diagnostic. However, PSNR is still a good indication for the image quality, especially if an expert should view it.
 Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graphical visualization in ~Figure~\ref{fig:error_psnr_errorbar}. The PSNR calculated on the whole image without masking. Note that the proposed method outperforms the other.
 
 \begin{table}[H]
@@ -312,9 +310,9 @@ It quantifies the degradation caused by sampling artifacts based on visible stru
 
 
 \subsection{Brain Extraction - Skull Stripping}
-Brain extraction (Skull stripping) is a an algorithm that delineates the brain boundary (Figure~ \ref{fig:brain_extraction}). It is necessary for almost every brain analysis algorithm. In tissue segmentation for example, skull stripping is a pre-processing step which affects directly on the segments partition. We examine the different reconstruction methods by applying the Brain Extraction Tool (BET) \cite{smith2002fast} on each different MR reconstructed image. Then, we compared the skull stripping results to the fully-sampled result using the Modified Hausdorff Distance (MHD)~\cite{dubuisson1994modified}.
+Brain extraction (Skull stripping) is a an algorithm that delineates the brain boundary (Figure~ \ref{fig:brain_extraction}). It is necessary for almost every brain analysis algorithm. In tissue segmentation for example, skull stripping is a pre-processing step which affects directly on the segments partition. We examine the different reconstruction methods by applying the Brain Extraction Tool (BET) \cite{smith2002fast} on each different MR reconstructed image. Then, we compared the skull stripping to the fully-sampled results using the Modified Hausdorff Distance (MHD)~\cite{dubuisson1994modified}.
 
-Let $C_1,C_2\in R^2$ denotes the brain contours extract from skull stripping algorithm on two different reconstruction methods respectively (in our case the fully-sampled and the tested reconstruction method). MHD measures the distance between the contours such that:
+Let $C_1,C_2\in R^2$ denotes the brain contours, extract from skull stripping algorithm, for a two different reconstruction methods respectively (in our case the fully-sampled and the tested reconstruction method). MHD measures the distance between the contours such that:
 
 \begin{equation}
 \begin{array}{cc}
@@ -359,16 +357,16 @@ where $\sigma_1,\sigma_2$ are points on the contours $C_1,C_2$ respectively (Fig
 
 
 \subsection{Brain Segmentation}
-Brain segmentation is the task of partitioning the brain image (MRI in our case), into the following segments: background, white matter, gray matter and CSF. This process is of a great importance for brain MR image analysis, especially for therapy planning and also for clinical research. Sampling artifacts, results in poor signal to noise and blurry edges, and also loss of anatomical fine details, will probably leads to bad segmentation performance.
-We suggest a way to evaluate and compare different MRI reconstruction methods based on segmentation results. We create a reference segmentation by extracting the brain (using BET \cite{smith2002fast}) from the original fully-sampled image and run a brain segmentation algorithm (FAST \cite{zhang2001segmentation}). Then, we did the same process for all the reconstruction methods and compared the segmentation results to the reference.
+Brain segmentation is the task of partitioning the brain image (MRI in our case), into the following segments: background, white matter, gray matter and CSF. This process is of a great importance for brain MR image analysis, especially for therapy planning and also for clinical research. Sampling artifacts, results in poor signal to noise ratio, blurry edges and loss of anatomical fine details, leads to bad segmentation performance.
+Segmentation compatibility demonstrate the quality of the proposed MRI reconstruction with respect to other methods. We create a reference segmentation by extracting the brain (using BET \cite{smith2002fast}) from the original fully-sampled image and perform a brain segmentation algorithm (FAST \cite{zhang2001segmentation}) on it. Then, we did the same process for all the reconstruction methods and compared the segmentation results.
 
-The measure used for segmentations comparison is the Dice score \cite{dice1945measures} between the original and the reconstructed image segments. Dice score is a measure of sets similarity which gets the values between 0 (no similarity) to 1.0 (max similarity). Denotes by $S_{i,j}$ the set of pixels in segment $j$ for reconstruction method $i$, the Dice score between this method to the reference is:
+The measure used for segmentations comparison is the Dice score \cite{dice1945measures} between the original and the reconstructed image segments. Dice score is a measure of sets similarity which gets the values between 0 (no similarity) to 1.0 (max similarity). Denotes by $S_{i,j}$ the set of pixels in segment $j$ for reconstruction method $i$, the Dice score is:
 \begin{equation}
 \begin{array}{c}
 DICE(S_{ref,j},S_{i,j}) = \frac{2\cdot|S_{ref,j} \cap S_{i,j}|} {|S_{ref,j}| + |S_{i,j}|}
 \end{array}
 \end{equation}
-Dice values for different sampling ratios are presented in~Table~\ref{tbl:DICE}. Our methods achieved the best Dice scores for all brain tissues.
+Dice values for different sampling factors are presented in~Table~\ref{tbl:DICE}. Our methods achieved the best Dice scores for all brain tissues.
 
 \begin{table}[H]
 	\centering
@@ -450,9 +448,9 @@ Visual comparison for sampling factor 6 is shown in Figure~\ref{fig:example_fact
 %--------------------- CONCLUSIONS --------------------%
 \section{Discussion}\label{conclusions_section}
 
-We proposed a practical, software-only framework, based on deep learning, for accelerating MRI acquisition, while maintaining anatomically meaningful imaging. This is accomplished by partial MRI sampling, while using an adversarial neural network to directly estimate the missing k-space samples (based on the real k-space distribution). Promising image reconstruction results are obtained for 3T and 1.5T brain MRI, from large publicly available dataset, where only 40\%, 25\% and 16.6\% of the raw samples of each scan are used.
+We proposed a practical, software-only framework, based on deep learning, for accelerating MRI acquisition, while maintaining anatomically meaningful imaging. This is accomplished by partial MRI sampling, while using an adversarial neural network to directly estimate the missing k-space samples from the real k-space distribution. Promising image reconstruction results are obtained for 3T and 1.5T brain MRI, from large publicly available dataset, where only 40\%, 25\% and 16.6\% of the raw samples of each scan are used.
 
-Our method produce more clinically acceptable reconstructions compared with the methods being tested in the terms of PSNR and SSIM. We also perform tissue segmentations and measure the performance using the Dice scores, with respect to those obtained by using the original fully-sampled images. Better Dice score for white matter, gray matter, and CSF were achieved for all sampling factors. Moreover, lower Hausdorff distances indicates the quality of the proposed method in terms of general brain shape. Comparing to CS, our reconstruction method preserve the brain shape better, as seen in Figures~\ref{fig:example_factor_6},~\ref{fig:example_factor_4},~\ref{fig:example_factor_2.5}.
+Our method produce clinically acceptable reconstructions.  Compared to the methods being tested, our method achieves the best PSNR and SSIM. We also perform tissue segmentations and measure the performance using the Dice scores, with respect to those obtained by using the original fully-sampled images. Better Dice score for white matter, gray matter, and CSF were achieved for all sampling factors. Moreover, lower Hausdorff distance indicates the quality of the proposed method in terms of general brain shape, especially comparing to CS, as seen in Figures~\ref{fig:example_factor_6},~\ref{fig:example_factor_4},~\ref{fig:example_factor_2.5}.
 
 Additional advantage of the proposed method is the runtime. A few days are required for training the generator. Once the network is optimized, the reconstruction for a single test image is done in less than 10 msec, almost two orders of magnitude faster than the widely used CS. This fact makes it possible to use it in a real time manner.
 Future work will concentrate on generation of MRI in the presence of pathologies.
