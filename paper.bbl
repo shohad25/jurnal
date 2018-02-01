@@ -133,19 +133,24 @@ D.~Nie, R.~Trullo, C.~Petitjean, S.~Ruan, D.~Shen, Medical image synthesis with
 M.~Arjovsky, S.~Chintala, L.~Bottou, Wasserstein gan, arXiv preprint
   arXiv:1701.07875.
 
-\bibitem{he2016deep}
-K.~He, X.~Zhang, S.~Ren, J.~Sun, Deep residual learning for image recognition,
-  in: Proceedings of the IEEE Conference on Computer Vision and Pattern
-  Recognition, 2016, pp. 770--778.
-
 \bibitem{shitrit2017accelerated}
 O.~Shitrit, T.~R. Raviv, Accelerated magnetic resonance imaging by adversarial
   neural network, in: Deep Learning in Medical Image Analysis and Multimodal
   Learning for Clinical Decision Support, Springer, 2017, pp. 30--38.
 
+\bibitem{he2016deep}
+K.~He, X.~Zhang, S.~Ren, J.~Sun, Deep residual learning for image recognition,
+  in: Proceedings of the IEEE Conference on Computer Vision and Pattern
+  Recognition, 2016, pp. 770--778.
+
 \bibitem{glorot2010understanding}
 X.~Glorot, Y.~Bengio, Understanding the difficulty of training deep feedforward
   neural networks., in: Aistats, Vol.~9, 2010, pp. 249--256.
+
+\bibitem{tieleman2012lecture}
+T.~Tieleman, G.~Hinton, Lecture 6.5-rmsprop: Divide the gradient by a running
+  average of its recent magnitude, COURSERA: Neural networks for machine
+  learning 4~(2) (2012) 26--31.
 
 \bibitem{wang2004image}
 Z.~Wang, A.~C. Bovik, H.~R. Sheikh, E.~P. Simoncelli, Image quality assessment:
