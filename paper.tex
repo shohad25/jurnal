@@ -449,25 +449,20 @@ MR reconstruction results for factor 6~(16.66\%) as well as their respective bra
 %--------------------- CONCLUSIONS --------------------%
 \section{Discussion}\label{conclusions_section}
 The proposed deep learning framework for MRI reconstruction from highly under-sampled k-space (up to 16.66\%), can be used as the foundation of a real-time, software-only solution for MRI acceleration.
-Combining both adversarial and fidelity loss in the DNN training, the method suggested provides high PSNR reconstructions for large and diverse brain MRI dataset acquired by different MRI machines (1.5T and 3.T) and different imaging protocols.
+The inter-play between the generator and the discriminator plays a key role here. The generator is trained directly on the k-space, thus avoiding aliasing correction (due to under-sampling) as done in other methods.
+Instead, the k-space distribution, and not its IFFT, is learned and generated. Moreover, combining both adversarial and fidelity loss in the DNN training, the method suggested provides high PSNR reconstructions for large and diverse brain MRI dataset acquired by different MRI machines (1.5T and 3.T) and different imaging protocols.
 
-Clinical usability of the reconstructed data plays a key role in the quality analysis performed as part of this research. We choose to test it by using standard tissue segmentation measures (such as Dice and MHD), as we believe that compatibility of the extracted brain regions with those obtained by using the original fully-sampled MRIs indicate fine detail reconstructions which have apparent diagnostic significance.
+Until just a few years ago, CS techniques were considered the state-of-the-art for MRI reconstruction. Recently, deep learning methods, capable of learning imaging samples distribution from training datasets, were shown to obtain reconstruction with comparable or even higher quality. The strength of the proposed DNN is three-fold, combining direct k-space reconstruction, GAN architecture and end-to-end optimization.
+This allows anatomically meaningful reconstruction with high fidelity to the original scan. Extensive comparative analysis shows that our method outperforms all other tested MRI reconstruction methods (CS and other DNN-based) for various quality metrics, showing more robustness for high acceleration factors.
 
-Until recently, CS techniques were considered the state-of-the-art for MRI reconstruction.
-The proposed method outperforms all other tested methods in the common used PSNR and SSIM measures and produce clinically acceptable reconstructions.
-We also perform tissue segmentation and measure the performance using the Dice scores, with respect to those obtained by using the original fully-sampled images. Higher Dice score for white matter, gray matter, and CSF were achieved for all sampling factors. Moreover, lower Hausdorff distance indicates the quality of the proposed method in terms of general brain shape, especially comparing to CS, as seen in Figures~\ref{fig:example_factor_6},~\ref{fig:example_factor_4},~\ref{fig:example_factor_2.5}.
+A key advantage of the proposed method is its short runtime at test phase (less than 10 msec per slice), which is almost two orders of magnitude faster than CS. This makes it applicable for routine uses. As training can be performed off-line, prior to the acquisition sessions, the fact that it lasts a few days has no practical relevance.
 
-Additional advantage of the proposed method is the runtime. A few days are required for training the generator. Once the network is optimized, the reconstruction for a single test image is done in less than 10 msec, almost two orders of magnitude faster than the widely used CS. In fact, it can work in real time, and is therefore practical for routine uses.
-Future work will concentrate on generation of MRI in the presence of pathologies.
+Assessing clinical usability of the reconstructed data takes a considerable part in the quality analysis performed as part of this research. We choose to test it by using standard tissue segmentation measures (such as Dice and MHD), as we argue that compatibility of the extracted brain regions with those obtained by using the original fully-sampled MRIs indicate fine detail reconstructions which have apparent diagnostic significance. 
 
-{\color{red}
-Do we need to discuss about :
-K-SPACE VS IMAGE SPACE ??
+Nevertheless, pathological cases were not considered in this study and to the best of our knowledge are seldom addressed. We believe that high quality reconstruction in the presence of brain atrophies is the true success criteria. In fact, addressing this challenge and measuring performances in this sense, should be the gold standard in future benchmarks.
 
-Our method outperforms the other methods, and the advatnage of our methods becoms more apparant for higher acceleration factors (lower sampling ratios).
 
-Therefore, this measure is not a sufficient metric for fine details and general objects shape. For example, a model can provide a good reconstruction in the sense of PSNR yet with blurry edges and loss of anatomical fine details. This may significant affect diagnostic usability.
-}
+%Therefore, this measure is not a sufficient metric for fine details and general objects shape. For example, a model can provide a good reconstruction in the sense of PSNR yet with blurry edges and loss of anatomical fine details. This may significant affect diagnostic usability.
 
 %--------------------- Acknowledgment --------------------%
 \subsection{Acknowledgment}
