@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.1.5)  5 FEB 2018 10:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.1.5)  5 FEB 2018 13:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1053,7 +1053,7 @@ Package epstopdf Info: Source file: <include/grp2/skull_stripping.eps>
 (epstopdf)                    size: 254362 bytes
 (epstopdf)             Command: <repstopdf --outfile=include/grp2/skull_strippi
 ng-eps-converted-to.pdf include/grp2/skull_stripping.eps>
-(epstopdf)             \includegraphics on input line 348.
+(epstopdf)             \includegraphics on input line 349.
 Package epstopdf Info: Output file is already uptodate.
 
 <include/grp2/skull_stripping-eps-converted-to.pdf, id=276, 221.82875pt x 247.9
@@ -1062,7 +1062,7 @@ File: include/grp2/skull_stripping-eps-converted-to.pdf Graphic file (type pdf)
 
  <use include/grp2/skull_stripping-eps-converted-to.pdf>
 Package pdftex.def Info: include/grp2/skull_stripping-eps-converted-to.pdf used
- on input line 348.
+ on input line 349.
 (pdftex.def)             Requested size: 85.35524pt x 99.58487pt.
 Package epstopdf Info: Source file: <include/grp2/skull_stripping_brain.eps>
 (epstopdf)                    date: 2017-12-27 23:40:25
@@ -1073,7 +1073,7 @@ verted-to.pdf>
 (epstopdf)                    size: 254369 bytes
 (epstopdf)             Command: <repstopdf --outfile=include/grp2/skull_strippi
 ng_brain-eps-converted-to.pdf include/grp2/skull_stripping_brain.eps>
-(epstopdf)             \includegraphics on input line 350.
+(epstopdf)             \includegraphics on input line 351.
 Package epstopdf Info: Output file is already uptodate.
 
 <include/grp2/skull_stripping_brain-eps-converted-to.pdf, id=277, 221.82875pt x
@@ -1082,14 +1082,14 @@ File: include/grp2/skull_stripping_brain-eps-converted-to.pdf Graphic file (typ
 e pdf)
  <use include/grp2/skull_stripping_brain-eps-converted-to.pdf>
 Package pdftex.def Info: include/grp2/skull_stripping_brain-eps-converted-to.pd
-f used on input line 350.
+f used on input line 351.
 (pdftex.def)             Requested size: 85.35524pt x 99.58487pt.
 
 <include/grp2/hausdorff.png, id=278, 513.92pt x 508.90125pt>
 File: include/grp2/hausdorff.png Graphic file (type png)
 
 <use include/grp2/hausdorff.png>
-Package pdftex.def Info: include/grp2/hausdorff.png used on input line 352.
+Package pdftex.def Info: include/grp2/hausdorff.png used on input line 353.
 (pdftex.def)             Requested size: 99.58272pt x 99.58089pt.
  [12] [13 <./include/grp2/skull_stripping-eps-converted-to.pdf> <./include/grp2
 /skull_stripping_brain-eps-converted-to.pdf> <./include/grp2/hausdorff.png>]
@@ -1338,33 +1338,39 @@ g>
 Package pdftex.def Info: include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1
 _segs__predict_50.png used on input line 440.
 (pdftex.def)             Requested size: 71.13293pt x 71.13086pt.
- [14] [15 <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__50.
-png> <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zeroPadd
-ing_50.png> <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__C
-S_50.png> <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__IMC
-NNL2TUNE_50.png> <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_imag
-es__predict_50.png> <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_i
-mages__zoom_50.png> <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_i
-mages__zeroPadding_zoom_50.png> <./include/grp2/factor6/022-Guys-0701-T1/022-Gu
-ys-0701-T1_images__CS_zoom_50.png> <./include/grp2/factor6/022-Guys-0701-T1/022
--Guys-0701-T1_images__IMCNNL2TUNE_zoom_50.png> <./include/grp2/factor6/022-Guys
--0701-T1/022-Guys-0701-T1_images__predict_zoom_50.png> <./include/grp2/factor6/
-022-Guys-0701-T1/022-Guys-0701-T1_brains__50.png> <./include/grp2/factor6/022-G
-uys-0701-T1/022-Guys-0701-T1_brains__zeroPadding_50.png> <./include/grp2/factor
-6/022-Guys-0701-T1/022-Guys-0701-T1_brains__CS_50.png> <./include/grp2/factor6/
-022-Guys-0701-T1/022-Guys-0701-T1_brains__IMCNNL2TUNE_50.png> <./include/grp2/f
-actor6/022-Guys-0701-T1/022-Guys-0701-T1_brains__predict_50.png> <./include/grp
-2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__50.png> <./include/grp2/facto
-r6/022-Guys-0701-T1/022-Guys-0701-T1_segs__zeroPadding_50.png> <./include/grp2/
-factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__CS_50.png> <./include/grp2/fact
-or6/022-Guys-0701-T1/022-Guys-0701-T1_segs__IMCNNL2TUNE_50.png> <./include/grp2
-/factor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__predict_50.png>]
-Overfull \hbox (4.08705pt too wide) in paragraph at lines 482--482
+ [14 <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__50.png> 
+<./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__zeroPadding_5
+0.png> <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__CS_50.
+png> <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__IMCNNL2T
+UNE_50.png> <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images__p
+redict_50.png> <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images
+__zoom_50.png> <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-0701-T1_images
+__zeroPadding_zoom_50.png> <./include/grp2/factor6/022-Guys-0701-T1/022-Guys-07
+01-T1_images__CS_zoom_50.png> <./include/grp2/factor6/022-Guys-0701-T1/022-Guys
+-0701-T1_images__IMCNNL2TUNE_zoom_50.png> <./include/grp2/factor6/022-Guys-0701
+-T1/022-Guys-0701-T1_images__predict_zoom_50.png> <./include/grp2/factor6/022-G
+uys-0701-T1/022-Guys-0701-T1_brains__50.png> <./include/grp2/factor6/022-Guys-0
+701-T1/022-Guys-0701-T1_brains__zeroPadding_50.png> <./include/grp2/factor6/022
+-Guys-0701-T1/022-Guys-0701-T1_brains__CS_50.png> <./include/grp2/factor6/022-G
+uys-0701-T1/022-Guys-0701-T1_brains__IMCNNL2TUNE_50.png> <./include/grp2/factor
+6/022-Guys-0701-T1/022-Guys-0701-T1_brains__predict_50.png> <./include/grp2/fac
+tor6/022-Guys-0701-T1/022-Guys-0701-T1_segs__50.png> <./include/grp2/factor6/02
+2-Guys-0701-T1/022-Guys-0701-T1_segs__zeroPadding_50.png> <./include/grp2/facto
+r6/022-Guys-0701-T1/022-Guys-0701-T1_segs__CS_50.png> <./include/grp2/factor6/0
+22-Guys-0701-T1/022-Guys-0701-T1_segs__IMCNNL2TUNE_50.png> <./include/grp2/fact
+or6/022-Guys-0701-T1/022-Guys-0701-T1_segs__predict_50.png>]
+Overfull \hbox (2.69762pt too wide) in paragraph at lines 451--453
+[]\T1/cmr/m/n/10 The pro-posed deep learn-ing frame-work for MRI re-con-struc-t
+ion from highly under-sampled
+ []
+
+[15]
+Overfull \hbox (4.08705pt too wide) in paragraph at lines 484--484
 []|[]|  
  []
 
 
-Overfull \vbox (40.44405pt too high) detected at line 482
+Overfull \vbox (40.44405pt too high) detected at line 484
  []
 
 
@@ -1375,7 +1381,7 @@ File: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__35.png Graphic
 
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__35.png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_ima
-ges__35.png used on input line 484.
+ges__35.png used on input line 486.
 (pdftex.def)             Requested size: 71.13013pt x 71.13013pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__zeroPadding_35.png,
@@ -1386,7 +1392,7 @@ File: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__zeroPadding_35
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__zeroPadding_35.
 png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_ima
-ges__zeroPadding_35.png used on input line 485.
+ges__zeroPadding_35.png used on input line 487.
 (pdftex.def)             Requested size: 71.13013pt x 71.13013pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__CS_35.png, id=415, 
@@ -1396,7 +1402,7 @@ hic file (type png)
 
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__CS_35.png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_ima
-ges__CS_35.png used on input line 485.
+ges__CS_35.png used on input line 487.
 (pdftex.def)             Requested size: 71.13013pt x 71.13013pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__IMCNNL2TUNE_35.png,
@@ -1407,7 +1413,7 @@ File: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__IMCNNL2TUNE_35
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__IMCNNL2TUNE_35.
 png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_ima
-ges__IMCNNL2TUNE_35.png used on input line 485.
+ges__IMCNNL2TUNE_35.png used on input line 487.
 (pdftex.def)             Requested size: 71.13013pt x 71.13013pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__predict_35.png, id=
@@ -1417,15 +1423,15 @@ File: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__predict_35.png
 
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__predict_35.png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_ima
-ges__predict_35.png used on input line 485.
+ges__predict_35.png used on input line 487.
 (pdftex.def)             Requested size: 71.13013pt x 71.13013pt.
 
-Overfull \hbox (4.08705pt too wide) in paragraph at lines 489--489
+Overfull \hbox (4.08705pt too wide) in paragraph at lines 491--491
 []|[]|  
  []
 
 
-Overfull \vbox (18.32306pt too high) detected at line 489
+Overfull \vbox (18.32306pt too high) detected at line 491
  []
 
 
@@ -1436,7 +1442,7 @@ aphic file (type png)
 
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__zoom_35.png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_ima
-ges__zoom_35.png used on input line 491.
+ges__zoom_35.png used on input line 493.
 (pdftex.def)             Requested size: 71.13013pt x 71.1347pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__zeroPadding_zoom_35
@@ -1447,7 +1453,7 @@ om_35.png Graphic file (type png)
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__zeroPadding_zoo
 m_35.png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_ima
-ges__zeroPadding_zoom_35.png used on input line 492.
+ges__zeroPadding_zoom_35.png used on input line 494.
 (pdftex.def)             Requested size: 71.13013pt x 71.1347pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__CS_zoom_35.png, id=
@@ -1457,7 +1463,7 @@ File: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__CS_zoom_35.png
 
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__CS_zoom_35.png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_ima
-ges__CS_zoom_35.png used on input line 493.
+ges__CS_zoom_35.png used on input line 495.
 (pdftex.def)             Requested size: 71.13013pt x 71.1347pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__IMCNNL2TUNE_zoom_35
@@ -1468,7 +1474,7 @@ om_35.png Graphic file (type png)
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__IMCNNL2TUNE_zoo
 m_35.png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_ima
-ges__IMCNNL2TUNE_zoom_35.png used on input line 493.
+ges__IMCNNL2TUNE_zoom_35.png used on input line 495.
 (pdftex.def)             Requested size: 71.13013pt x 71.1347pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__predict_zoom_35.png
@@ -1479,10 +1485,10 @@ File: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__predict_zoom_3
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__predict_zoom_35
 .png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_ima
-ges__predict_zoom_35.png used on input line 493.
+ges__predict_zoom_35.png used on input line 495.
 (pdftex.def)             Requested size: 71.13013pt x 71.1347pt.
 
-Overfull \hbox (4.08705pt too wide) in paragraph at lines 497--497
+Overfull \hbox (4.08705pt too wide) in paragraph at lines 499--499
 []|[]|  
  []
 
@@ -1494,7 +1500,7 @@ File: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__35.png Graphic
 
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__35.png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_bra
-ins__35.png used on input line 499.
+ins__35.png used on input line 501.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__zeroPadding_35.png,
@@ -1505,7 +1511,7 @@ File: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__zeroPadding_35
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__zeroPadding_35.
 png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_bra
-ins__zeroPadding_35.png used on input line 500.
+ins__zeroPadding_35.png used on input line 502.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__CS_35.png, id=425, 
@@ -1515,7 +1521,7 @@ hic file (type png)
 
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__CS_35.png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_bra
-ins__CS_35.png used on input line 500.
+ins__CS_35.png used on input line 502.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__IMCNNL2TUNE_35.png,
@@ -1526,7 +1532,7 @@ File: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__IMCNNL2TUNE_35
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__IMCNNL2TUNE_35.
 png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_bra
-ins__IMCNNL2TUNE_35.png used on input line 500.
+ins__IMCNNL2TUNE_35.png used on input line 502.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__predict_35.png, id=
@@ -1536,15 +1542,15 @@ File: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__predict_35.png
 
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_brains__predict_35.png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_bra
-ins__predict_35.png used on input line 500.
+ins__predict_35.png used on input line 502.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
-Overfull \hbox (5.64223pt too wide) in paragraph at lines 504--504
+Overfull \hbox (5.64223pt too wide) in paragraph at lines 506--506
 []|[]|  
  []
 
 
-Overfull \vbox (19.67944pt too high) detected at line 504
+Overfull \vbox (19.67944pt too high) detected at line 506
  []
 
 
@@ -1555,7 +1561,7 @@ ile (type png)
 
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__35.png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_seg
-s__35.png used on input line 506.
+s__35.png used on input line 508.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__zeroPadding_35.png, i
@@ -1566,7 +1572,7 @@ ng Graphic file (type png)
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__zeroPadding_35.pn
 g>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_seg
-s__zeroPadding_35.png used on input line 507.
+s__zeroPadding_35.png used on input line 509.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__CS_35.png, id=430, 13
@@ -1576,7 +1582,7 @@ c file (type png)
 
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__CS_35.png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_seg
-s__CS_35.png used on input line 507.
+s__CS_35.png used on input line 509.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__IMCNNL2TUNE_35.png, i
@@ -1587,7 +1593,7 @@ ng Graphic file (type png)
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__IMCNNL2TUNE_35.pn
 g>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_seg
-s__IMCNNL2TUNE_35.png used on input line 507.
+s__IMCNNL2TUNE_35.png used on input line 509.
 (pdftex.def)             Requested size: 71.13188pt x 63.1261pt.
 
 <include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__predict_35.png, id=43
@@ -1597,256 +1603,255 @@ raphic file (type png)
 
 <use include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__predict_35.png>
 Package pdftex.def Info: include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_seg
-s__predict_35.png used on input line 507.
+s__predict_35.png used on input line 509.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
-[16]
-Overfull \hbox (4.08705pt too wide) in paragraph at lines 523--523
+Overfull \hbox (4.08705pt too wide) in paragraph at lines 525--525
 []|[]|  
  []
 
 
-Overfull \vbox (40.44405pt too high) detected at line 523
+Overfull \vbox (40.44405pt too high) detected at line 525
  []
 
 
-<include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__78.png, id=437,
+<include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__78.png, id=433,
  136.15668pt x 130.37508pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__78.png Gra
 phic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__78.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_images__78.png used on input line 525.
+_images__78.png used on input line 527.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__zeroPadding_78.
-png, id=438, 136.15668pt x 130.37508pt>
+png, id=434, 136.15668pt x 130.37508pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__zeroPaddin
 g_78.png Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__zeroPadding
 _78.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_images__zeroPadding_78.png used on input line 526.
+_images__zeroPadding_78.png used on input line 528.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__CS_78.png, id=4
-39, 136.15668pt x 130.37508pt>
+35, 136.15668pt x 130.37508pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__CS_78.png 
 Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__CS_78.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_images__CS_78.png used on input line 526.
+_images__CS_78.png used on input line 528.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__IMCNNL2TUNE_78.
-png, id=440, 136.15668pt x 130.37508pt>
+png, id=436, 136.15668pt x 130.37508pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__IMCNNL2TUN
 E_78.png Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__IMCNNL2TUNE
 _78.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_images__IMCNNL2TUNE_78.png used on input line 526.
+_images__IMCNNL2TUNE_78.png used on input line 528.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__predict_78.png,
- id=441, 136.15668pt x 130.37508pt>
+ id=437, 136.15668pt x 130.37508pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__predict_78
 .png Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__predict_78.
 png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_images__predict_78.png used on input line 526.
+_images__predict_78.png used on input line 528.
 (pdftex.def)             Requested size: 71.13013pt x 71.13556pt.
 
-Overfull \hbox (4.08705pt too wide) in paragraph at lines 530--530
+Overfull \hbox (4.08705pt too wide) in paragraph at lines 532--532
 []|[]|  
  []
 
 
-Overfull \vbox (18.32306pt too high) detected at line 530
+Overfull \vbox (18.32306pt too high) detected at line 532
  []
 
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__zoom_78.png, id
-=442, 136.15668pt x 165.93192pt>
+=438, 136.15668pt x 165.93192pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__zoom_78.pn
 g Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__zoom_78.png
 >
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_images__zoom_78.png used on input line 532.
+_images__zoom_78.png used on input line 534.
 (pdftex.def)             Requested size: 71.13013pt x 71.13158pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__zeroPadding_zoo
-m_78.png, id=443, 136.15668pt x 165.93192pt>
+m_78.png, id=439, 136.15668pt x 165.93192pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__zeroPaddin
 g_zoom_78.png Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__zeroPadding
 _zoom_78.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_images__zeroPadding_zoom_78.png used on input line 533.
+_images__zeroPadding_zoom_78.png used on input line 535.
 (pdftex.def)             Requested size: 71.13013pt x 71.13158pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__CS_zoom_78.png,
- id=444, 136.15668pt x 165.93192pt>
+ id=440, 136.15668pt x 165.93192pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__CS_zoom_78
 .png Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__CS_zoom_78.
 png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_images__CS_zoom_78.png used on input line 534.
+_images__CS_zoom_78.png used on input line 536.
 (pdftex.def)             Requested size: 71.13013pt x 71.13158pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__IMCNNL2TUNE_zoo
-m_78.png, id=445, 136.15668pt x 165.93192pt>
+m_78.png, id=441, 136.15668pt x 165.93192pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__IMCNNL2TUN
 E_zoom_78.png Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__IMCNNL2TUNE
 _zoom_78.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_images__IMCNNL2TUNE_zoom_78.png used on input line 534.
+_images__IMCNNL2TUNE_zoom_78.png used on input line 536.
 (pdftex.def)             Requested size: 71.13013pt x 71.13158pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__predict_zoom_78
-.png, id=446, 136.15668pt x 165.93192pt>
+.png, id=442, 136.15668pt x 165.93192pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__predict_zo
 om_78.png Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__predict_zoo
 m_78.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_images__predict_zoom_78.png used on input line 534.
+_images__predict_zoom_78.png used on input line 536.
 (pdftex.def)             Requested size: 71.13013pt x 71.13158pt.
 
-Overfull \hbox (4.08705pt too wide) in paragraph at lines 538--538
+Overfull \hbox (4.08705pt too wide) in paragraph at lines 540--540
 []|[]|  
  []
 
 
-<include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__78.png, id=447,
+<include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__78.png, id=443,
  136.15668pt x 129.21877pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__78.png Gra
 phic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__78.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_brains__78.png used on input line 540.
+_brains__78.png used on input line 542.
 (pdftex.def)             Requested size: 71.13013pt x 71.1356pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__zeroPadding_78.
-png, id=448, 136.15668pt x 129.21877pt>
+png, id=444, 136.15668pt x 129.21877pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__zeroPaddin
 g_78.png Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__zeroPadding
 _78.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_brains__zeroPadding_78.png used on input line 541.
+_brains__zeroPadding_78.png used on input line 543.
 (pdftex.def)             Requested size: 71.13013pt x 71.1356pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__CS_78.png, id=4
-49, 136.15668pt x 129.21877pt>
+45, 136.15668pt x 129.21877pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__CS_78.png 
 Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__CS_78.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_brains__CS_78.png used on input line 541.
+_brains__CS_78.png used on input line 543.
 (pdftex.def)             Requested size: 71.13013pt x 71.1356pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__IMCNNL2TUNE_78.
-png, id=450, 136.15668pt x 129.21877pt>
+png, id=446, 136.15668pt x 129.21877pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__IMCNNL2TUN
 E_78.png Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__IMCNNL2TUNE
 _78.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_brains__IMCNNL2TUNE_78.png used on input line 541.
+_brains__IMCNNL2TUNE_78.png used on input line 543.
 (pdftex.def)             Requested size: 71.13013pt x 71.1356pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__predict_78.png,
- id=451, 136.15668pt x 129.21877pt>
+ id=447, 136.15668pt x 129.21877pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__predict_78
 .png Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_brains__predict_78.
 png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_brains__predict_78.png used on input line 541.
+_brains__predict_78.png used on input line 543.
 (pdftex.def)             Requested size: 71.13013pt x 71.1356pt.
 
-Overfull \hbox (5.64223pt too wide) in paragraph at lines 545--545
+Overfull \hbox (5.64223pt too wide) in paragraph at lines 547--547
 []|[]|  
  []
 
 
-Overfull \vbox (19.67944pt too high) detected at line 545
+Overfull \vbox (19.67944pt too high) detected at line 547
  []
 
 
-<include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__78.png, id=452, 1
+<include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__78.png, id=448, 1
 36.15668pt x 129.21877pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__78.png Graph
 ic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__78.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_segs__78.png used on input line 547.
+_segs__78.png used on input line 549.
 (pdftex.def)             Requested size: 71.13013pt x 71.1356pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__zeroPadding_78.pn
-g, id=453, 136.15668pt x 129.21877pt>
+g, id=449, 136.15668pt x 129.21877pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__zeroPadding_
 78.png Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__zeroPadding_7
 8.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_segs__zeroPadding_78.png used on input line 548.
+_segs__zeroPadding_78.png used on input line 550.
 (pdftex.def)             Requested size: 71.13013pt x 71.1356pt.
 
-<include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__CS_78.png, id=454
+<include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__CS_78.png, id=450
 , 136.15668pt x 129.21877pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__CS_78.png Gr
 aphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__CS_78.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_segs__CS_78.png used on input line 548.
+_segs__CS_78.png used on input line 550.
 (pdftex.def)             Requested size: 71.13013pt x 71.1356pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__IMCNNL2TUNE_78.pn
-g, id=455, 136.15668pt x 129.21877pt>
+g, id=451, 136.15668pt x 129.21877pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__IMCNNL2TUNE_
 78.png Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__IMCNNL2TUNE_7
 8.png>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_segs__IMCNNL2TUNE_78.png used on input line 548.
+_segs__IMCNNL2TUNE_78.png used on input line 550.
 (pdftex.def)             Requested size: 71.13188pt x 67.50566pt.
 
 <include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__predict_78.png, i
-d=456, 136.15668pt x 129.21877pt>
+d=452, 136.15668pt x 129.21877pt>
 File: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__predict_78.p
 ng Graphic file (type png)
 
 <use include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_segs__predict_78.pn
 g>
 Package pdftex.def Info: include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1
-_segs__predict_78.png used on input line 548.
+_segs__predict_78.png used on input line 550.
 (pdftex.def)             Requested size: 71.13013pt x 71.1356pt.
- [17 <./include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__35.png> <./i
+ [16 <./include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__35.png> <./i
 nclude/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__zeroPadding_35.png> <
 ./include/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__CS_35.png> <./incl
 ude/grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_images__IMCNNL2TUNE_35.png> <./i
@@ -1866,7 +1871,7 @@ grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__zeroPadding_35.png> <./include
 /grp2/factor4/012-HH-1211-T1/012-HH-1211-T1_segs__CS_35.png> <./include/grp2/fa
 ctor4/012-HH-1211-T1/012-HH-1211-T1_segs__IMCNNL2TUNE_35.png> <./include/grp2/f
 actor4/012-HH-1211-T1/012-HH-1211-T1_segs__predict_35.png>] (./paper.bbl
-[18 <./include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__78.png> <
+[17 <./include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__78.png> <
 ./include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__zeroPadding_78
 .png> <./include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__CS_78.p
 ng> <./include/grp2/factor2/019-Guys-0702-T1/019-Guys-0702-T1_images__IMCNNL2TU
@@ -1886,56 +1891,57 @@ or2/019-Guys-0702-T1/019-Guys-0702-T1_segs__78.png> <./include/grp2/factor2/019
 -Guys-0702-T1/019-Guys-0702-T1_segs__zeroPadding_78.png> <./include/grp2/factor
 2/019-Guys-0702-T1/019-Guys-0702-T1_segs__CS_78.png> <./include/grp2/factor2/01
 9-Guys-0702-T1/019-Guys-0702-T1_segs__IMCNNL2TUNE_78.png> <./include/grp2/facto
-r2/019-Guys-0702-T1/019-Guys-0702-T1_segs__predict_78.png>] [19] [20])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 563.
- [21]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 563.
+r2/019-Guys-0702-T1/019-Guys-0702-T1_segs__predict_78.png>] [18] [19])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 565.
+ [20]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 565.
 
 (./paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 563.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 563.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 565.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 565.
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 8933912466EB4A25C3C61C339CB1AF73;639.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 563.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 565.
  ) 
 Here is how much of TeX's memory you used:
- 11005 strings out of 494953
- 177399 string characters out of 6180978
+ 11004 strings out of 494953
+ 177392 string characters out of 6180978
  260530 words of memory out of 5000000
  13881 multiletter control sequences out of 15000+600000
  23813 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 44i,17n,87p,1079b,588s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/ohadsh/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0700.600pk> </home/
-ohadsh/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk> </home/ohadsh/.te
-xmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/ohadsh/.texmf-var/fo
-nts/pk/ljfour/jknappen/ec/ecrm0700.600pk> </home/ohadsh/.texmf-var/fonts/pk/ljf
-our/jknappen/ec/ecrm0800.600pk> </home/ohadsh/.texmf-var/fonts/pk/ljfour/jknapp
-en/ec/ecss0500.600pk> </home/ohadsh/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti
-0600.600pk> </home/ohadsh/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk
-> </home/ohadsh/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/o
-hadsh/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0800.600pk> </home/ohadsh/.tex
-mf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/ohadsh/.texmf-var/fon
-ts/pk/ljfour/jknappen/ec/ecrm1440.600pk></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo
-ls/msbm10.pfb>
-Output written on paper.pdf (21 pages, 4548049 bytes).
+ 44i,17n,87p,1243b,588s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/ohadsh/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0500.600pk> </home/
+ohadsh/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx0700.600pk> </home/ohadsh/.te
+xmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk> </home/ohadsh/.texmf-var/fo
+nts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/ohadsh/.texmf-var/fonts/pk/ljf
+our/jknappen/ec/ecrm0700.600pk> </home/ohadsh/.texmf-var/fonts/pk/ljfour/jknapp
+en/ec/ecrm0800.600pk> </home/ohadsh/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecss
+0500.600pk> </home/ohadsh/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0600.600pk
+> </home/ohadsh/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1000.600pk> </home/o
+hadsh/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/ohadsh/.tex
+mf-var/fonts/pk/ljfour/jknappen/ec/ecti0800.600pk> </home/ohadsh/.texmf-var/fon
+ts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/ohadsh/.texmf-var/fonts/pk/ljfo
+ur/jknappen/ec/ecrm1440.600pk></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.
+pfb>
+Output written on paper.pdf (20 pages, 4640677 bytes).
 PDF statistics:
- 1031 PDF objects out of 1200 (max. 8388607)
- 389 compressed objects within 4 object streams
- 103 named destinations out of 1000 (max. 500000)
+ 1033 PDF objects out of 1200 (max. 8388607)
+ 388 compressed objects within 4 object streams
+ 102 named destinations out of 1000 (max. 500000)
  459 words of extra memory for PDF output out of 10000 (max. 10000000)
 

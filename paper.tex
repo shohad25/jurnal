@@ -311,18 +311,19 @@ It quantifies the degradation caused by sampling artifacts based on pixels' inte
 While PSNR and SSIM are widely used, these measures are not sensitive enough to differences in fine details and complex anatomical structure topologies. For example, a model can provide a good reconstruction in the sense of PSNR, yet with blurry edges and therefore loss of high frequency information. This may significantly affect diagnostic usability. We therefore further compared segmentation quality between the fully-sampled and the reconstruction images. Results of the analysis obtained for our method and all others are presented next.
 
 \subsection{Brain Extraction - Skull Stripping}
-Brain extraction (skull stripping) is an algorithm that delineates the brain boundary (Figure~ \ref{fig:brain_extraction}). It is necessary perliminary step for almost every brain analysis algorithm. In tissue segmentation for example, skull stripping is a pre-processing step which affects directly on the segments partition. We examine the different reconstruction methods by applying the Brain Extraction Tool (BET) \cite{smith2002fast} on each different MR reconstructed image. Then, we compared the skull stripping to the fully-sampled results using the Modified Hausdorff Distance (MHD)~\cite{dubuisson1994modified}.
+Brain extraction (skull stripping) is an algorithm that delineates the brain boundary (Figure~ \ref{fig:brain_extraction}). It is a necessary preliminary step for brain analysis algorithms.
+We examine the different reconstruction methods by applying the Brain Extraction Tool (BET) \cite{smith2002fast} to both MR reconstructed and original (fully-sampled) images. Compatibility of the skull stripping results between the original and the generated datasets is measured via the Modified Hausdorff Distance (MHD)~\cite{dubuisson1994modified}, defined as follows.
 
-Let $C_1,C_2\in R^2$ denotes the brain contours, extract from skull stripping algorithm, for a two different reconstruction methods respectively (in our case the fully-sampled and the tested reconstruction method). MHD measures the distance between the contours such that:
+Let $C_1,C_2\in R^2$ denote the brain boundaries extracted by the BET algorithm, using the original and the reconstructed scans respectively. The MHD between $C_1$ and $C_2$ is:
 
 \begin{equation}
 \begin{array}{cc}
-MHD(C_1,C_2) = \max \left\{\frac{1}{|C_1|} \sum_{\sigma_{1}\in C_1}^{}d(\sigma_1,C_2), ~ \frac{1}{|C_2|} \sum_{\sigma_{2}\in C_2}^{}d(\sigma_2,C_1)\right\} \\
+MHD(C_1,C_2) = 0.5 \left[{\frac{1}{|C_1|} \sum_{\sigma_{1}\in C_1}^{}d(\sigma_1,C_2) + \frac{1}{|C_2|} \sum_{\sigma_{2}\in C_2}^{}d(\sigma_2,C_1)}\right] \\
 d(\sigma_1,C_2) = \underset{\sigma_{2}\in C_{2}}{\min}||\sigma_1-\sigma_2|| \\
 d(\sigma_2,C_1) = \underset{\sigma_{1}\in C_{1}}{\min}||\sigma_2-\sigma_1||
 \end{array}
 \end{equation}
-where $\sigma_1,\sigma_2$ are points on the contours $C_1,C_2$ respectively (Figure~\ref{fig:brain_extraction}.c). MHD values for different sampling ratios are presented in~Table~\ref{tbl:MHD}.
+where $\sigma_1,\sigma_2$ are points on the contours $C_1,C_2$ respectively (Figure~\ref{fig:brain_extraction}.c) and $|C_i|,~i=1,2$ are the respective cardinalities. MHD values for all tested methods and sampling ratios are presented in~Table~\ref{tbl:MHD}. The MHD results obtained by our methods are better than all others and are significant (p-values~$<0.0001$) for CS-MRI and Zero-filled.
 
 \begin{table}[H]
 	\centering{}
@@ -358,16 +359,16 @@ where $\sigma_1,\sigma_2$ are points on the contours $C_1,C_2$ respectively (Fig
 
 
 \subsection{Brain Segmentation}
-Brain segmentation is the task of partitioning the brain image (MRI in our case), into the following segments: background, white matter, gray matter and CSF. This process is of a great importance for brain MR image analysis, especially for therapy planning and also for clinical research. Sampling artifacts, results in poor signal to noise ratio, blurry edges and loss of anatomical fine details, leads to bad segmentation performance.
-Segmentation compatibility demonstrate the quality of the proposed MRI reconstruction with respect to other methods. We create a reference segmentation by extracting the brain (using BET \cite{smith2002fast}) from the original fully-sampled image and perform a brain segmentation algorithm (FAST \cite{zhang2001segmentation}) on it. Then, we did the same process for all the reconstruction methods and compared the segmentation results.
-
-The measure used for segmentations comparison is the Dice score \cite{dice1945measures} between the original and the reconstructed image segments. Dice score is a measure of sets similarity which gets the values between 0 (no similarity) to 1.0 (max similarity). Denotes by $S_{i,j}$ the set of pixels in segment $j$ for reconstruction method $i$, the Dice score is:
+We next tested and compared segmentation quality applying brain tissue partitioning algorithm (FAST \cite{zhang2001segmentation}) to the reconstructed images. Segmentation results were compared to those obtained for the original fully-sampled scans. We believe that these comparisons are indicative to the diagnostic quality of the reconstructed MRIs as tissue segmentation (WM, GM and CSF) plays a key role in clinical brain analysis.
+%Segmentation compatibility demonstrate the quality of the proposed MRI reconstruction with respect to other methods. We create a reference segmentation by extracting the brain (using BET \cite{smith2002fast}) from the original fully-sampled image and perform a brain segmentation algorithm (FAST \cite{zhang2001segmentation}) on it. Then, we did the same process for all the reconstruction methods and compared the segmentation results.
+We used the Dice score~\cite{dice1945measures} to measure the compatibility between the segments obtained for the original ($S_{\mbox{\tiny{REF}}}$) and the reconstructed ($S_{\mbox{\tiny{REC}}}$) images, defined as follows:
 \begin{equation}
 \begin{array}{c}
-DICE(S_{ref,j},S_{i,j}) = \frac{2\cdot|S_{ref,j} \cap S_{i,j}|} {|S_{ref,j}| + |S_{i,j}|}
+DICE(S_{\mbox{\tiny{REF}}}, S_{\mbox{\tiny{REC}}}) = 2\frac{S_{\mbox{\tiny{REF}}} \cap S_{\mbox{\tiny{REC}}}}{S_{\mbox{\tiny{REF}}} + S_{\mbox{\tiny{REC}}}}
 \end{array}
 \end{equation}
-Dice values for different sampling factors are presented in~Table~\ref{tbl:DICE}. Our methods achieved the best Dice scores for all brain tissues.
+Dice scores are between zero to one where one indicates complete overlap between the tested segments. Therefore, higher dice scores imply higher compatibility between reconstructed and original images.
+Dice scores for all tested methods and sampling factors are presented in~Table~\ref{tbl:DICE}. As fore previous tests, our method achieves the best scores for all brain tissues and all sampling factors. {\color{red} Statistical significant values (~~) found for [1,2,3,4].}
 
 \begin{table}[H]
 	\centering
@@ -402,8 +403,7 @@ Dice values for different sampling factors are presented in~Table~\ref{tbl:DICE}
 	\caption{\textcolor{black}{\footnotesize{}{}Segmentation Dice score for different sampling ratios}{\footnotesize{}\label{tbl:DICE}}}
 	
 \end{table}
-
-Visual comparison for sampling factor 6 is shown in Figure~\ref{fig:example_factor_6}. The first and the second rows are the reconstructed images with zoom in of red ROI. The third row is the extracted brain and the last row is the calculated segmentation. Each column represents different reconstruction method. MRIs reconstructed by using the suggested adversarial method have stronger contrast and no significant aliasing or artifacts. In addition the brain extraction and the segmentation are more accurate. Additional examples for factor 4 and 2.5 can be found in Figures~\ref{fig:example_factor_4},~\ref{fig:example_factor_2.5}.
+MR reconstruction results for factor 6~(16.66\%) as well as their respective brain segmentation results are visually presented in Figure~\ref{fig:example_factor_6}~for a single representative scan. The left most column corresponds to the original image and columns 2-5 correspond to the reconstructed images using Zero-filled, CS-MRI, IM-CNN-L2 and the proposed method, respectively. The first row presents a $2D$ slice of the original and the reconstructed MRIs. The second row presents the zoom-in of brain regions in the red frames shown in the first row. The third row presents the corresponding brain extraction. The forth row presents the automatic tissue segmentation where, dark blue is used for WM, blue for GM and light blue for CSF. Note that, MRIs reconstructed by using the suggested adversarial method have stronger contrast and no significant aliasing or artifacts. In addition the brain extraction and tissue segmentation results are more compatible with those obtained from the original fully-sampled MRIs. Additional examples of different cases, using sampling factors of 4~(25\%) and 2.5~(40\%) are shown in Figures~\ref{fig:example_factor_4},~\ref{fig:example_factor_2.5}, respectively.
 
 % Examples factor 6
 \begin{figure}[H]
@@ -448,9 +448,12 @@ Visual comparison for sampling factor 6 is shown in Figure~\ref{fig:example_fact
 
 %--------------------- CONCLUSIONS --------------------%
 \section{Discussion}\label{conclusions_section}
+The proposed deep learning framework for MRI reconstruction from highly under-sampled k-space (up to 16.66\%), can be used as the foundation of a real-time, software-only solution for MRI acceleration.
+Combining both adversarial and fidelity loss in the DNN training, the method suggested provides high PSNR reconstructions for large and diverse brain MRI dataset acquired by different MRI machines (1.5T and 3.T) and different imaging protocols.
 
-We proposed a practical, software-only framework, based on deep learning, for accelerating MRI acquisition, while maintaining anatomically meaningful imaging. This is accomplished by partial MRI sampling, while using an adversarial neural network to directly estimate the missing k-space samples from the real k-space distribution. Promising image reconstruction results are obtained for 3T and 1.5T brain MRI, from large publicly available dataset, where only 40\%, 25\% and 16.6\% of the raw samples of each scan are used.
+Clinical usability of the reconstructed data plays a key role in the quality analysis performed as part of this research. We choose to test it by using standard tissue segmentation measures (such as Dice and MHD), as we believe that compatibility of the extracted brain regions with those obtained by using the original fully-sampled MRIs indicate fine detail reconstructions which have apparent diagnostic significance.
 
+Until recently, CS techniques were considered the state-of-the-art for MRI reconstruction.
 The proposed method outperforms all other tested methods in the common used PSNR and SSIM measures and produce clinically acceptable reconstructions.
 We also perform tissue segmentation and measure the performance using the Dice scores, with respect to those obtained by using the original fully-sampled images. Higher Dice score for white matter, gray matter, and CSF were achieved for all sampling factors. Moreover, lower Hausdorff distance indicates the quality of the proposed method in terms of general brain shape, especially comparing to CS, as seen in Figures~\ref{fig:example_factor_6},~\ref{fig:example_factor_4},~\ref{fig:example_factor_2.5}.
 
