@@ -141,37 +141,38 @@ Let $s_{0}$ denote a true k-space sample from the distribution $p_{r}\left(s_{0}
 \begin{equation}
 \min_{G}\max_{D}V(G,D) = \mathbb{E_{\mathrm{s_{0}\sim p_{r}\left(s_{0}\right)}}\mathrm{\log\left[D\left(x\right)\right]}}+\mathbb{E_{\mathrm{z\sim p_{u}\left(z\right)}}\mathrm{\log\left[1-D\left(G(z)\right)\right]}}
 \end{equation}
+where, $z$ is a noise drawn from a uniform distribution $p_{u}\left(z\right)$.
 
-In equilibrium, the generator $G$ is able to generate samples that look like the true data. In our case, $G$ estimates the missing k-space samples from a linear combination of the sampled data and a uniform noise with distribution $p_{u}\left(z\right)$. An L2 fidelity constraint is added to the adversarial loss of the generator, as follows:
+In equilibrium, the generator $G$ imitates the true data, which is in our the missing k-space samples. The generator loss is a linear combination of L2 fidelity loss and an adversarial loss as follows:
 
 \begin{equation}
 \begin{aligned}L_{G}=\alpha\cdot E_{\mathrm{z\sim p_{u}\left(z\right)}}\mathrm{\log\left[1-D\left(F^{-1}\left(\hat{s}_{0}\right)\right)\right]}+\\
 \beta\cdot||\left(1-M_{p}\right)\odot\left(\hat{s}_{0}-s_{0}\right)||_{2}^{2}
 \end{aligned}
 \end{equation}
-where $\hat{s}_{0}$ is the estimated k-space and $\alpha=1,\,\beta=1$ are hyperparameters tuned by a cross-validation process. The discriminator's input is the reconstructed MR image,\textbf{ }i.e.,\textbf{ }after IFFT. By that, we are integrating the reconstruction phase and optimize it in an end-to-end manner.
-In this work, we use the Wasserstein distance as the GAN loss function~\cite{arjovsky2017wasserstein}, which helps us to improve the training stability and provides better reconstruction compared to the classic GAN used in~\cite{shitrit2017accelerated}.
+where, $\hat{s}_{0}$ is the estimated k-space and $\alpha=1,\,\beta=1$ are hyperparameters tuned by a cross-validation process.
+We choose to use the Wasserstein distance as the GAN loss function (WGAN)~\cite{arjovsky2017wasserstein}, which improves the training stability and provides better reconstruction compared to the classic GAN loss we used in our preliminary work~\cite{shitrit2017accelerated}.
 
 \subsection{System Architecture}
+The proposed framework is illustrated in~Figure \ref{fig:system}.
+\begin{figure}[H]
+	\centering{}\includegraphics[width=12.0cm,height=4.5cm]{include/grp2/system_chart}\caption{\label{fig:system} \textcolor{black}{\footnotesize{}{}Framework
+			architecture: $G$ and $D$ are the generator and discriminator networks,
+			respectively. See text for details.}}
+\end{figure}
 
-The generator input is a two-channel image representing the real and the imaginary parts of the partially sampled k-space image, $s_{p}$. Each missing sample is initialized by uniform i.i.d. noise. The pixel $\left(i,j\right)$ in the generator input image is: 
+The generator input is a two-channel representing the real and the imaginary parts of the partially sampled k-space image, $s_{p}$. Each missing sample $\left(i,j\right)$ is initialized by uniform i.i.d. noise as follows: 
 \begin{equation}
 G_{in}\left(i,j\right)=s_{p_{i,j}}+\left(1-M_{p}\right)_{i,j}z_{i,j}
 \end{equation}
 
-Due to the combination of the adversarial and the fidelity loss, $G$ produces reasonable k-space samples from a given samples and noise distribution $p_{u}\left(z\right)$. In order to use the sampled data, $s_{p}$, and estimate only the missing samples we used a residual network \cite{he2016deep} as used in \cite{Oktay2016}, such that:
+$G$ produces reasonable k-space samples from a given samples and noise distribution $p_{u}\left(z\right)$. In order to utilize the remaining sampled data, $s_{p}$, and estimate only the missing samples we use a residual network \cite{he2016deep} as in \cite{Oktay2016}, such that:
 \begin{equation}
 \hat{s}_{0}=s_{p}+\left(1-M_{p}\right)\odot G_{out}
 \end{equation}
-where $G_{out}$ is the generator output. Figure \ref{fig:system} describes our framework:
+where $G_{out}$ is the generator output. The discriminator's two-channel (real and imaginary) input is either the reconstructed or the true MR image obtained by IFFT of the generator's estimated or the original fully-sampled k-space data, respectively. By that, we are incorporating the IFFT into the network performing end-to-end optimization. The discriminator's output defines the WGAN loss.
 
-\begin{figure}[H]
-	\centering{}\includegraphics[width=12.0cm,height=4.5cm]{include/grp2/system_chart}\caption{\label{fig:system} \textcolor{black}{\footnotesize{}{}Framework
-			architecture: $G$ and $D$ are the generator and discriminator networks,
-			respectively.}}
-\end{figure}
-
-A common architecture is used for the discriminator, composed of convolutional layers, batch normalization, and leaky-ReLU as suggested in \cite{radford2015unsupervised}. For the generator, we compose a dedicated architecture based on multi-channel input for representing the real and imaginary components. Both architectures are shown in Figure \ref{fig:architectures}.\textbf{ }The training methodology is doing $k_{d}$ discriminator update steps for each generator single step.
+We use a standard discriminator architecture, composed of convolutional layers, batch normalization, and leaky-ReLU as suggested in \cite{radford2015unsupervised}. For the generator, we compose a dedicated architecture, detailed in Section~\ref{experiments_section}. Both the discriminator and the generator inputs are two-channel image for the real and imaginary components. Figure~\ref{fig:architectures} illustrates their architectures. During the training phase, $k_{d}$ discriminator update steps are carried out for every step of the generator. The training ends when the discriminator cannot accurately distinguish between the reconstructed (``fake'') and the true inputs.
 
 \begin{figure}[H]
 	\centering{}%
@@ -188,7 +189,7 @@ A common architecture is used for the discriminator, composed of convolutional l
 			
 		}\tabularnewline
 		\hline 
-	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}Networks architecture. Both generator and discriminator input is a two-channel signal, real and imaginary. The number above each layer represents the output channels and all convolutional kernels are $3\times3$.}}
+	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}Networks architecture. Both the discriminator and the generator inputs are two-channel image for the real and imaginary components. The number above each layer represents the output channels. All convolutional kernels are $3\times3$.}}
 \label{fig:architectures} 
 \end{figure}
 
