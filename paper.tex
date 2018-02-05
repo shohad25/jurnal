@@ -90,7 +90,7 @@ In contrast, here, the generator is used for reconstruction of the entire k-spac
 
 We compare the proposed method reconstructions to those obtained by using a conventional compressed sensing method CS-MRI \cite{lustig2007sparse} and Zero-filling. In addition, for comparison, we test two other networks: 1. CNN-L2 - a k-space generator (with same architecture as the proposed method) trained with only L2 loss. 2. IM-CNN-L2 - a network which performs on the image-space and is optimized to remove the artifacts caused by under-sampling and zero padding.
 The method is applied to the Information eXtraction from Images (IXI) dataset, which is a large publicly available dataset, including 3T and 1.5T scans. Raw data is down-sampled such that only 40\%, 25\% and 16.6\% of the raw samples of each scan are used.
-To assess the clinical usability of the reconstructed images we perform an extended validation, composed of anatomy and quantitative measurements. In addition to the common used PSNR and Structure Similarity Index (SSIM) we perform tissue segmentation and compare the results to those obtained by using the original fully-sampled images.
+To assess the clinical usability of the reconstructed images we perform an extended validation, composed of anatomical quantitative measurements. In addition to the common used PSNR and Structure Similarity Index (SSIM) we perform tissue segmentation and compare the results to those obtained by using the original fully-sampled images.
 Segmentation compatibility, measured in terms of Dice scores and Hausdorff distances, demonstrate the quality of the proposed MRI reconstruction with respect to other methods.
 The proposed method outperforms all other tested methods in all evaluation metrics. Moreover, compared to the widely used CS-MRI, the proposed method is faster in two orders of magnitude. In fact, it can work in real time, and is therefore practical for routine uses.
 
@@ -213,9 +213,9 @@ Different from our preliminary work~\cite{shitrit2017accelerated}, which employe
 
 The generator is composed of $5$ blocks of CONV-BatchNorm-ReLU, with output channels $16,32,64,32,8,$ respectively (see Figure~\ref{fig:architectures}). The last CONV layer is composed of two output channels for real and imaginary components. The discriminator is composed of $4$ blocks of CONV-Pool-BatchNorm-LReLU with output channels $8,16,32,16$ and one fully-connected layer. All CONV layer's kernel size is $3\times3$. All weights was initialized by Xavier \cite{glorot2010understanding}. We used RMSprop~\cite{tieleman2012lecture} solver with fixed learning rate of $5\mathrm{e}{-6}$ and set $k_{d}$ to 1.
 
-We compared the proposed method reconstructions to those obtained by using a conventional compressed sensing method CS-MRI \cite{lustig2007sparse} and Zero-filling. In addition, we tested two other networks. To asses the use of adversarial loss, we trained a k-space generator, with same architecture as the proposed method, with only L2 loss (CNN-L2). We also implemented the method proposed in~\cite{hyun2017deep} and constructed a network IM-CNN-L2 which is applied directly to the image space rather than k-space. Specifically, we used the U-net architecture~\cite{ronneberger2015u} and applied an FFT on each of its output images to get an estimated k-space. The complete k-space is then recovered by integrating estimated samples with the sampled raw data according to the sampling mask. The same sampling masks were used for all methods.
+We compared the proposed method reconstructions to those obtained by using a conventional compressed sensing method-CS-MRI \cite{lustig2007sparse} and Zero-filling. In addition, we tested two other networks. To asses the use of adversarial loss, we trained a k-space generator, with the same architecture as the proposed method, with only L2 loss (CNN-L2). We also implemented the method proposed in~\cite{hyun2017deep} and constructed a network IM-CNN-L2, which is applied directly to the image space rather than the k-space. Specifically, as in~\cite{hyun2017deep}, we used the U-net architecture~\cite{ronneberger2015u} and applied an FFT on each of its output images to get an estimated k-space. The complete k-space is then recovered by integrating the estimated samples with the sampled raw data according to the sampling mask. The same sampling masks were used for all methods.
 
-To assess the clinical usability of the reconstructed images we perform an extended validation, composed of anatomy and quantitative measurements. In addition to the common used PSNR and Structure Similarity Index (SSIM)~\cite{wang2004image} metrics, we perform tissue segmentation and compared the results to those obtained by using the original fully-sampled images. The segmentation compatibility is measured in terms of Dice scores and Hausdorff distances.
+To demonstrate the clinical usability of the reconstructed images we perform an extended validation, composed of anatomical quantitative measurements. In addition to the common used PSNR and Structure Similarity Index (SSIM)~\cite{wang2004image} metrics, we perform tissue segmentation and compared the results to those obtained by using the original fully-sampled images. The segmentation compatibility is measured in terms of Dice scores and Hausdorff distances.
 
 \begin{figure}[H]
 	\centering
@@ -232,14 +232,14 @@ To assess the clinical usability of the reconstructed images we perform an exten
 \end{figure}
 
 \subsection{PSNR and SSIM}
-PSNR and SSIM are the most commonly used measures for evaluation of image reconstruction quality. PSNR measures the Mean Squared Error (MSE) between the fully-sampled MR image and the reconstructed image. Therefore, this measure is not a sufficient metric for fine details and general objects shape. For example, a model can provides a good reconstruction in the sense of PSNR but with blurry edges and loss of anatomical fine details, results in a poor segmentation, which used for medical diagnostic. However, PSNR is still a good indication for the image quality, especially if an expert should view it.
-Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graphical visualization in ~Figure~\ref{fig:error_psnr_errorbar}. The PSNR calculated on the whole image without masking. Note that the proposed method outperforms the other.
+PSNR and SSIM are the most commonly used measures for evaluation of image reconstruction quality. PSNR measures the Mean Squared Error (MSE) between the fully-sampled MR image and the reconstructed image.
+Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graphical visualization in ~Figure~\ref{fig:error_psnr_errorbar}. The PSNR is calculated for the entire image without masking. Note that the proposed method outperforms the others. To support it, we also calculated the Two-sample t-Test for the table's scores. The differences are statistically significant (p-values~$<0.005$) for all pairwise comparisons between the results of our method and the others.
 
 \begin{table}[H]
 	\centering{}
 	\begin{tabular}{|c||c||c||c|}
 		\hline 
-		\textbf{PSNR} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 2.5}} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 4}} & \multicolumn{1}{c|}{\multirow{2}{*}{Factor 6}} \tabularnewline
+		\textbf{PSNR} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 2.5 (40\%)}} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 4 (25\%)}} & \multicolumn{1}{c|}{\multirow{2}{*}{Factor 6 (16.66\%)}} \tabularnewline
 		\textbf{Method} & \multicolumn{1}{c||}{} & \multicolumn{1}{c||}{} & \multicolumn{1}{c|}{} \tabularnewline \cline{1-4}
 		
 		Zero-filled         &32.555~$\pm$~2.294  &26.791~$\pm$~1.856 &16.781~$\pm$~1.737\tabularnewline
@@ -259,7 +259,7 @@ Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graph
 \caption{PSNR without masking error-bar}
 \end{figure}\label{fig:error_psnr_errorbar}
 
-An additional validation of our model done by calculating the PSNR measure on different brain tissues. We applied an image segmentation algorithm, FAST~\cite{zhang2001segmentation}, on the original fully-sampled MR image and then use it for calculating the masked-PSNR on gray matters, white matters and the Cerebrospinal Fluid (CSF). Results are presented in~Table~\ref{tbl:PSNR_WITH_MASK}.
+An additional validation of our model is performed by calculating the PSNR measure on different brain tissues. We applied the commonly used FAST~\cite{zhang2001segmentation} image segmentation algorithm, on the original fully-sampled MR image and then used it for calculating the masked-PSNR on gray matter (GM), white matter (WM) and the Cerebrospinal Fluid (CSF). Results are presented in~Table~\ref{tbl:PSNR_WITH_MASK}.
 
 \begin{table}[H]
 	\centering
@@ -268,7 +268,7 @@ An additional validation of our model done by calculating the PSNR measure on di
 		\setlength\tabcolsep{2pt}
 		\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
 			\hline 
-			\textbf{PSNR} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
+			\textbf{PSNR} & \multicolumn{3}{c||}{Factor 2.5 (40\%)} & \multicolumn{3}{c||}{Factor 4 (25\%)} & \multicolumn{3}{c|}{Factor 6 (16.66\%)}\tabularnewline
 			\cline{2-10} 
 			\textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
 			\hline 
@@ -289,14 +289,14 @@ An additional validation of our model done by calculating the PSNR measure on di
 \end{table}
 
 
-SSIM is used for measuring the similarity between the original and the reconstructed images.
-It quantifies the degradation caused by sampling artifacts based on visible structures in the image. SSIM values for different sampling factors are presented in~Table~\ref{tbl:SSIM_NO_MASK}.
+We next used SSIM, which is a full reference metric, and is considered as a perception-based model, to measure the similarity between the original fully-sampled images and the reconstructed ones.
+It quantifies the degradation caused by sampling artifacts based on pixels' inter-dependencies in the image. SSIM scores for different sampling factors, for all methods compared, are presented in~Table~\ref{tbl:SSIM_NO_MASK}. The advantage of our method is clearly shown. All pairwise comparisons between the results obtained by our method and the others are statistically significant (p-values~$<0.0001$) for all sampling factors.
 
 \begin{table}[H]
 	\centering{}
 	\begin{tabular}{|c||c||c||c|}
 		\hline 
-		\textbf{SSIM} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 2.5}} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 4}} & \multicolumn{1}{c|}{\multirow{2}{*}{Factor 6}} \tabularnewline
+		\textbf{SSIM} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 2.5 (40\%)}} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 4 (25\%)}} & \multicolumn{1}{c|}{\multirow{2}{*}{Factor 6 (16.66\%)}} \tabularnewline
 		\textbf{Method} & \multicolumn{1}{c||}{} & \multicolumn{1}{c||}{} & \multicolumn{1}{c|}{} \tabularnewline \cline{1-4}
 		
 		Zero-filled         &0.698~$\pm$~0.0452  &0.590~$\pm$~0.040   &0.255~$\pm$~0.021\tabularnewline
@@ -308,9 +308,10 @@ It quantifies the degradation caused by sampling artifacts based on visible stru
 	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}SSIM for different sampling factors}{\footnotesize{}\label{tbl:SSIM_NO_MASK}}}
 \end{table}
 
+While PSNR and SSIM are widely used, these measures are not sensitive enough to differences in fine details and complex anatomical structure topologies. For example, a model can provide a good reconstruction in the sense of PSNR, yet with blurry edges and therefore loss of high frequency information. This may significantly affect diagnostic usability. We therefore further compared segmentation quality between the fully-sampled and the reconstruction images. Results of the analysis obtained for our method and all others are presented next.
 
 \subsection{Brain Extraction - Skull Stripping}
-Brain extraction (Skull stripping) is a an algorithm that delineates the brain boundary (Figure~ \ref{fig:brain_extraction}). It is necessary for almost every brain analysis algorithm. In tissue segmentation for example, skull stripping is a pre-processing step which affects directly on the segments partition. We examine the different reconstruction methods by applying the Brain Extraction Tool (BET) \cite{smith2002fast} on each different MR reconstructed image. Then, we compared the skull stripping to the fully-sampled results using the Modified Hausdorff Distance (MHD)~\cite{dubuisson1994modified}.
+Brain extraction (skull stripping) is an algorithm that delineates the brain boundary (Figure~ \ref{fig:brain_extraction}). It is necessary perliminary step for almost every brain analysis algorithm. In tissue segmentation for example, skull stripping is a pre-processing step which affects directly on the segments partition. We examine the different reconstruction methods by applying the Brain Extraction Tool (BET) \cite{smith2002fast} on each different MR reconstructed image. Then, we compared the skull stripping to the fully-sampled results using the Modified Hausdorff Distance (MHD)~\cite{dubuisson1994modified}.
 
 Let $C_1,C_2\in R^2$ denotes the brain contours, extract from skull stripping algorithm, for a two different reconstruction methods respectively (in our case the fully-sampled and the tested reconstruction method). MHD measures the distance between the contours such that:
 
@@ -327,7 +328,7 @@ where $\sigma_1,\sigma_2$ are points on the contours $C_1,C_2$ respectively (Fig
 	\centering{}
 	\begin{tabular}{|c||c||c||c|}
 		\hline 
-		\textbf{MHD} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 2.5}} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 4}} & \multicolumn{1}{c|}{\multirow{2}{*}{Factor 6}} \tabularnewline
+		\textbf{MHD} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 2.5 (40\%)}} & \multicolumn{1}{c||}{\multirow{2}{*}{Factor 4 (25\%)}} & \multicolumn{1}{c|}{\multirow{2}{*}{Factor 6 (16.66\%)}} \tabularnewline
 		\textbf{Method} & \multicolumn{1}{c||}{} & \multicolumn{1}{c||}{} & \multicolumn{1}{c|}{} \tabularnewline \cline{1-4}
 				
 		Zero-filled         &1.111~$\pm$~0.563  &2.617~$\pm$~1.214   &3.121~$\pm$~1.279\tabularnewline
@@ -375,7 +376,7 @@ Dice values for different sampling factors are presented in~Table~\ref{tbl:DICE}
 		\setlength\tabcolsep{2pt}
 		\begin{tabular}{|c||c|c|c||c|c|c||c|c|c|}
 			\hline 
-			\textbf{DICE} & \multicolumn{3}{c||}{Factor 2.5} & \multicolumn{3}{c||}{Factor 4} & \multicolumn{3}{c|}{Factor 6}\tabularnewline
+			\textbf{DICE} & \multicolumn{3}{c||}{Factor 2.5 (40\%)} & \multicolumn{3}{c||}{Factor 4 (25\%)} & \multicolumn{3}{c|}{Factor 6 (16.66\%)}\tabularnewline
 			\cline{2-10} 
 			\textbf{Method}& White & Gray & CSF & White & Gray & CSF & White & Gray & CSF\tabularnewline
 			\hline 
@@ -450,14 +451,19 @@ Visual comparison for sampling factor 6 is shown in Figure~\ref{fig:example_fact
 
 We proposed a practical, software-only framework, based on deep learning, for accelerating MRI acquisition, while maintaining anatomically meaningful imaging. This is accomplished by partial MRI sampling, while using an adversarial neural network to directly estimate the missing k-space samples from the real k-space distribution. Promising image reconstruction results are obtained for 3T and 1.5T brain MRI, from large publicly available dataset, where only 40\%, 25\% and 16.6\% of the raw samples of each scan are used.
 
-Our method produce clinically acceptable reconstructions.  Compared to the methods being tested, our method achieves the best PSNR and SSIM. We also perform tissue segmentations and measure the performance using the Dice scores, with respect to those obtained by using the original fully-sampled images. Better Dice score for white matter, gray matter, and CSF were achieved for all sampling factors. Moreover, lower Hausdorff distance indicates the quality of the proposed method in terms of general brain shape, especially comparing to CS, as seen in Figures~\ref{fig:example_factor_6},~\ref{fig:example_factor_4},~\ref{fig:example_factor_2.5}.
+The proposed method outperforms all other tested methods in the common used PSNR and SSIM measures and produce clinically acceptable reconstructions.
+We also perform tissue segmentation and measure the performance using the Dice scores, with respect to those obtained by using the original fully-sampled images. Higher Dice score for white matter, gray matter, and CSF were achieved for all sampling factors. Moreover, lower Hausdorff distance indicates the quality of the proposed method in terms of general brain shape, especially comparing to CS, as seen in Figures~\ref{fig:example_factor_6},~\ref{fig:example_factor_4},~\ref{fig:example_factor_2.5}.
 
-Additional advantage of the proposed method is the runtime. A few days are required for training the generator. Once the network is optimized, the reconstruction for a single test image is done in less than 10 msec, almost two orders of magnitude faster than the widely used CS. This fact makes it possible to use it in a real time manner.
+Additional advantage of the proposed method is the runtime. A few days are required for training the generator. Once the network is optimized, the reconstruction for a single test image is done in less than 10 msec, almost two orders of magnitude faster than the widely used CS. In fact, it can work in real time, and is therefore practical for routine uses.
 Future work will concentrate on generation of MRI in the presence of pathologies.
 
 {\color{red}
 Do we need to discuss about :
 K-SPACE VS IMAGE SPACE ??
+
+Our method outperforms the other methods, and the advatnage of our methods becoms more apparant for higher acceleration factors (lower sampling ratios).
+
+Therefore, this measure is not a sufficient metric for fine details and general objects shape. For example, a model can provide a good reconstruction in the sense of PSNR yet with blurry edges and loss of anatomical fine details. This may significant affect diagnostic usability.
 }
 
 %--------------------- Acknowledgment --------------------%
