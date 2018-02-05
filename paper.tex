@@ -142,7 +142,7 @@ Let $s_{0}$ denote a true k-space sample from the distribution $p_{r}\left(s_{0}
 \min_{G}\max_{D}V(G,D) = \mathbb{E_{\mathrm{s_{0}\sim p_{r}\left(s_{0}\right)}}\mathrm{\log\left[D\left(x\right)\right]}}+\mathbb{E_{\mathrm{z\sim p_{u}\left(z\right)}}\mathrm{\log\left[1-D\left(G(z)\right)\right]}}
 \end{equation}
 
-In equilibrium, the generator $G$ is able to generate samples that look like the real data. In our case, $G$ estimates the missing k-space samples from a linear combination of the sampled data and a uniform noise with distribution $p_{u}\left(z\right)$. An L2 fidelity constraint is added to the adversarial loss of the generator, as follows:
+In equilibrium, the generator $G$ is able to generate samples that look like the true data. In our case, $G$ estimates the missing k-space samples from a linear combination of the sampled data and a uniform noise with distribution $p_{u}\left(z\right)$. An L2 fidelity constraint is added to the adversarial loss of the generator, as follows:
 
 \begin{equation}
 \begin{aligned}L_{G}=\alpha\cdot E_{\mathrm{z\sim p_{u}\left(z\right)}}\mathrm{\log\left[1-D\left(F^{-1}\left(\hat{s}_{0}\right)\right)\right]}+\\
@@ -165,14 +165,8 @@ Due to the combination of the adversarial and the fidelity loss, $G$ produces re
 \end{equation}
 where $G_{out}$ is the generator output. Figure \ref{fig:system} describes our framework:
 
-%\begin{figure}[H]
-%	\centering{}\includegraphics[width=7.8cm,height=4cm]{include/grp1/chart}\caption{\label{fig:system} \textcolor{black}{\footnotesize{}{}Framework
-%			architecture: $G$ and $D$ are the generator and discriminator networks,
-%			respectively. $F$ is a $2D$ IFFT operator.}}
-%\end{figure}
-
 \begin{figure}[H]
-	\centering{}\includegraphics[width=12.0cm,height=4cm]{include/grp2/system_chart}\caption{\label{fig:system} \textcolor{black}{\footnotesize{}{}Framework
+	\centering{}\includegraphics[width=12.0cm,height=4.5cm]{include/grp2/system_chart}\caption{\label{fig:system} \textcolor{black}{\footnotesize{}{}Framework
 			architecture: $G$ and $D$ are the generator and discriminator networks,
 			respectively.}}
 \end{figure}
@@ -258,7 +252,8 @@ Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graph
 \caption{PSNR without masking error-bar}
 \end{figure}\label{fig:error_psnr_errorbar}
 
-An additional validation of our model is performed by calculating the PSNR measure on different brain tissues. We applied the commonly used FAST~\cite{zhang2001segmentation} image segmentation algorithm, on the original fully-sampled MR image and then used it for calculating the masked-PSNR on gray matter (GM), white matter (WM) and the Cerebrospinal Fluid (CSF). Results are presented in~Table~\ref{tbl:PSNR_WITH_MASK}.
+An additional validation of our model is performed by calculating the PSNR measure on different brain tissues. We applied the commonly used FAST~\cite{zhang2001segmentation} image segmentation algorithm, on the original fully-sampled MR image and then used it for calculating the masked-PSNR on gray matter (GM), white matter (WM) and the Cerebrospinal Fluid (CSF). Results are presented in~Table~\ref{tbl:PSNR_WITH_MASK}. 
+The differences are statistically significant with p-values~$<0.0005$ for CS-MRI and Zero-filled for sampling factors 2.5 and 4, and also for IM-CNN-L2 with p-values~$<0.0001$ for sampling factor 6.
 
 \begin{table}[H]
 	\centering
@@ -289,7 +284,17 @@ An additional validation of our model is performed by calculating the PSNR measu
 
 
 We next used SSIM, which is a full reference metric, and is considered as a perception-based model, to measure the similarity between the original fully-sampled images and the reconstructed ones.
-It quantifies the degradation caused by sampling artifacts based on pixels' inter-dependencies in the image. SSIM scores for different sampling factors, for all methods compared, are presented in~Table~\ref{tbl:SSIM_NO_MASK}. The advantage of our method is clearly shown. All pairwise comparisons between the results obtained by our method and the others are statistically significant (p-values~$<0.0001$) for all sampling factors.
+It quantifies the degradation caused by sampling artifacts based on pixels' inter-dependencies in the image. 
+%The SSIM between images $I_{\mbox{\tiny{REF}}}$ and $I_{\mbox{\tiny{REC}}}$ is calculated on a multiples sliding windows with size of $N\times N$ as follows:
+%\begin{equation}
+%\begin{array}{cc}
+%  SSIM(I_{\mbox{\tiny{REF}}},I_{\mbox{\tiny{REC}}}) = \frac{(2\mu_{I_{\mbox{\tiny{REF}}}}\mu_{I_{\mbox{\tiny{REC}}}} + c_1) (2\sigma_{I_{\mbox{\tiny{REF,REC}}}} + c_2)}{(\mu_{I_{\mbox{\tiny{REF}}}}^2 + \mu_{I_{\mbox{\tiny{REC}}}}^2 + c_1) (\sigma_{I_{\mbox{\tiny{REF}}}}^2) + \sigma_{I_{\mbox{\tiny{REC}}}}^2) + c_2} \\
+% second = 2\\
+% ohad
+%\end{array}
+%\end{equation}
+%Let $\mu_1,\mu_2$ denote the brain boundaries ext
+SSIM scores for different sampling factors, for all methods compared, are presented in~Table~\ref{tbl:SSIM_NO_MASK}. The advantage of our method is clearly shown. All pairwise comparisons between the results obtained by our method and the others are statistically significant (p-values~$<0.0001$) for all sampling factors.
 
 \begin{table}[H]
 	\centering{}
@@ -367,7 +372,7 @@ DICE(S_{\mbox{\tiny{REF}}}, S_{\mbox{\tiny{REC}}}) = 2\frac{S_{\mbox{\tiny{REF}}
 \end{array}
 \end{equation}
 Dice scores are between zero to one where one indicates complete overlap between the tested segments. Therefore, higher dice scores imply higher compatibility between reconstructed and original images.
-Dice scores for all tested methods and sampling factors are presented in~Table~\ref{tbl:DICE}. As fore previous tests, our method achieves the best scores for all brain tissues and all sampling factors. {\color{red} Statistical significant values (~~) found for [1,2,3,4].}
+Dice scores for all tested methods and sampling factors are presented in~Table~\ref{tbl:DICE}. As fore previous tests, our method achieves the best scores for all brain tissues and all sampling factors. Statistical significant values (p-values~$<0.0005$) found for all methods using sampling factor of 2.5. In addition to the CS-MRI and Zero-filled, the differences are statistically significant with p-values~$<0.0001$ for CNN-L2 using sampling factor 4 and for IM-CNN-L2 using sampling factor 6.
 
 \begin{table}[H]
 	\centering
