@@ -98,49 +98,48 @@ The rest of the paper is organized as follows. Section~\ref{method_section} prov
 
 %--------------------- METHOD --------------------%
 \section{Method}\label{method_section}
-
-\subsection{K-space}
-Let $\bm{u}$ denote the desired signal, a 2D MR image, obtained by the IFFT of the complex k-space signal $s_{0}$. Let $M_{F}$ denote a full sampling mask such that the reconstructed MR image is: 
+We aim to address MRI reconstruction from under-sampled k-space data using DNN. We hereby present the proposed methodology as well as the network architecture.
+\subsection{Notations and Problem Definition}
+Let $\bm{u}$ denote the desired signal, a 2D MR image, obtained by IFFT of the complex k-space signal $s_{0}$ i.e, 
 \begin{equation}
-\bm{u}=F^{H}M_{F}\odot s_{0}
+\bm{u}=F^{H}s_{0}
 \end{equation} 
-where $H$ is the Hermitian transpose operation, $\odot$ denotes element-wise multiplication, and $F^{H}$ is an orthonormal 2D IFFT operator, such that $F^{H}F=I$. 
-While sampling part of the k-space, using $M_{p}$ as a sampling mask, the reconstructed MR image suffers from artifacts and aliasing. An example artifacts caused by under-sampling and zero padding in the phase axis using a Gaussian mask (40\%) is shown in Figure \textbf{\ref{fig:pair_of_k_space_mri}}.
+where $H$ is the Hermitian transpose operation and $F^{H}$ is an orthonormal 2D IFFT operator, such that $F^{H}F=I$. 
+Partial k-space sampling, results in MR images that are subject to artifacts and aliasing. 
+Figure~\textbf{\ref{fig:pair_of_k_space_mri}}.d exemplifies artifacts caused by under-sampling and zero padding in the phase axis using a Gaussian mask (40\%).
 
 \begin{figure}[H]
 	\centering
 	\begin{tabular}{cccc}
 		\subfloat[\textcolor{black}{\scriptsize{}raw k-space}]{\centering{}\includegraphics[width=2.5cm,height=2.5cm]{include/grp1/example_mask_kspace_with_arrows}
 			
-		} & \subfloat[\textcolor{black}{\scriptsize{}fully sampled MRI}]{\centering{}\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/example_original.png}
+		} & \subfloat[\textcolor{black}{\scriptsize{}original }]{\centering{}\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/example_original.png}
 		
 		} & \subfloat[\textcolor{black}{\scriptsize{}sampling mask}]{\centering{}\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/example_samplingMask4.png}
 	
-		} & \subfloat[\textcolor{black}{\scriptsize{}Zero-filled}]{\centering{}\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/example_zeroPadding.png}
+		} & \subfloat[\textcolor{black}{\scriptsize{}reconstructed}]{\centering{}\includegraphics[width=2.5cm,height=2.5cm]{include/grp2/example_zeroPadding.png}
 }\tabularnewline
 \end{tabular}\caption{\textcolor{black}{\footnotesize{}{}Under-sampling artifacts: the
-	arrows illustrate the sampling methodology}}
+	arrows illustrate Cartesian sampling}}
 \label{fig:pair_of_k_space_mri} 
 \end{figure}
 
 
-\subsection{Objective}
 
-Let $s_{p}=M_{p}\odot s_{0}$ denote the under-sampled k-space. Given a sampling mask and a model $f$, defined by the set of parameters $\Theta$, our goal is to estimate the missing k-space samples such that: 
+Let $s_{p}=M_{p}\odot s_{0}$ denote the under-sampled k-space, where $\odot$ denotes element-wise multiplication and $M_{p}$ is the sampling mask. Given a model $f$, defined by the set of parameters $\Theta$, our goal is to estimate the missing k-space samples such that: 
 \begin{equation}
 \Theta=\arg\min_{\Theta}L(F^{H}f\left(s_{p};\Theta\right),\boldsymbol{u})
 \end{equation}
-where $L\left(\cdot\right)$ is the loss function. While choosing the loss to be L2 norm is reasonable for natural images, for the k-space, which has different spatial features, this may not be enough. As mentioned in \cite{pathak2016context}, L2 minimization provides a blurry solution, results in a loss of fine details. 
-Averaging the high frequency details in the k-space domain results in very poor reconstruction. In order to address this problem, we used the adversarial loss, based on GAN.
+where $L\left(\cdot\right)$ is a loss function. L2 loss is widely used for natural image reconstruction. However, as mentioned in \cite{pathak2016context}, L2 minimization provides a blurry solution, results in a loss of fine details. In our case, where spatial frequencies in the form of k-space are considered, using this loss alone may be inappropriate, resulting in poor reconstruction. To address this problem, we proposed using in addition an adversarial loss, based on GAN.
 
-We trained our model using the adversarial strategy, as described in \cite{goodfellow2014generative,radford2015unsupervised}. 
-This method is based on a generator $G$, which takes noise \textbf{$z$ }with uniform distribution \textbf{$p_{u}\left(z\right)$} as input and generates samples from the data distribution. A discriminator $D$ is trained to distinguish between ``real'' examples from the data and generated (``fake'') examples from $G.$ During the training process, we optimize $G$ to maximize the discriminator's probability of error. Simultaneously, $D$ is getting better and provides more
-accurate predictions.
+\subsection{K-space GAN}
+We train our model using an adversarial strategy, as described in \cite{goodfellow2014generative,radford2015unsupervised}. 
+This method is based on a generator $G$, which gets noise \textbf{$z$ }with uniform distribution \textbf{$p_{u}\left(z\right)$} as input and generates samples from the observed data distribution. A discriminator $D$ is trained to distinguish between ``true'' examples from the data and generated (``fake'') examples from $G.$ During the training process, we optimize $G$ to maximize the discriminator's probability of error. Simultaneously, $D$ is enhanced and provides more accurate predictions.
 
-Let $s_{0}$ denote a ``real'' k-space sample from the distribution $p_{r}\left(s_{0}\right)$. The following optimization process can be described by two-players min-max game:
+Let $s_{0}$ denote a true k-space sample from the distribution $p_{r}\left(s_{0}\right)$. The following optimization process can be described by two-players min-max value function $V(G,D)$:
 
 \begin{equation}
-\min_{G}\max_{D}\mathbb{E_{\mathrm{s_{0}\sim p_{r}\left(s_{0}\right)}}\mathrm{\log\left[D\left(x\right)\right]}}+\mathbb{E_{\mathrm{z\sim p_{u}\left(z\right)}}\mathrm{\log\left[1-D\left(G(z)\right)\right]}}
+\min_{G}\max_{D}V(G,D) = \mathbb{E_{\mathrm{s_{0}\sim p_{r}\left(s_{0}\right)}}\mathrm{\log\left[D\left(x\right)\right]}}+\mathbb{E_{\mathrm{z\sim p_{u}\left(z\right)}}\mathrm{\log\left[1-D\left(G(z)\right)\right]}}
 \end{equation}
 
 In equilibrium, the generator $G$ is able to generate samples that look like the real data. In our case, $G$ estimates the missing k-space samples from a linear combination of the sampled data and a uniform noise with distribution $p_{u}\left(z\right)$. An L2 fidelity constraint is added to the adversarial loss of the generator, as follows:
@@ -153,7 +152,7 @@ In equilibrium, the generator $G$ is able to generate samples that look like the
 where $\hat{s}_{0}$ is the estimated k-space and $\alpha=1,\,\beta=1$ are hyperparameters tuned by a cross-validation process. The discriminator's input is the reconstructed MR image,\textbf{ }i.e.,\textbf{ }after IFFT. By that, we are integrating the reconstruction phase and optimize it in an end-to-end manner.
 In this work, we use the Wasserstein distance as the GAN loss function~\cite{arjovsky2017wasserstein}, which helps us to improve the training stability and provides better reconstruction compared to the classic GAN used in~\cite{shitrit2017accelerated}.
 
-\subsection{Network Architecture}
+\subsection{System Architecture}
 
 The generator input is a two-channel image representing the real and the imaginary parts of the partially sampled k-space image, $s_{p}$. Each missing sample is initialized by uniform i.i.d. noise. The pixel $\left(i,j\right)$ in the generator input image is: 
 \begin{equation}
