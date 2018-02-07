@@ -63,7 +63,7 @@ Images are produced when hydrogen atoms, which are prevalent in living organisms
 
 The duration of standard single structural MRI acquisition is approximately 5 minutes. Usually, several scans of different modalities or a sequence of scans are acquired such that the overall scan time is much longer. Lengthy imaging process reduces patient comfort and is more vulnerable to motion artifacts. In cases where motion is inevitable, e.g., fetal MRI, cardiac cine, and lungs imaging, scan time must be significantly shortened, otherwise the produced images might be useless. Moreover, in dynamic MRI sequences, acquisition must be brief such that the temporal resolution of the sequence would allow capturing significant temporal changes, e.g., instantaneous increment of the contrast-enhanced material concentration in DCE-MRI or differences in hemodynamic response expressed in fMRI \cite{moeller2010multiband}.
 
-A straight forward reduction of the scan time can be obtained by sampling fewer slices, thus reducing the spatial resolution in the z-axis. Spatial distances between adjacent slices of fetal MRI or fMRI, for example, are often as high as 0.5 centimeters. Therefore, a significant portion of the potential input is not conveyed through imaging. On the other hand, under-sampling in the x-y domain leads to aliasing, as predicted by the Nyquist sampling theorem.
+A straight forward reduction of the scan time can be obtained by sampling fewer slices, thus reducing the spatial resolution in the z-axis. Spatial distances between adjacent slices of fetal MRI or fMRI, for example, are often as high as 0.5 centimeters. Therefore, a significant portion of the potential input is not covered through imaging. On the other hand, under-sampling in the x-y domain leads to aliasing, as predicted by the Nyquist sampling theorem.
 
 Numerous research groups as well as leading MRI scanner manufacturers make significant efforts to accelerate the MRI acquisition process. Hardware solutions allow parallel imaging by using multiple coils \cite{roemer1990nmr} to sample k-space data. There exist two major approaches~\cite{Deshmane2012} that are currently implemented in commercial MRI machines. Both reconstruct an image from the under-sampled k-space data provided by each of the coils. The sensitivity encoder (SENSE) transforms the partial k-spaces into images, then merges the resulting aliased images into one coherent image~\cite{pruessmann1999sense}. 
 The GeneRalized Autocalibrating Partial Parallel Acquisition (GRAPPA) techniques~\cite{griswold2002generalized} operate on signal data within the complex frequency domain before the IFFT.
@@ -73,14 +73,14 @@ The smooth reconstruction obtained by the CS, may result in a loss of noise-like
  
 %{\color{red}This, however, makes the algorithm less sensitive to fine details and noise like texture, results in smooth reconstruction with loss of diagnostically information, as we will see in section \ref{experiments_section}.}
 %This, however, would require specified pulse programming.
-Recently different data driven, machine learning techniques were used for MRI acceleration. 
+Recently, different data driven machine learning techniques were used for MRI acceleration. 
 Ravishankar and Bresler~\cite{ravishankar2011mr} proposed a dictionary-based learning method, to exploit the sparsity of overlapping image patches emphasizing local structure, to reconstruct MRI from highly under-sampled k-space data. In~\cite{caballero2014dictionary}, this concept was extended using spatio-temporal patches for dynamic MRI reconstruction.
-Compressed manifold learning based on Laplacian eigenmaps, has been applied in~\cite{usman2014compressive} for respiratory motion estimation and in~\cite{bhatia2015fast} for cardiac MRI reconstruction.
+Compressed manifold learning based on Laplacian eigenmaps has been applied in~\cite{usman2014compressive} for respiratory motion estimation and in~\cite{bhatia2015fast} for cardiac MRI reconstruction.
 
 Deep neural networks (DNN) allow to implicitly learn prior information from large datasets. This has been exploited in recent works for MRI reconstruction from sub-sampled data. A convolutional neural network (CNN) was introduced in~\cite{wang2016accelerating} to learn the mapping between zero-filled and fully-sampled MRI.
 In~\cite{Oktay2016}, MRI acceleration by super-resolution (SR) concepts was introduced. One of the key ideas is a siamese CNN structure that allows to receive multiple inputs acquired from different viewing planes. Improved low-resolution (LR) high-resolution (HR) mapping was obtained by residual architecture.
 A multi-scale residual network, also known as U-net~\cite{ronneberger2015u}, was used in~\cite{lee2017deep} to address the CS optimization, formulated as a residual regression problem.
-Hayun at el.~\cite{hyun2017deep}, applied U-net to perform anti-aliasing of MRI generated from sub-sampled k-space. The U-net output image is than enhanced by integrating its k-space domain with the originally acquired raw samples. U-net CNN has been also used in~\cite{sandinodeep} for dynamic MRI reconstruction.
+Hayun at el.~\cite{hyun2017deep}, applied U-net to perform anti-aliasing of MRI generated from sub-sampled k-space. The U-net output image is than enhanced by integrating its k-space domain with the originally acquired raw samples. U-net CNN have been also used in~\cite{sandinodeep} for dynamic MRI reconstruction.
 The spatio-temporal characteristics of sequential MRI data was recently exploited using recurrent neural network (RNN) by~\cite{qin2017convolutional}. All these works address the reconstruction problem in the image domain rather than the k-space domain.
 
 The proposed framework utilizes recent advances in deep learning, while addressing MRI reconstruction directly from the k-space. Specifically, we use generative adversarial networks (GAN) \cite{goodfellow2014generative,radford2015unsupervised,pathak2016context}.
@@ -90,11 +90,11 @@ In contrast, here, the generator is used for reconstruction of the entire k-spac
 
 We compare the proposed method reconstructions to those obtained by using a conventional compressed sensing method CS-MRI \cite{lustig2007sparse} and Zero-filling. In addition, for comparison, we test two other networks: 1. CNN-L2 - a k-space generator (with same architecture as the proposed method) trained with only L2 loss. 2. IM-CNN-L2 - a network which performs on the image-space and is optimized to remove the artifacts caused by under-sampling and zero padding.
 The method is applied to the Information eXtraction from Images (IXI) dataset, which is a large publicly available dataset, including 3T and 1.5T scans. Raw data is down-sampled such that only 40\%, 25\% and 16.6\% of the raw samples of each scan are used.
-To assess the clinical usability of the reconstructed images we perform an extended validation, composed of anatomical quantitative measurements. In addition to the common used PSNR and Structure Similarity Index (SSIM) we perform tissue segmentation and compare the results to those obtained by using the original fully-sampled images.
+To assess the clinical usability of the reconstructed images we perform an extended validation, composed of anatomical quantitative measurements. In addition to the commonly used PSNR and Structure Similarity Index (SSIM) we perform tissue segmentation and compare the results to those obtained by using the original fully-sampled images.
 Segmentation compatibility, measured in terms of Dice scores and Hausdorff distances, demonstrate the quality of the proposed MRI reconstruction with respect to other methods.
-The proposed method outperforms all other tested methods in all evaluation metrics. Moreover, compared to the widely used CS-MRI, the proposed method is faster in two orders of magnitude. In fact, it can work in real time, and is therefore practical for routine uses.
+The proposed method outperforms all other tested methods in all evaluation metrics. Moreover, compared to the widely used CS-MRI, the proposed method is faster by two orders of magnitude. In fact, it can work in real time, and is therefore practical for routine uses.
 
-The rest of the paper is organized as follows. Section~\ref{method_section} provides a brief background on MRI acquisition and introduce the network architecture as well the training methodology. Section~\ref{experiments_section} presents the experimental results. Conclusions and future directions are given in section~\ref{conclusions_section}.
+The rest of the paper is organized as follows: Section~\ref{method_section} provides a brief background on MRI acquisition and introduce the network architecture as well as the training methodology. Section~\ref{experiments_section} presents the experimental results. Conclusions and future directions are given in section~\ref{conclusions_section}.
 
 %--------------------- METHOD --------------------%
 \section{Method}\label{method_section}
@@ -130,7 +130,7 @@ Let $s_{p}=M_{p}\odot s_{0}$ denote the under-sampled k-space, where $\odot$ den
 \begin{equation}
 \Theta=\arg\min_{\Theta}L(F^{H}f\left(s_{p};\Theta\right),\boldsymbol{u})
 \end{equation}
-where $L\left(\cdot\right)$ is a loss function. L2 loss is widely used for natural image reconstruction. However, as mentioned in \cite{pathak2016context}, L2 minimization provides a blurry solution, results in a loss of fine details. In our case, where spatial frequencies in the form of k-space are considered, using this loss alone may be inappropriate, resulting in poor reconstruction. To address this problem, we proposed using in addition an adversarial loss, based on GAN.
+where $L\left(\cdot\right)$ is a loss function. L2 loss is widely used for natural image reconstruction. However, as mentioned in \cite{pathak2016context}, L2 minimization provides a blurry solution, results in a loss of fine details. In our case, where spatial frequencies in the form of k-space are considered, using this loss alone may be inappropriate, resulting in poor reconstruction. To address this problem, we propose using in addition an adversarial loss, based on a GAN.
 
 \subsection{K-space GAN}
 We train our model using an adversarial strategy, as described in \cite{goodfellow2014generative,radford2015unsupervised}. 
@@ -139,11 +139,11 @@ This method is based on a generator $G$, which gets noise \textbf{$z$ }with unif
 Let $s_{0}$ denote a true k-space sample from the distribution $p_{r}\left(s_{0}\right)$. The following optimization process can be described by two-players min-max value function $V(G,D)$:
 
 \begin{equation}
-\min_{G}\max_{D}V(G,D) = \mathbb{E_{\mathrm{s_{0}\sim p_{r}\left(s_{0}\right)}}\mathrm{\log\left[D\left(x\right)\right]}}+\mathbb{E_{\mathrm{z\sim p_{u}\left(z\right)}}\mathrm{\log\left[1-D\left(G(z)\right)\right]}}
+\min_{G}\max_{D}V(G,D) = \mathbb{E_{\mathrm{s_{0}\sim p_{r}\left(s_{0}\right)}}\mathrm{\log\left[D\left(s_{0}\right)\right]}}+\mathbb{E_{\mathrm{z\sim p_{u}\left(z\right)}}\mathrm{\log\left[1-D\left(G(z)\right)\right]}}
 \end{equation}
 where, $z$ is a noise drawn from a uniform distribution $p_{u}\left(z\right)$.
 
-In equilibrium, the generator $G$ imitates the true data, which is in our the missing k-space samples. The generator loss is a linear combination of L2 fidelity loss and an adversarial loss as follows:
+In equilibrium, the generator $G$ imitates the true data, which is in our case the missing k-space samples. The generator loss is a linear combination of L2 fidelity loss and an adversarial loss as follows:
 
 \begin{equation}
 \begin{aligned}L_{G}=\alpha\cdot E_{\mathrm{z\sim p_{u}\left(z\right)}}\mathrm{\log\left[1-D\left(F^{-1}\left(\hat{s}_{0}\right)\right)\right]}+\\
@@ -161,7 +161,7 @@ The proposed framework is illustrated in~Figure \ref{fig:system}.
 			respectively. See text for details.}}
 \end{figure}
 
-The generator input is a two-channel representing the real and the imaginary parts of the partially sampled k-space image, $s_{p}$. Each missing sample $\left(i,j\right)$ is initialized by uniform i.i.d. noise as follows: 
+The generator's input is a two-channel signal representing the real and the imaginary parts of the partially sampled k-space image, $s_{p}$. Each missing sample $\left(i,j\right)$ is initialized by uniform i.i.d. noise as follows: 
 \begin{equation}
 G_{in}\left(i,j\right)=s_{p_{i,j}}+\left(1-M_{p}\right)_{i,j}z_{i,j}
 \end{equation}
@@ -170,7 +170,7 @@ $G$ produces reasonable k-space samples from a given samples and noise distribut
 \begin{equation}
 \hat{s}_{0}=s_{p}+\left(1-M_{p}\right)\odot G_{out}
 \end{equation}
-where $G_{out}$ is the generator output. The discriminator's two-channel (real and imaginary) input is either the reconstructed or the true MR image obtained by IFFT of the generator's estimated or the original fully-sampled k-space data, respectively. By that, we are incorporating the IFFT into the network performing end-to-end optimization. The discriminator's output defines the WGAN loss.
+where $G_{out}$ is the generator output. The discriminator's two-channel (real and imaginary) input is either the reconstructed MR image obtained by IFFT of the generator's estimated or the true MR image obtained by IFFT of the original fully-sampled k-space data. By that, we are incorporating the IFFT into the network performing end-to-end optimization. The discriminator's output defines the WGAN loss.
 
 We use a standard discriminator architecture, composed of convolutional layers, batch normalization, and leaky-ReLU as suggested in \cite{radford2015unsupervised}. For the generator, we compose a dedicated architecture, detailed in Section~\ref{experiments_section}. Both the discriminator and the generator inputs are two-channel image for the real and imaginary components. Figure~\ref{fig:architectures} illustrates their architectures. During the training phase, $k_{d}$ discriminator update steps are carried out for every step of the generator. The training ends when the discriminator cannot accurately distinguish between the reconstructed (``fake'') and the true inputs.
 
@@ -198,16 +198,16 @@ We use a standard discriminator architecture, composed of convolutional layers, 
 %--------------------- Experiments --------------------%
 \section{Experiments}\label{experiments_section}
 
-The training data consists of 500 $3D$ brain MRI (T1-weighed) scans of different patients from the IXI dataset\footnote{\url{http://brain-development.org/ixi-dataset/}}. The data has been acquired by three MR machines, Philips 1.5T, 3T and GE 1.5T using different imaging protocols.
+The training data consists of 500 $3D$ brain MRI (T1-weighed) scans of different patients from the IXI dataset\footnote{\url{http://brain-development.org/ixi-dataset/}}. The data was acquired by three MR machines, Philips 1.5T, 3T and GE 1.5T using different imaging protocols.
 From each $3D$ volume we extract 93 $2D$ saggital slices. All slices were interpolated to $256\times256$ pixels. We used $37.2k$ $(80\%)$ 2D slices for training and $9.3k$ $(20\%)$ for testing (100 $3D$ volumes).
 In order to create k-space images for training, inverse orthonormal
-2D FFT is applied to the fully-sampled MR images. 
-Different from our preliminary work~\cite{shitrit2017accelerated}, which employed 1D Cartesian sampling mask along the phase axis, here, we perform k-space sampling using $2D$ random Gaussian mask. By this, we exploit the sparsity in both phase and frequency dimensions and therefore able to accommodate higher sampling factors (Figure~\ref{fig:sampling_masks}). MRI reconstruction is performed using 40\%, 25\% and 16.6\% of the original k-space data.
+2D FFT was applied to the fully-sampled MR images. 
+Unlike our preliminary work~\cite{shitrit2017accelerated}, which employed 1D Cartesian sampling mask along the phase axis, here, we perform k-space sampling using $2D$ random Gaussian mask. By this, we exploit the sparsity in both phase and frequency dimensions and are therefore able to accommodate higher sampling factors (Figure~\ref{fig:sampling_masks}). MRI reconstruction is performed using 40\%, 25\% and 16.6\% of the original k-space data.
 %Data augmentation is created by random offsets of raw images (prior to the IFFT) and k-space flipping. This leads us to reconstruction of the MR image from 40\%, 25\% and 16.6\% of the original k-space data.
 
-The generator is composed of $5$ blocks of CONV-BatchNorm-ReLU, with output channels $16,32,64,32,8,$ respectively (see Figure~\ref{fig:architectures}). The last CONV layer is composed of two output channels for real and imaginary components. The discriminator is composed of $4$ blocks of CONV-Pool-BatchNorm-LReLU with output channels $8,16,32,16$ and one fully-connected layer. All CONV layer's kernel size is $3\times3$. All weights was initialized by Xavier \cite{glorot2010understanding}. We used RMSprop~\cite{tieleman2012lecture} solver with fixed learning rate of $5\mathrm{e}{-6}$ and set $k_{d}$ to 1.
+The generator is composed of $5$ blocks of CONV-BatchNorm-ReLU, with output channels $16,32,64,32,8,$ respectively (see Figure~\ref{fig:architectures}). The last CONV layer is composed of two output channels for real and imaginary components. The discriminator is composed of $4$ blocks of CONV-Pool-BatchNorm-LReLU with output channels $8,16,32,16$ and one fully-connected layer. All CONV layer's kernel size is $3\times3$. All weights were initialized using Xavier \cite{glorot2010understanding}. We used the RMSprop~\cite{tieleman2012lecture} solver with a fixed learning rate of $5\mathrm{e}{-6}$ and set $k_{d}$ to 1.
 
-We compared the proposed method reconstructions to those obtained by using a conventional compressed sensing method-CS-MRI \cite{lustig2007sparse} and Zero-filling. In addition, we tested two other networks. To asses the use of adversarial loss, we trained a k-space generator, with the same architecture as the proposed method, with only L2 loss (CNN-L2). We also implemented the method proposed in~\cite{hyun2017deep} and constructed a network IM-CNN-L2, which is applied directly to the image space rather than the k-space. Specifically, as in~\cite{hyun2017deep}, we used the U-net architecture~\cite{ronneberger2015u} and applied an FFT on each of its output images to get an estimated k-space. The complete k-space is then recovered by integrating the estimated samples with the sampled raw data according to the sampling mask. The same sampling masks were used for all methods.
+We compared the proposed method reconstructions to those obtained by using a conventional compressed sensing method-CS-MRI \cite{lustig2007sparse} and Zero-filling. In addition, we tested two other networks. To asses the use of an adversarial loss, we trained a k-space generator, with the same architecture as the proposed method, with only a L2 loss (CNN-L2). We also implemented the method proposed in~\cite{hyun2017deep} and constructed a network IM-CNN-L2, which is applied directly to the image space rather than the k-space. Specifically, as in~\cite{hyun2017deep}, we used the U-net architecture~\cite{ronneberger2015u} and applied an FFT on each of its output images to get an estimated k-space. The complete k-space is then recovered by integrating the estimated samples with the sampled raw data according to the sampling mask. The same sampling masks were used for all methods.
 
 To demonstrate the clinical usability of the reconstructed images we perform an extended validation, composed of anatomical quantitative measurements. In addition to the common used PSNR and Structure Similarity Index (SSIM)~\cite{wang2004image} metrics, we perform tissue segmentation and compared the results to those obtained by using the original fully-sampled images. The segmentation compatibility is measured in terms of Dice scores and Hausdorff distances.
 
@@ -227,7 +227,7 @@ To demonstrate the clinical usability of the reconstructed images we perform an 
 
 \subsection{PSNR and SSIM}
 PSNR and SSIM are the most commonly used measures for evaluation of image reconstruction quality. PSNR measures the Mean Squared Error (MSE) between the fully-sampled MR image and the reconstructed image.
-Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graphical visualization in ~Figure~\ref{fig:error_psnr_errorbar}. The PSNR is calculated for the entire image without masking. Note that the proposed method outperforms the others. To support it, we also calculated the Two-sample t-Test for the table's scores. The differences are statistically significant (p-values~$<0.005$) for all pairwise comparisons between the results of our method and the others.
+Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graphical visualization in ~Figure~\ref{fig:error_psnr_errorbar}. The PSNR is calculated for the entire image without masking. Note that the proposed method outperforms the others. To support this, we also calculated the Two-sample t-Test for the table's scores. The differences are statistically significant (p-values~$<0.005$) for all pairwise comparisons between the results of our method and the others.
 
 \begin{table}[H]
 	\centering{}
@@ -313,7 +313,7 @@ SSIM scores for different sampling factors, for all methods compared, are presen
 	\end{tabular}\caption{\textcolor{black}{\footnotesize{}{}SSIM for different sampling factors}{\footnotesize{}\label{tbl:SSIM_NO_MASK}}}
 \end{table}
 
-While PSNR and SSIM are widely used, these measures are not sensitive enough to differences in fine details and complex anatomical structure topologies. For example, a model can provide a good reconstruction in the sense of PSNR, yet with blurry edges and therefore loss of high frequency information. This may significantly affect diagnostic usability. We therefore further compared segmentation quality between the fully-sampled and the reconstruction images. Results of the analysis obtained for our method and all others are presented next.
+While PSNR and SSIM are widely used, these measures are not sensitive enough to differences in fine details and complex anatomical structure topologies. For example, a model can provide a good reconstruction in the sense of PSNR, yet with blurry edges and therefore loss of high frequency information. This may significantly affect diagnostic usability. We therefore further compare segmentation quality between the fully-sampled and the reconstruction images. Results of the analysis obtained for our method and all others are presented next.
 
 \subsection{Brain Extraction - Skull Stripping}
 Brain extraction (skull stripping) is an algorithm that delineates the brain boundary (Figure~ \ref{fig:brain_extraction}). It is a necessary preliminary step for brain analysis algorithms.
@@ -364,7 +364,7 @@ where $\sigma_1,\sigma_2$ are points on the contours $C_1,C_2$ respectively (Fig
 
 
 \subsection{Brain Segmentation}
-We next tested and compared segmentation quality applying brain tissue partitioning algorithm (FAST \cite{zhang2001segmentation}) to the reconstructed images. Segmentation results were compared to those obtained for the original fully-sampled scans. We believe that these comparisons are indicative to the diagnostic quality of the reconstructed MRIs as tissue segmentation (WM, GM and CSF) plays a key role in clinical brain analysis.
+We next tested and compared segmentation quality applying brain tissue partitioning algorithm (FAST \cite{zhang2001segmentation}) to the reconstructed images. Segmentation results were compared to those obtained for the original fully-sampled scans. We believe that these comparisons are indicative of the diagnostic quality of the reconstructed MRIs as tissue segmentation (WM, GM and CSF) plays a key role in clinical brain analysis.
 %Segmentation compatibility demonstrate the quality of the proposed MRI reconstruction with respect to other methods. We create a reference segmentation by extracting the brain (using BET \cite{smith2002fast}) from the original fully-sampled image and perform a brain segmentation algorithm (FAST \cite{zhang2001segmentation}) on it. Then, we did the same process for all the reconstruction methods and compared the segmentation results.
 We used the Dice score~\cite{dice1945measures} to measure the compatibility between the segments obtained for the original ($S_{\mbox{\tiny{REF}}}$) and the reconstructed ($S_{\mbox{\tiny{REC}}}$) images, defined as follows:
 \begin{equation}
@@ -373,7 +373,7 @@ DICE(S_{\mbox{\tiny{REF}}}, S_{\mbox{\tiny{REC}}}) = 2\frac{S_{\mbox{\tiny{REF}}
 \end{array}
 \end{equation}
 Dice scores are between zero to one where one indicates complete overlap between the tested segments. Therefore, higher dice scores imply higher compatibility between reconstructed and original images.
-Dice scores for all tested methods and sampling factors are presented in~Table~\ref{tbl:DICE}. As fore previous tests, our method achieves the best scores for all brain tissues and all sampling factors. Statistical significant values (p-values~$<0.0005$) found for all methods using sampling factor of 2.5. In addition to the CS-MRI and Zero-filled, the differences are statistically significant with p-values~$<0.0001$ for CNN-L2 using sampling factor 4 and for IM-CNN-L2 using sampling factor 6.
+Dice scores for all tested methods and sampling factors are presented in~Table~\ref{tbl:DICE}. As for previous tests, our method achieves the best scores for all brain tissues and all sampling factors. Statistical significant values (p-values~$<0.0005$) found for all methods using sampling factor of 2.5. In addition to the CS-MRI and Zero-filled, the differences are statistically significant with p-values~$<0.0001$ for CNN-L2 using sampling factor 4 and for IM-CNN-L2 using sampling factor 6.
 
 \begin{table}[H]
 	\centering
@@ -408,7 +408,7 @@ Dice scores for all tested methods and sampling factors are presented in~Table~\
 	\caption{\textcolor{black}{\footnotesize{}{}Segmentation Dice score for different sampling ratios}{\footnotesize{}\label{tbl:DICE}}}
 	
 \end{table}
-MR reconstruction results for factor 6~(16.66\%) as well as their respective brain segmentation results are visually presented in Figure~\ref{fig:example_factor_6}~for a single representative scan. The left most column corresponds to the original image and columns 2-5 correspond to the reconstructed images using Zero-filled, CS-MRI, IM-CNN-L2 and the proposed method, respectively. The first row presents a $2D$ slice of the original and the reconstructed MRIs. The second row presents the zoom-in of brain regions in the red frames shown in the first row. The third row presents the corresponding brain extraction. The forth row presents the automatic tissue segmentation where, dark blue is used for WM, blue for GM and light blue for CSF. Note that, MRIs reconstructed by using the suggested adversarial method have stronger contrast and no significant aliasing or artifacts. In addition the brain extraction and tissue segmentation results are more compatible with those obtained from the original fully-sampled MRIs. Additional examples of different cases, using sampling factors of 4~(25\%) and 2.5~(40\%) are shown in Figures~\ref{fig:example_factor_4},~\ref{fig:example_factor_2.5}, respectively.
+MR reconstruction results for factor 6~(16.66\%) as well as their respective brain segmentation results are visually presented in Figure~\ref{fig:example_factor_6}~for a single representative scan. The left most column corresponds to the original image and columns 2-5 correspond to the reconstructed images using Zero-filled, CS-MRI, IM-CNN-L2 and the proposed method, respectively. The first row presents a $2D$ slice of the original and the reconstructed MRIs. The second row presents the zoom-in of brain regions in the red frames shown in the first row. The third row presents the corresponding brain extraction. The fourth row presents the automatic tissue segmentation where, dark blue is used for WM, blue for GM and light blue for CSF. Note that, MRIs reconstructed by using the suggested adversarial method have stronger contrast and no significant aliasing or artifacts. In addition the brain extraction and tissue segmentation results are more compatible with those obtained from the original fully-sampled MRIs. Additional examples of different cases, using sampling factors of 4~(25\%) and 2.5~(40\%) are shown in Figures~\ref{fig:example_factor_4},~\ref{fig:example_factor_2.5}, respectively.
 
 % Examples factor 6
 \begin{figure}[H]
@@ -454,11 +454,11 @@ MR reconstruction results for factor 6~(16.66\%) as well as their respective bra
 %--------------------- CONCLUSIONS --------------------%
 \section{Discussion}\label{conclusions_section}
 The proposed deep learning framework for MRI reconstruction from highly under-sampled k-space (up to 16.66\%), can be used as the foundation of a real-time, software-only solution for MRI acceleration.
-The inter-play between the generator and the discriminator plays a key role here. The generator is trained directly on the k-space, thus avoiding aliasing correction (due to under-sampling) as done in other methods.
+The inter-play between the generator and the discriminator plays a key role here. The generator is trained directly on the k-space, thus avoiding aliasing correction (due to under-sampling) as is done in other methods.
 Instead, the k-space distribution, and not its IFFT, is learned and generated. Moreover, combining both adversarial and fidelity loss in the DNN training, the method suggested provides high PSNR reconstructions for large and diverse brain MRI dataset acquired by different MRI machines (1.5T and 3.T) and different imaging protocols.
 
 Until just a few years ago, CS techniques were considered the state-of-the-art for MRI reconstruction. Recently, deep learning methods, capable of learning imaging samples distribution from training datasets, were shown to obtain reconstruction with comparable or even higher quality. The strength of the proposed DNN is three-fold, combining direct k-space reconstruction, GAN architecture and end-to-end optimization.
-This allows anatomically meaningful reconstruction with high fidelity to the original scan. Extensive comparative analysis shows that our method outperforms all other tested MRI reconstruction methods (CS and other DNN-based) for various quality metrics, showing more robustness for high acceleration factors.
+This allows anatomically meaningful reconstruction with high fidelity to the original scan. Extensive comparative analysis shows that our method outperforms all other tested MRI reconstruction methods (CS and other DNN-based) for various quality metrics, showing more robustness to high acceleration factors.
 
 A key advantage of the proposed method is its short runtime at test phase (less than 10 msec per slice), which is almost two orders of magnitude faster than CS. This makes it applicable for routine uses. As training can be performed off-line, prior to the acquisition sessions, the fact that it lasts a few days has no practical relevance.
 
