@@ -31,7 +31,7 @@
 %		\fontfamily{qtm}\selectfont
 \begin{frontmatter}
 
-\title{Accelerated Magnetic Resonance Imaging by Adversarial Neural Network}
+\title{Accelerated Magnetic Resonance Imaging by Generative Adversarial Neural Networks}
 
 %% Group authors per affiliation:
 \author{Ohad Shitrit, Tammy Riklin Raviv}
@@ -42,7 +42,7 @@
 \begin{abstract}
 A main challenge in Magnetic Resonance Imaging (MRI) for clinical applications is speeding up scan time. Beyond the improvement of patient experience and the reduction of operational costs, faster scans are essential for time-sensitive imaging, where target movement is unavoidable, yet must be significantly lessened, e.g., fetal MRI, cardiac cine, and lungs imaging. Moreover, short scan time can enhance temporal resolution in dynamic scans, such as functional MRI or dynamic contrast enhanced MRI. Current imaging methods facilitate MRI acquisition at the price of lower spatial resolution and costly hardware solutions.
 
-We introduce a practical, software-only framework, based on deep learning, for accelerating MRI acquisition, while maintaining anatomically meaningful imaging. This is accomplished by partial MRI sampling, while using an adversarial neural network to directly estimate the missing k-space samples. The inter-play between the generator and the discriminator networks enables the introduction of an adversarial cost in addition to fidelity loss used for optimizing the peak signal-to-noise ratio (PSNR). Promising image reconstruction results are obtained for 3T and 1.5T brain MRI, from a large publicly available dataset, where only 40\%, 25\%, and 16.6\% of the raw samples of each scan are used. To assess the clinical usability of the reconstructed images we also performed tissue segmentation and compared the results to those obtained by using the original fully-sampled images.
+We introduce a practical, software-only framework, based on deep learning, for accelerating MRI acquisition, while maintaining anatomically meaningful imaging. This is accomplished by partial MRI sampling, while using an generative adversarial neural network to directly estimate the missing k-space samples. The inter-play between the generator and the discriminator networks enables the introduction of an adversarial cost in addition to fidelity loss used for optimizing the peak signal-to-noise ratio (PSNR). Promising image reconstruction results are obtained for 3T and 1.5T brain MRI, from a large publicly available dataset, where only 40\%, 25\%, and 16.6\% of the raw samples of each scan are used. To assess the clinical usability of the reconstructed images we also performed tissue segmentation and compared the results to those obtained by using the original fully-sampled images.
 Segmentation compatibility, measured in terms of Dice scores and Hausdorff distances, demonstrate the quality of the proposed MRI reconstruction with respect to other methods, including the widely-used Compressed Sensing.
 
 \end{abstract}
@@ -227,7 +227,7 @@ To demonstrate the clinical usability of the reconstructed images we performed a
 
 \subsection{PSNR and SSIM}
 PSNR and SSIM are the most commonly used measures for evaluation of image reconstruction quality. PSNR measures the Mean Squared Error (MSE) between the fully-sampled MR image and the reconstructed image.
-Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graphical visualization in ~Figure~\ref{fig:error_psnr_errorbar}. The PSNR is calculated for the entire image without masking. Note that the proposed method outperforms the others. To support this, we also calculated the two-sample t-Test for the table's scores. The differences are statistically significant (p-values~$<0.005$) for all pairwise comparisons between the results of our method and the others.
+Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graphical visualization in~Figure~\ref{fig:error_psnr_errorbar}. The PSNR is calculated for the entire image without masking. Note that the proposed method outperforms the others. To support this, we also calculated the two-sample t-Test for the table's scores. The differences are statistically significant (p-values~$<0.005$) for all pairwise comparisons between the results of our method and the others.
 
 \begin{table}[H]
 	\centering{}
@@ -251,7 +251,8 @@ Quantitative evaluation is presented in~Table~\ref{tbl:PSNR_NO_MASK} and a graph
 \centering
 \includegraphics[width=0.7\linewidth]{include/grp2/error_psnr_errorbar}
 \caption{PSNR without masking error-bar}
-\end{figure}\label{fig:error_psnr_errorbar}
+\label{fig:error_psnr_errorbar}
+\end{figure}
 
 An additional validation of our model is performed by calculating the PSNR measure on different brain tissues. We applied the commonly used FAST~\cite{zhang2001segmentation} image segmentation algorithm on the original fully-sampled MR image and then used it for calculating the masked-PSNR on gray matter (GM), white matter (WM), and the Cerebrospinal Fluid (CSF). Results are presented in~Table~\ref{tbl:PSNR_WITH_MASK}. 
 The differences are statistically significant with p-values~$<0.0005$ for CS-MRI and zero-filled for sampling factors 2.5 and 4, and also for IM-CNN-L2 with p-values~$<0.0001$ for sampling factor 6.
